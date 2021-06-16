@@ -24,7 +24,7 @@ module.exports = {
       body: ['Roboto']
     },
     maxWidth:{
-      '3/5':'60%',
+      '2/3':'66.667%',
     },
     letterSpacing: {
       header: '0.43em'
