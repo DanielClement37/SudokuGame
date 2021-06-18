@@ -5,28 +5,34 @@
     */
 export default class Sudoku{
     
+    //private data member
     #value = 0;
 
     constructor(value) {
         this.#value = value;
     }
 
-    get Value() {
+    set setValue(num) {
+        this.#value = num;
+    }
+
+    get getValue() {
         return this.#value;
     }
 };
 
-//define the array of objects
-var gameBoard = [];
-for(var i = 0; i < 9; i++) {
-    gameBoard.push(new Sudoku());
-    for(var j = 0; j < 9; j++) {
-        gameBoard[i].push(new Sudoku());
+function InitializeBoard(board) {
+    //sets all values in the board to 0, 0 means empty spot
+    for(var i = 0; i < 9; i++) {
+        for(var j = 0; j < 9; j++)
+        {
+            board[i][j].setValue(0);
+        }
     }
 }
 
 function EmptySpot(board) {
-    // checks for the next empty spotm in the board
+    // checks for the next empty spot in the board
 
     for(var i = 0; i < board.length(); i++) {
         for(var j = 0; j < board[i].length(); j++) {
@@ -73,7 +79,7 @@ function CheckSquare(board, row, column, value) {
     */
 
     //get the most upper row of the sqaure
-    var tempRow = math.floor(row / 3);
+    var tempRow = Math.floor(row / 3);
     tempRow = tempRow * 3;
     //get the most left column of the square
     var tempColumn = math.floor(column/3);
@@ -105,22 +111,4 @@ function CheckValue(board, row, column, value) {
     return false;
 }
 
-function BackTracker(board) {
-
-    let nextEmptySpot = EmptySpot(board);
-    let row = nextEmptySpot[0];
-    let column = nextEmptySpot[1];
-
-    //there is no more spots left to be assigned
-    if(row === -1)
-        return board;
-
-    for(let num = 1; num <= 9; num++) {
-        if(CheckValue(board, row, col, num)) {
-            //if returns true, set the value at that position equal to true
-            board[row][column] = num;
-            //recursivley call the backtracking function
-            BackTracker(board);
-        }
-    }
-}
+export{gameBoard, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard};
