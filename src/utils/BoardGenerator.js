@@ -1,7 +1,27 @@
 /* Functions used to generate the board, 
    uses functions from SudokuLogic.js */
 
+//import functions and Sudoku class from SudokuLogic.js
+import Sudoku from 'SudokuLogic.js';
 import {gameBoard, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard} from 'SudokuLogic.js';
+
+//define the array of objects for the final game board
+var answerKey = [];
+for(var i = 0; i < 9; i++) {
+    answerKey.push(new Sudoku());
+    for(var j = 0; j < 9; j++) {
+        answerKey[i].push(new Sudoku());
+    }
+}
+
+//define the array of objects for the gameBoard
+var gameBoard = [];
+for(var i = 0; i < 9; i++) {
+    gameBoard.push(new Sudoku());
+    for(var j = 0; j < 9; j++) {
+        gameBoard[i].push(new Sudoku());
+    }
+}
 
 function GetRandomNumber(min, max) {
     return Math.random() * (max - min) + min;
@@ -47,11 +67,24 @@ function UniqueBoardGenerator(board) {
     }
 }
 
-function BeginnerBoardGenerator(board) {
+function BeginnerBoardGenerator(board, answerKey) {
     //generator a unique starting board
     UniqueBoardGenerator(board);
 
     //fill in the remaining empty spots
     BackTracker(board);
+
+    //initialize the finalBoard and set it equal to the board
+    InitializeBoard(answerKey);
+    answerKey = board.slice(0);
+
+    let numOfTiles = GetRandomNumber(36, 46); //gets the amount of tiles to keep
+    numOfTiles = 81 - numOfTiles; //subtracts the amount of tiles to keep, from the total tiles
+    var i = 0;
+
+    while(i < numOfTiles) {
+        //enter logic to get rid of random tiles if the game rules allow it
+    }
+
 
 }
