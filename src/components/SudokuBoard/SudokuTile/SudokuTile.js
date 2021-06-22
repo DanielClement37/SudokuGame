@@ -1,9 +1,9 @@
 import './SudokuTile.css';
 import React from 'react'
 
-const Tile = () => {
+const Tile = (props) => {
     return (
-        <div className="tile"><h2>1</h2></div>
+        <div className={props.tileStyle}><h2>1</h2></div>
     )
 }
 
