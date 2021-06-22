@@ -14,13 +14,13 @@ const App = ()=> {
     for (let i = 0; i <  9; i++) {
       for(let j = 0; j < 9; j++){
           if((i+1) % 3 === 0 && (j+1) %3 ===0){
-            tileStyle = "tile-row-col";
+            tileStyle = "tile-row-col tile-hoverable";
           } else if((i+1) % 3 === 0){
-            tileStyle = "tile-row";
+            tileStyle = "tile-row tile-hoverable";
           }else if((j+1) %3 ===0){
-            tileStyle = "tile-col";
+            tileStyle = "tile-col tile-hoverable";
           }else{
-            tileStyle = "tile";
+            tileStyle = "tile tile-hoverable";
           }
           tilesState.push(<Tile tileStyle={tileStyle}/>);
       }

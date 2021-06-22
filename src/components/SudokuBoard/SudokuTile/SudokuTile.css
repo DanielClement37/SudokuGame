@@ -2,10 +2,11 @@
     display: grid;
     position: relative;
     border: 1px solid #527261;
-    color: #527261;
+    
 }
 
-.tile h2 {
+h2 {
+    color: #527261;
     justify-self: center;
     align-self: center;
     font-family: Roboto;
