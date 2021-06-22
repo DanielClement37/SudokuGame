@@ -1,5 +1,8 @@
 
 import './App.css';
+import '../SudokuBoard/SudokuBoard.css';
+import '../SudokuBoard/SudokuTile/SudokuTile.css';
+import '../NumPad/NumPad.css';
 
 function App() {
   return (
@@ -8,8 +11,90 @@ function App() {
         <header className="App-header">
           <div className="text-8xl tracking-header header-title text-bold text-primary">SUDOKU</div>
         </header>
-        <div className="h-screen Game-container ">
-          <div className="Board-container"></div>
+        <div className="Game-container">
+          <div className="Board-container">
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+            <div className="tile"><h2>1</h2></div>
+          </div>
           <div className="Side-controls-container"></div>
           <div className="Number-Btns"></div>
         </div>

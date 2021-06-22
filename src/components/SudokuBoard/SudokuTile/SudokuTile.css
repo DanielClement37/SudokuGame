@@ -1,0 +1,13 @@
+.Board-container .tile {
+    display: grid;
+    position: relative;
+    border: 1px solid #527261;
+    color: #527261;
+}
+
+.Board-container .tile h2 {
+    justify-self: center;
+    align-self: center;
+    font-family: Roboto;
+    font-size: 30px;
+}
