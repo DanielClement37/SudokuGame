@@ -9,8 +9,21 @@ import PepeScrap from '../../images/pepeScrap.png'
 const App = ()=> {
   const tiles = () =>{
     const tilesState = [];
-    for (let i = 0; i <  81; i++) {
-      tilesState.push(<Tile/>)  
+    let tileStyle = "";
+
+    for (let i = 0; i <  9; i++) {
+      for(let j = 0; j < 9; j++){
+          if((i+1) % 3 === 0 && (j+1) %3 ===0){
+            tileStyle = "tile-row-col";
+          } else if((i+1) % 3 === 0){
+            tileStyle = "tile-row";
+          }else if((j+1) %3 ===0){
+            tileStyle = "tile-col";
+          }else{
+            tileStyle = "tile";
+          }
+          tilesState.push(<Tile tileStyle={tileStyle}/>);
+      }
     }
     return tilesState;
   }

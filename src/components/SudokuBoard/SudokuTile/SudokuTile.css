@@ -1,13 +1,55 @@
-.Board-container .tile {
+.tile {
     display: grid;
     position: relative;
     border: 1px solid #527261;
     color: #527261;
 }
 
-.Board-container .tile h2 {
+.tile h2 {
     justify-self: center;
     align-self: center;
     font-family: Roboto;
     font-size: 30px;
+}
+
+.tile:hover{
+    border: 3px solid #527261;
+}
+
+.tile-col:hover {
+    border: 3px solid #527261;
+}
+.tile-row:hover{
+    border: 3px solid #527261;
+}
+.tile-row-col:hover{
+    border: 3px solid #527261;
+}
+
+.tile-row{
+    display: grid;
+    position: relative;
+    border-bottom: 3px solid #527261;
+    border-right: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: 1px solid #527261;
+}
+
+.tile-col{
+    display: grid;
+    position: relative;
+    border-right: 3px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-top: 1px solid #527261;
+}
+
+.tile-row-col
+{
+    display: grid;
+    position: relative;
+    border-right: 3px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: 3px solid #527261;
+    border-top: 1px solid #527261;
 }
