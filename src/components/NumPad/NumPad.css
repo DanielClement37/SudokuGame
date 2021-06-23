@@ -1,5 +1,5 @@
 
-.Number-Btns{
+.NumPad{
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: 20% auto;
