@@ -41,24 +41,79 @@
 }
 
 .controls-container{
-    
+    display: grid;
+    grid-area: 5/1/13/12;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(24, 1fr);
 }
 
 .undo-btn{
-
+    display: grid;
+    grid-area: 1/1/6/9;
+    border: 2px solid #527261;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    color: #527261;
+    justify-content: center;
+    align-items: center;
 }
+
+h4{
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+}
+
 .hint-btn{
-    
+    display: grid;
+    grid-area: 1/16/6/24;
+    border: 2px solid #527261;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    color: #527261;
+    justify-content: center;
+    align-items: center;
 }
 .notes-btn{
-    
+    display: grid;
+    grid-area: 10/1/15/9;
+    border: 2px solid #527261;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    color: #527261;
+    justify-content: center;
+    align-items: center;
 }
 .eraser-btn{
-    
+    display: grid;
+    grid-area: 10/16/15/24;
+    border: 2px solid #527261;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    color: #527261;
+    justify-content: center;
+    align-items: center;
 }
 .new-game-btn{
-    
+    display: grid;
+    grid-area: 19/1/24/9;
+    border: 2px solid #527261;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    color: #527261;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 .settings-btn{
-    
+    display: grid;
+    grid-area: 19/16/24/24;
+    border: 2px solid #527261;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    color: #527261;
+    justify-content: center;
+    align-items: center;
 }
