@@ -13,17 +13,7 @@ h2 {
     font-size: 30px;
 }
 
-.tile:hover{
-    border: 3px solid #527261;
-}
-
-.tile-col:hover {
-    border: 3px solid #527261;
-}
-.tile-row:hover{
-    border: 3px solid #527261;
-}
-.tile-row-col:hover{
+.tile-hoverable:hover{
     border: 3px solid #527261;
 }
 
