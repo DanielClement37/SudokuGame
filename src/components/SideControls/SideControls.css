@@ -1,7 +1,64 @@
 .side-controls {
-    display: flex;
+    display: grid;
     grid-area: 1 / 8 / 8 / 11 ;
     grid-template-columns: repeat(2, 1fr);             /*Columns/rows reserved for future buttons and timer*/
-    grid-template-rows: repeat(4, 1fr);
-    border: 4px solid #527261;
+    grid-template-rows: repeat(12, 1fr);
+    /*border: 4px solid #527261; */
+}
+
+.timer-container{
+    position: relative;
+    background: #FFFFFF;
+    border: 5px solid #527261;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    grid-area: 1/1/4/4;
+}
+
+.timer-item{
+    text-align: center;
+    vertical-align: center;
+}
+
+.timer-item h3{
+    color: #527261;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 47px;
+}
+
+.timer-item h1{
+    color: #527261;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 70px;
+    
+}
+
+.controls-container{
+    
+}
+
+.undo-btn{
+
+}
+.hint-btn{
+    
+}
+.notes-btn{
+    
+}
+.eraser-btn{
+    
+}
+.new-game-btn{
+    
+}
+.settings-btn{
+    
 }

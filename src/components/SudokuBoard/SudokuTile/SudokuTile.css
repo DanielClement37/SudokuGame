@@ -13,8 +13,14 @@ h2 {
     font-size: 30px;
 }
 
+.tile-hoverable{
+    transition: transform .1s; /* Animation */
+}
+
 .tile-hoverable:hover{
     border: 3px solid #527261;
+    border-radius: 5px;
+    transform: scale(1.1);
 }
 
 .tile-row{
