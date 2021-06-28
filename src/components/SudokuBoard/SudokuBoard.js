@@ -3,7 +3,7 @@ import './SudokuBoard.css';
 import React from 'react'
 import Tile from './SudokuTile/SudokuTile';
 
-const SudokuBoard = (props)=> {
+const SudokuBoard = ()=> {
 
     const tiles = () =>{
         const tilesState = [];
@@ -20,7 +20,7 @@ const SudokuBoard = (props)=> {
             }else{
               tileStyle = "tile tile-hoverable";
             }
-            tilesState.push(<Tile tileStyle={tileStyle} x={j} y={i} value={props.value}/>);
+            tilesState.push(<Tile tileStyle={tileStyle} x={j} y={i} />);
           }
         }
         return tilesState;

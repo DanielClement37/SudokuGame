@@ -47,14 +47,6 @@
     grid-template-rows: repeat(24, 1fr);
 }
 
-h4{
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
-}
-
 .undo-btn{
     display: grid;
     grid-area: 1/1/6/9;
@@ -64,6 +56,14 @@ h4{
     color: #527261;
     justify-content: center;
     align-items: center;
+}
+
+h4{
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
 }
 
 .hint-btn{
@@ -116,12 +116,4 @@ h4{
     color: #527261;
     justify-content: center;
     align-items: center;
-}
-
-.controls-container .btn{
-    transition: transform .1s; /* Animation */
-}
-
-.controls-container .btn:hover{
-    transform: scale(1.1);
 }
