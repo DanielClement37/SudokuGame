@@ -3,7 +3,7 @@
 
 //import functions and Sudoku class from SudokuLogic.js
 import Sudoku from 'SudokuLogic.js';
-import {gameBoard, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard} from 'SudokuLogic.js';
+import { CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard} from 'SudokuLogic.js';
 
 //define the array of objects for the final game board
 var answerKey = [];

@@ -82,7 +82,7 @@ function CheckSquare(board, row, column, value) {
     var tempRow = Math.floor(row / 3);
     tempRow = tempRow * 3;
     //get the most left column of the square
-    var tempColumn = math.floor(column/3);
+    var tempColumn = Math.floor(column/3);
     tempColumn = tempColumn * 3;
 
     for(var i = tempRow; i < tempRow + 3; i++) {
@@ -111,4 +111,4 @@ function CheckValue(board, row, column, value) {
     return false;
 }
 
-export{gameBoard, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard};
+export{ CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard};
