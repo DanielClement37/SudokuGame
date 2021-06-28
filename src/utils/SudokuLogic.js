@@ -95,8 +95,5 @@ export function CheckValue(board, row, column, value) {
 
     return false;
 }
-<<<<<<< HEAD
 
-export{BLANK_BOARD, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot};
-=======
->>>>>>> 3e2cd81e954892cc38d39e0ed112c5e3cc87eb34
+export{ CheckColumn, CheckRow, CheckSquare};
