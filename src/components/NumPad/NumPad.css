@@ -1,0 +1,8 @@
+
+.NumPad{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: 20% auto;
+    grid-area: 8 / 1 / 10 / 8;
+    border: 2px solid blue;
+}

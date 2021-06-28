@@ -1,0 +1,52 @@
+.tile {
+    display: grid;
+    position: relative;
+    border: 1px solid #527261;
+    
+}
+
+h2 {
+    color: #527261;
+    justify-self: center;
+    align-self: center;
+    font-family: Roboto;
+    font-size: 30px;
+}
+
+.tile-hoverable{
+    transition: transform .1s; /* Animation */
+}
+
+.tile-hoverable:hover{
+    border: 3px solid #527261;
+    border-radius: 5px;
+    transform: scale(1.1);
+}
+
+.tile-row{
+    display: grid;
+    position: relative;
+    border-bottom: 3px solid #527261;
+    border-right: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: 1px solid #527261;
+}
+
+.tile-col{
+    display: grid;
+    position: relative;
+    border-right: 3px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-top: 1px solid #527261;
+}
+
+.tile-row-col
+{
+    display: grid;
+    position: relative;
+    border-right: 3px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: 3px solid #527261;
+    border-top: 1px solid #527261;
+}
