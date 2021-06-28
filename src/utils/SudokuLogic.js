@@ -3,33 +3,18 @@
     SudokuBoard class definition
 
     */
-export default class Sudoku{
-    
-    //private data member
-    #value = 0;
 
-    constructor(value) {
-        this.#value = value;
-    }
-
-    set setValue(num) {
-        this.#value = num;
-    }
-
-    get getValue() {
-        return this.#value;
-    }
-};
-
-function InitializeBoard(board) {
-    //sets all values in the board to 0, 0 means empty spot
-    for(var i = 0; i < 9; i++) {
-        for(var j = 0; j < 9; j++)
-        {
-            board[i][j].setValue(0);
-        }
-    }
-}
+const BLANK_BOARD = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+];
 
 function EmptySpot(board) {
     // checks for the next empty spot in the board
@@ -111,4 +96,4 @@ function CheckValue(board, row, column, value) {
     return false;
 }
 
-export{ CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard};
+export{BLANK_BOARD, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot};
