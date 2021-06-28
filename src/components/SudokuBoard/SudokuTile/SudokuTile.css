@@ -18,8 +18,8 @@ h2 {
 }
 
 .tile-hoverable:hover{
-    border: 3px solid #527261;
-    border-radius: 5px;
+    border: 5px solid #00853E !important;
+    border-radius: 10px;
     transform: scale(1.1);
 }
 

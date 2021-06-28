@@ -2,15 +2,16 @@
    uses functions from SudokuLogic.js */
 
 //import functions and Sudoku class from SudokuLogic.js
-import Sudoku from 'SudokuLogic.js';
-import {gameBoard, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot, InitializeBoard} from 'SudokuLogic.js';
 
-//define the array of objects for the final game board
-var answerKey = [];
-for(var i = 0; i < 9; i++) {
-    answerKey.push(new Sudoku());
-    for(var j = 0; j < 9; j++) {
-        answerKey[i].push(new Sudoku());
+import {CheckValue, EmptySpot, InitializeBoard} from 'src/utils/SudokuLogic.js';
+
+let counter;  //global counter for termination if board generation takes too long
+
+const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function NextStillEmptySpot(board, emptySpotArr) {
+    for(coords of emptySpotArr) {
+        if(board[coords.row][coords.col] === 0) return {rowIndex: coords.row, colIndex: coords.col}
     }
     return false;
 }
