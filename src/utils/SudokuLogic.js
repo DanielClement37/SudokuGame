@@ -4,7 +4,7 @@
 
     */
 
-const BLANK_BOARD = [
+export const BLANK_BOARD = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -16,7 +16,7 @@ const BLANK_BOARD = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-function EmptySpot(board) {
+export function EmptySpot(board) {
     // checks for the next empty spot in the board
 
     for(var i = 0; i < board.length(); i++) {
@@ -39,7 +39,7 @@ function CheckRow(board, row, value) {
             return false;
     }
     return true;
-}
+};
 
 function CheckColumn(board, column, value) {
     /*
@@ -54,7 +54,7 @@ function CheckColumn(board, column, value) {
         return false;
     }
     return true;
-}
+};
 
 function CheckSquare(board, row, column, value) {
     /*
@@ -67,7 +67,7 @@ function CheckSquare(board, row, column, value) {
     var tempRow = Math.floor(row / 3);
     tempRow = tempRow * 3;
     //get the most left column of the square
-    var tempColumn = math.floor(column/3);
+    var tempColumn = Math.floor(column/3);
     tempColumn = tempColumn * 3;
 
     for(var i = tempRow; i < tempRow + 3; i++) {
@@ -78,9 +78,9 @@ function CheckSquare(board, row, column, value) {
     }
 
     return true;
-}
+};
 
-function CheckValue(board, row, column, value) {
+export function CheckValue(board, row, column, value) {
     /*
     this function takes the value and checks the row, column
     and sqaure to check for conflicts, if there are any conflicts
@@ -96,4 +96,4 @@ function CheckValue(board, row, column, value) {
     return false;
 }
 
-export{BLANK_BOARD, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot};
+export{ CheckColumn, CheckRow, CheckSquare};

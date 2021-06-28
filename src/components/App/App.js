@@ -5,8 +5,10 @@ import SudokuBoard from '../SudokuBoard/SudokuBoard';
 import NumPad from '../NumPad/NumPad';
 import SideControls from '../SideControls/SideControls';
 import PepeScrap from '../../images/pepeScrap.png';
+//import BoardGenerator from '../../utils/BoardGenerator';
 
 const App = ()=> {
+  
 
   return (
     <div className="flex content-center justify-center App bg-primary ">

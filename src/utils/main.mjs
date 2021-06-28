@@ -1,5 +1,5 @@
 
-import {BeginnerBoardGenerator} from 'utils/BoardGenerator.js'
+import {BeginnerBoardGenerator} from './BoardGenerator.mjs'
 
 let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
 

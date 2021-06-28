@@ -3,18 +3,44 @@
 
 //import functions and Sudoku class from SudokuLogic.js
 
-import {CheckValue, EmptySpot, InitializeBoard} from 'src/utils/SudokuLogic.js';
+import {BLANK_BOARD, CheckValue, EmptySpot} from './SudokuLogic.js'
 
 let counter;  //global counter for termination if board generation takes too long
+
+
 
 const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function NextStillEmptySpot(board, emptySpotArr) {
-    for(coords of emptySpotArr) {
+    //updates the emptySpotArr with cells that are still empty
+    for(let coords of emptySpotArr) {
         if(board[coords.row][coords.col] === 0) return {rowIndex: coords.row, colIndex: coords.col}
     }
     return false;
-}
+};
+
+function EmptySpotCoords(board) {
+    let returnArr = [];
+    let nextEmptySpot;
+    let emptyRow, emptyCol;
+
+    while(emptyRow !== -1){
+        nextEmptySpot = EmptySpot(board)
+        emptyRow = nextEmptySpot[0];
+        emptyCol = nextEmptySpot[1];
+
+        if(emptyRow === -1)
+            break;
+        
+        returnArr.push({
+            row: emptyRow,
+            col: emptyCol
+        });
+
+    }
+
+    return returnArr;
+};
 
 function Shuffle(arr) {
     //randomly shuffles an array's contents
@@ -24,7 +50,7 @@ function Shuffle(arr) {
         [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
     }
     return newArr;
-}
+};
 
 const Range = (start, end) => {
     const length = end - start + 1;
@@ -33,7 +59,7 @@ const Range = (start, end) => {
 
 function GetRandomNumber(min, max) {
     return Math.random() * (max - min) + min;
-}
+};
 
 function FillBoard(board) {
 
@@ -43,7 +69,7 @@ function FillBoard(board) {
 
     //there is no more spots left to be assigned
     if(row === -1)
-        return board;
+        return true;
 
     for(let num = 1; num <= 9; num++) {
         // counter is a global variable tracking the iterations performed
@@ -65,13 +91,11 @@ function FillBoard(board) {
     }
     //if unable to place any number, return false
     return false;
-}
+};
 
 function UniqueBoardGenerator(board) {
     //function that generates 11 random numbers (1-9) in random locations
     //this allows for the board to be unique every game
-
-    InitializeBoard(board);
 
     var i = 0; //initialize 
     while(i < 11) {
@@ -85,7 +109,7 @@ function UniqueBoardGenerator(board) {
                 i++; //increment the amount of numbers that get inserted
             }
     }
-}
+};
 
 /*  This functions attempts to solve the puzzle by placing the values
     into the board in order from the emptySpotArr 
@@ -93,17 +117,17 @@ function UniqueBoardGenerator(board) {
 function FillFromArray(board, emptySpotArr) {
     const emptySpot = NextStillEmptySpot(board, emptySpotArr);
     if(!emptySpot) return board
-    for(num of Shuffle(numArr)) {
-        removalCounter++;
-        if( removalCounter > 60_000_000) throw new Error("Removal Timeout")
-        if(CheckValue(board, emptySpot.rowIndex, emptySpot.colIndex, num)) {
-            board[emptySpot.rowIndex][emptySpot.colIndex] = num;
+    for(let num of Shuffle(numArr)) {
+        counter++;
+        if( counter > 60_000_000) throw new Error("Removal Timeout")
+        if(CheckValue(board, emptySpot.row, emptySpot.col, num)) {
+            board[emptySpot.row][emptySpot.col] = num;
             if(FillFromArray(board, emptySpotArr)) return board
-            board[emptySpot.rowIndex][emptySpot.colIndex] = 0;
+            board[emptySpot.row][emptySpot.col] = 0;
         }
     }
     return false;
-}
+};
 
 function ValueRemover(initialBoard, k) {
     /* this function takes the board in and the amount of tiles to remove
@@ -120,7 +144,7 @@ function ValueRemover(initialBoard, k) {
 
         //guarding against possibly cloning
         if(!initialBoard[randRow]) continue;
-        if(initialBoard[randRow][randCol] == 0) continue;
+        if(initialBoard[randRow][randCol] === 0) continue;
 
         removedVals.push({ //store the current value at the given coordinates
             rowIndex: randRow,
@@ -134,13 +158,13 @@ function ValueRemover(initialBoard, k) {
         /* Attempt to solve the board after removing the value, if it cannot be solved 
         then remove that option from the list */
 
-        if(moreThanOneSolution(initialBoard.map(row => row.slice()))) {
+        if(moreThanOneSolution(proposedBoard.map(row => row.slice()))) {
             initialBoard[randRow][randCol] = removedVals.pop().val;
         }
     }
 
     return[removedVals, initialBoard];
-}
+};
 
 /*  the board passed in will be solved completly for each item in the empty spot list
     the empty spot array is rotated on each iteration to ensure that the order of the empty cells
@@ -150,12 +174,15 @@ function ValueRemover(initialBoard, k) {
     return true, thus prompting the removeVals function to try a different value
 */
 function moreThanOneSolution(board) {
+
     const possibleSolutions = [];
     const emptySpotArr = EmptySpotCoords(board);
+    let emptySpotClone, thisSolution;
+
     for(let i = 0; i < emptySpotArr.length; i++) {
         //rotate a clone of the emptySpotArr by one for each iteration
         emptySpotClone = [...emptySpotArr];
-        const startingPoint = emptySpotClone.splice(index, 1);
+        const startingPoint = emptySpotClone.splice(i, 1);
         emptySpotClone.unshift(startingPoint[0]);
         thisSolution = FillFromArray(board.map(row => row.slice()), emptySpotClone)
         possibleSolutions.push(thisSolution.join())
@@ -163,10 +190,10 @@ function moreThanOneSolution(board) {
         if(Array.from(new Set(possibleSolutions)).length > 1) return true;
     }
     return false
-}
+};
 
 const NewFilledBoard = _ => {
-    startTime = new Date;
+    //let startTime = new Date();
 
     const newBoard = BLANK_BOARD.map(row => row.slice());
 
@@ -176,7 +203,7 @@ const NewFilledBoard = _ => {
     return newBoard;
 }
 
-function BeginnerBoardGenerator() {
+export function BeginnerBoardGenerator() {
     /*this function generates a beginner board
     in order for a board to be considered beginner it must show
     between 36 and 46 tiles in the beginning of the game */
@@ -201,5 +228,3 @@ function BeginnerBoardGenerator() {
 
     }
 }
-
-export {BeginnerBoardGenerator};
