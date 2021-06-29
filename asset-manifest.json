@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/SudokuGame/static/css/main.cd7f01fc.chunk.css",
-    "main.js": "/SudokuGame/static/js/main.7491a035.chunk.js",
-    "main.js.map": "/SudokuGame/static/js/main.7491a035.chunk.js.map",
+    "main.css": "/SudokuGame/static/css/main.f99b8e5a.chunk.css",
+    "main.js": "/SudokuGame/static/js/main.9f01f9b2.chunk.js",
+    "main.js.map": "/SudokuGame/static/js/main.9f01f9b2.chunk.js.map",
     "runtime-main.js": "/SudokuGame/static/js/runtime-main.8f36cc48.js",
     "runtime-main.js.map": "/SudokuGame/static/js/runtime-main.8f36cc48.js.map",
     "static/js/2.d4e617ca.chunk.js": "/SudokuGame/static/js/2.d4e617ca.chunk.js",
     "static/js/2.d4e617ca.chunk.js.map": "/SudokuGame/static/js/2.d4e617ca.chunk.js.map",
     "index.html": "/SudokuGame/index.html",
-    "static/css/main.cd7f01fc.chunk.css.map": "/SudokuGame/static/css/main.cd7f01fc.chunk.css.map",
+    "static/css/main.f99b8e5a.chunk.css.map": "/SudokuGame/static/css/main.f99b8e5a.chunk.css.map",
     "static/js/2.d4e617ca.chunk.js.LICENSE.txt": "/SudokuGame/static/js/2.d4e617ca.chunk.js.LICENSE.txt",
     "static/media/pepeScrap.f374ebdc.png": "/SudokuGame/static/media/pepeScrap.f374ebdc.png"
   },
   "entrypoints": [
     "static/js/runtime-main.8f36cc48.js",
     "static/js/2.d4e617ca.chunk.js",
-    "static/css/main.cd7f01fc.chunk.css",
-    "static/js/main.7491a035.chunk.js"
+    "static/css/main.f99b8e5a.chunk.css",
+    "static/js/main.9f01f9b2.chunk.js"
   ]
 }
