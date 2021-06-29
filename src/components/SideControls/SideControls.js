@@ -13,12 +13,12 @@ export default function SideControls() {
                 </div>
             </div>
             <div className="controls-container">
-                <div className="undo-btn btn"><h4>Undo</h4></div>
-                <div className="hint-btn btn"><h4>Hint</h4></div>
-                <div className="notes-btn btn"><h4>Notes</h4></div>
-                <div className="eraser-btn btn"><h4>Eraser</h4></div>
-                <div className="new-game-btn btn"><h4>New Game</h4></div>
-                <div className="settings-btn btn"><h4>Settings</h4></div>
+                <button className="undo-btn">Undo</button>
+                <button className="hint-btn">Hint</button>
+                <button className="notes-btn">Notes</button>
+                <button className="eraser-btn">Eraser</button>
+                <button className="new-game-btn">New Game</button>
+                <button className="settings-btn">Settings</button>
             </div>
         </div>
     )
