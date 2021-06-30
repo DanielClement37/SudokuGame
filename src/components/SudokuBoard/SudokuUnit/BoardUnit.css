@@ -1,3 +1,40 @@
-.board-unit{
-    
+
+.Board-container .tile,
+.Board-container .board-unit {
+    width:33.33333%;
+    height:33.33333%;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex
+}
+
+.Board-container #unit1 {
+    border-bottom: 4px solid #527261;
+    border-right: 4px solid #527261;
+   }
+
+.Board-container #unit2 {
+    border-bottom: 4px solid #527261;
+    border-right: 4px solid #527261;
+   }
+   
+.Board-container #unit3 {
+    border-bottom: 4px solid #527261;
+}
+.Board-container #unit4 {
+    border-bottom: 4px solid #527261;
+    border-right: 4px solid #527261;
+}
+.Board-container #unit5 {
+    border-bottom: 4px solid #527261;
+    border-right: 4px solid #527261;
+}
+.Board-container #unit6 {
+    border-bottom: 4px solid #527261;
+}
+.Board-container #unit7 {
+    border-right: 4px solid #527261;
+}
+.Board-container #unit8 {
+    border-right: 4px solid #527261;
 }

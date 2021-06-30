@@ -1,52 +1,227 @@
-.tile {
-    display: grid;
+.Board-container .tile {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     position: relative;
+    cursor: pointer;
+    background-color: #fff;
     border: 1px solid #527261;
-    
 }
 
-h2 {
-    color: #527261;
-    justify-self: center;
-    align-self: center;
-    font-family: Roboto;
-    font-size: 30px;
-}
-
-.tile-hoverable{
-    transition: transform .1s; /* Animation */
-}
-
-.tile-hoverable:hover{
-    border: 5px solid #00853E !important;
+.Board-container .value-container {
+    width: 75%;
+    height: 75%;
     border-radius: 10px;
-    transform: scale(1.1);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
-.tile-row{
-    display: grid;
-    position: relative;
-    border-bottom: 3px solid #527261;
-    border-right: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: 1px solid #527261;
-}
-
-.tile-col{
-    display: grid;
-    position: relative;
-    border-right: 3px solid #527261;
-    border-left: 1px solid #527261;
+.Board-container #tileA1{
+    border-top-left-radius: 10px;
+    border-right:1px solid #527261;
     border-bottom: 1px solid #527261;
-    border-top: 1px solid #527261;
+    border-left: none;
+    border-top: none;
+}
+.Board-container #tileA2{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: none;
+}
+.Board-container #tileA3{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: none;
+}
+.Board-container #tileA4{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: none;
+}
+.Board-container #tileA5{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: none;
+}
+.Board-container #tileA6{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: none;
+}
+.Board-container #tileA7{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: none;
+}
+.Board-container #tileA8{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-top: none;
+}
+.Board-container #tileA9{
+    border-top-right-radius: 10px;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-left: 1px solid #527261;
+    border-top: none;
 }
 
-.tile-row-col
-{
-    display: grid;
-    position: relative;
-    border-right: 3px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: 3px solid #527261;
+.Board-container #tileI1{
+    border-bottom-left-radius: 10px;
+    border-right:1px solid #527261;
     border-top: 1px solid #527261;
+    border-left: none;
+    border-bottom: none;
+}
+.Board-container #tileI2{
+    border-right:1px solid #527261;
+    border-top: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+.Board-container #tileI3{
+    border-right:1px solid #527261;
+    border-top: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+.Board-container #tileI4{
+    border-right:1px solid #527261;
+    border-top: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+.Board-container #tileI5{
+    border-right:1px solid #527261;
+    border-top: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+.Board-container #tileI6{
+    border-right:1px solid #527261;
+    border-top: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+.Board-container #tileI7{
+    border-right:1px solid #527261;
+    border-top: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+.Board-container #tileI8{
+    border-right:1px solid #527261;
+    border-top: 1px solid #527261;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+.Board-container #tileI9{
+    border-bottom-right-radius: 10px;
+    border-top: 1px solid #527261;
+    border-right: none;
+    border-left: 1px solid #527261;
+    border-bottom: none;
+}
+
+.Board-container #tileB1{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileC1{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileD1{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileE1{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileF1{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileG1{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileH1{
+    border-right:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-left: none;
+    border-top:  1px solid #527261;
+}
+
+.Board-container #tileB9{
+    border-left:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileC9{
+    border-left:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileD9{
+    border-left:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileE9{
+    border-left:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileF9{
+    border-left:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileG9{
+    border-left:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-top:  1px solid #527261;
+}
+.Board-container #tileH9{
+    border-left:1px solid #527261;
+    border-bottom: 1px solid #527261;
+    border-right: none;
+    border-top:  1px solid #527261;
 }

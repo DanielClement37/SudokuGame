@@ -3,7 +3,11 @@ import React from 'react'
 
 const Tile = (props) => {
     return (
-        <div className={props.tileStyle}><h2>1</h2></div>
+        <div className="tile" id={props.tileId}>
+            <div className="value-container">
+
+            </div>
+        </div>
     )
 }
 
