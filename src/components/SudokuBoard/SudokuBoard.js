@@ -1,34 +1,20 @@
 
 import './SudokuBoard.css';
-import React from 'react'
-import Tile from './SudokuTile/SudokuTile';
+import React from 'react';
+import BoardUnit from './SudokuUnit/BoardUnit';
 
 const SudokuBoard = (props)=> {
-
-    const tiles = () =>{
-        const tilesState = [];
-        let tileStyle = "";
-    
-        for (let i = 0; i <  9; i++) {
-          for(let j = 0; j < 9; j++){
-            if((i+1) % 3 === 0 && (j+1) %3 ===0){
-              tileStyle = "tile-row-col tile-hoverable";
-            } else if((i+1) % 3 === 0){
-              tileStyle = "tile-row tile-hoverable";
-            }else if((j+1) %3 ===0){
-              tileStyle = "tile-col tile-hoverable";
-            }else{
-              tileStyle = "tile tile-hoverable";
-            }
-            tilesState.push(<Tile tileStyle={tileStyle} x={j} y={i} value={props.value}/>);
-          }
-        }
-        return tilesState;
-    }
-
     return (
         <div className="Board-container">
-            {tiles()}
+          <BoardUnit id="unit1" cols="123" rows="ABC"/>
+          <BoardUnit id="unit2" cols="456" rows="ABC"/>
+          <BoardUnit id="unit3" cols="789" rows="ABC"/>
+          <BoardUnit id="unit4" cols="123" rows="DEF"/>
+          <BoardUnit id="unit5" cols="456" rows="DEF"/>
+          <BoardUnit id="unit6" cols="789" rows="DEF"/>
+          <BoardUnit id="unit7" cols="123" rows="GHI"/>
+          <BoardUnit id="unit8" cols="456" rows="GHI"/>
+          <BoardUnit id="unit9" cols="789" rows="GHI"/>
         </div>
     )
 }

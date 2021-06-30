@@ -35,6 +35,11 @@
     position: relative;
     font-weight: 700;
     overflow: visible;
+    transition: transform .1s; /* Animation */
+}
+
+.circle-btn:hover{
+    transform: scale(1.1);
 }
 
 .number-span{

@@ -48,11 +48,7 @@
 }
 
 h4{
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
+    
 }
 
 .undo-btn{
@@ -118,10 +114,15 @@ h4{
     align-items: center;
 }
 
-.controls-container .btn{
+.controls-container button{
     transition: transform .1s; /* Animation */
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
 }
 
-.controls-container .btn:hover{
+.controls-container button:hover{
     transform: scale(1.1);
 }

@@ -1,15 +1,31 @@
 .Board-container {
-    display: grid;
-    grid-area: 1 / 1 / 8 / 8;                           /*Grid area the board occupies within the game container*/
-    position: relative;
-    grid-template-rows: repeat(9, 1fr);   
-    grid-template-columns: repeat(9, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    border: 4px solid #527261;
+    grid-area: 1 / 1 / 8 / 8; 
+    border: 6px solid #527261;
     background-color: #F3F3F3;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
 }
 
+.Board-container, .Board-container .board-unit {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
 
+.Board-container {
+    height:100%;
+    width:100%;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex
+}
+
+.Board-container,
+.Board-container .board-unit {
+    -ms-flex-wrap:wrap;
+    flex-wrap:wrap
+}
