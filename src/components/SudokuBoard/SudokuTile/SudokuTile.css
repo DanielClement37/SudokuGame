@@ -12,9 +12,8 @@
 }
 
 .Board-container .value-container {
-    width: 75%;
-    height: 75%;
-    border-radius: 10px;
+    width: 90%;
+    height: 90%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -24,6 +23,15 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+}
+
+.Board-container .value-container:hover{
+    border: 4px solid #27a384;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    border-radius: 10px;
+    z-index: +1;
 }
 
 .Board-container #tileA1{
