@@ -31,29 +31,28 @@ function EmptySpot(board) {
 }
 
 function CheckRow(board, row, value) {
-    /*takes in row and column for the value at question
+    /*takes in row for the value at question
     gets the value from the row and column and sets it equal to 'testValue'
     iterates through the row to check for any conflictions
     */
 
-    for(var i = row; i < board[row].length; i++) {
+    for(var i = 0; i < 8; i++) {
         if(board[row][i] === value)
-            return false;
+            return false
     }
-    return true;
+    return true
 }
 
 function CheckColumn(board, column, value) {
     /*
-    takes the board, row and column as parameters
+    takes the board, column and value as parameters
     gets the value at question from the row and column and sets it equal to 'testValue'
     iterates through the column to check for any conflictions
     */
 
-    for(var i = 0; i < board[i][column].length; i++)
-    {
+    for(var i = 0; i < 8; i++) {
         if(board[i][column] === value)
-            return false;
+            return false
     }
     return true
 }
@@ -107,10 +106,11 @@ const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function NextStillEmptySpot(board, emptySpotArr) {
     //updates the emptySpotArr with cells that are still empty
-    for(let coords of emptySpotArr) {
-        if(board[coords.row][coords.col] === 0) return {row: coords.row, col: coords.col}
+    for(var i = 0; i < emptySpotArr.length; i++) {
+        if(board[emptySpotArr[i].row][emptySpotArr[i].col] === 0) 
+            return {row: emptySpotArr[i].row, col: emptySpotArr[i].col}
     }
-    return false;
+    return false
 }
 
 function EmptySpotCoords(board) {
@@ -224,7 +224,7 @@ function FillFromArray(board, emptySpotArr) {
         return board
 
     for(var num = 1; num <= 9; num++) {
-        counter++;
+        counter++
         if( counter > 60_000_000) throw new Error("Removal Timeout")
         if(CheckValue(board, emptySpot.row, emptySpot.col, num)) {
             board[emptySpot.row][emptySpot.col] = num;
@@ -232,7 +232,7 @@ function FillFromArray(board, emptySpotArr) {
             board[emptySpot.row][emptySpot.col] = 0;
         }
     }
-    return false;
+    return false
 }
 
 const ValueRemover = (initialBoard, k) => {
@@ -303,7 +303,7 @@ const NewFilledBoard = _ => {
 
     const newBoard = JSON.parse(JSON.stringify(BLANK_BOARD))
 
-    UniqueBoardGenerator(newBoard);
+    UniqueBoardGenerator(newBoard)
     FillBoard(newBoard)
     
     return newBoard
@@ -334,9 +334,11 @@ function BeginnerBoardGenerator() {
     }
 }
 
-let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
+//let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
+
+
+let solvedBoard = NewFilledBoard()
 
 
 
-
-console.table(startBoard)
+console.table(solvedBoard)
