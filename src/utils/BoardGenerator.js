@@ -1,5 +1,4 @@
-/* Functions used to generate the board, 
-   uses functions from SudokuLogic.js */
+/* Functions used to generate the board, uses functions from SudokuLogic.js */
 
 //import functions and Sudoku class from SudokuLogic.js
 
@@ -100,8 +99,6 @@ function CheckValue(board, row, column, value) {
 
 let counter;  //global counter for termination if board generation takes too long
 
-
-
 const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function NextStillEmptySpot(board, emptySpotArr) {
@@ -113,27 +110,23 @@ function NextStillEmptySpot(board, emptySpotArr) {
     return false
 }
 
-function EmptySpotCoords(board) {
+function EmptySpotCoords(proposedBoard) {
     let returnArr = []
-    let nextEmptySpot
-    let emptyRow, emptyCol
-
-    while(emptyRow !== -1){
-        //get the next empty spot
-        nextEmptySpot = EmptySpot(board)
-        emptyRow = nextEmptySpot[0] //index 0 is the row
-        emptyCol = nextEmptySpot[1] //index 1 is the column
-
-        if(emptyRow === -1)
-            break;
-        
-        returnArr.push({
-            row: emptyRow,
-            col: emptyCol
-        })
-
+    
+    for(var i = 0; i < 9; i++)
+    {
+        for(var j = 0; j < 9; j++)
+        {
+            if(0 === proposedBoard[i][j])
+            {
+                returnArr.push({
+                    row: i,
+                    col: j
+                })
+            }
+        }
     }
-
+      
     return returnArr
 }
 
@@ -163,7 +156,7 @@ function GetRandomNumber(min, max) {
 function FillBoard(initialBoard) {
 
     //get the next empty tile
-    let nextEmptySpot = EmptySpot(initialBoard);
+    let nextEmptySpot = EmptySpot(initialBoard)
     let row = nextEmptySpot[0] //index 0 corresponds to the row
     let column = nextEmptySpot[1] //index 1 corresponds to the column
 
@@ -171,8 +164,10 @@ function FillBoard(initialBoard) {
     if(row === -1)
         return initialBoard
 
+    let randNumArr = Shuffle(numArr)
+    let num
 
-    for(var num = 1; num <= 9; num++) {
+    for(num of randNumArr) {
         // counter is a global variable tracking the iterations performed
         // every so often it could cause heavy backtracking
         counter++
@@ -192,26 +187,6 @@ function FillBoard(initialBoard) {
     }
     //if unable to place any number, return false, this makes the previous round try the next number
     return false
-}
-
-function UniqueBoardGenerator(board) {
-    //function that generates 11 random numbers (1-9) in random locations
-    //this allows for the board to be unique every game
-
-    var i = 0 //initialize 
-    while(i < 11) {
-        let num = GetRandomNumber(1, 9); //get random number 1-9
-        let row = GetRandomNumber(0, 8); //get random coordinate 0-8
-        let col = GetRandomNumber(0, 8); //get random coordinate 0-8
-
-        if(board[row][col] === 0) {
-                //if the random value follows all the rules, insert it
-                if(CheckValue(board, row, col, num)) {
-                    board[row][col] = num
-                    i++ //increment the amount of numbers that get inserted
-                }
-            }
-    }
 }
 
 /*  This functions attempts to solve the puzzle by placing the values
@@ -279,10 +254,10 @@ const ValueRemover = (initialBoard, k) => {
     track of how many possible solutions there are. If there is more than one solution at any point it will
     return true, thus prompting the removeVals function to try a different value
 */
-function moreThanOneSolution(board) {
+function moreThanOneSolution(proposedBoard) {
 
     const possibleSolutions = []
-    const emptySpotArr = EmptySpotCoords(board)
+    const emptySpotArr = EmptySpotCoords(proposedBoard)
     let emptySpotClone, thisSolution
 
     for(var index = 0; index < emptySpotArr.length; index++) {
@@ -290,7 +265,7 @@ function moreThanOneSolution(board) {
         emptySpotClone = [...emptySpotArr]
         const startingPoint = emptySpotClone.splice(index, 1)
         emptySpotClone.unshift(startingPoint[0])
-        thisSolution = FillFromArray(JSON.parse(JSON.stringify(board)), emptySpotClone)
+        thisSolution = FillFromArray(JSON.parse(JSON.stringify(proposedBoard)), emptySpotClone)
         possibleSolutions.push(thisSolution.join())
         //if there is more than one solution, then return true
         if(Array.from(new Set(possibleSolutions)).length > 1) return true
@@ -303,7 +278,6 @@ const NewFilledBoard = _ => {
 
     const newBoard = JSON.parse(JSON.stringify(BLANK_BOARD))
 
-    UniqueBoardGenerator(newBoard)
     FillBoard(newBoard)
     
     return newBoard
@@ -334,11 +308,11 @@ function BeginnerBoardGenerator() {
     }
 }
 
-//let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
+let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
 
 
-let solvedBoard = NewFilledBoard()
+//let solvedBoard = NewFilledBoard()
 
+console.table(startBoard)
+console.table(finalBoard)
 
-
-console.table(solvedBoard)
