@@ -1,10 +1,14 @@
-/* Functions used to generate the board, uses functions from SudokuLogic.js */
+/* This file contains all the functions used to generate a unique board
+    with only one solution. All functions were made by Spencer Smith and
+    Anna Fortenberry.
+*/
 
-//import functions and Sudoku class from SudokuLogic.js
 
-//import {BLANK_BOARD, CheckValue, EmptySpot} from './SudokuLogic.js'
 
 ///////////////////////////////////////////////////////////////////////////////////////
+/* Contains the blank starting board as well as the functions to check rows, columns and squares
+    to see if a value can be placed at the tile at question
+*/
 const BLANK_BOARD = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -96,13 +100,16 @@ function CheckValue(board, row, column, value) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+/* Contains the functions used to generate the board.
+*/
 
 let counter;  //global counter for termination if board generation takes too long
 
-const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9] //the numbers that can be placed on the board.
 
 function NextStillEmptySpot(board, emptySpotArr) {
     //updates the emptySpotArr with cells that are still empty
+    //helps the fillFromArray solve the board at question, quicker
     for(var i = 0; i < emptySpotArr.length; i++) {
         if(board[emptySpotArr[i].row][emptySpotArr[i].col] === 0) 
             return {row: emptySpotArr[i].row, col: emptySpotArr[i].col}
@@ -111,14 +118,13 @@ function NextStillEmptySpot(board, emptySpotArr) {
 }
 
 function EmptySpotCoords(proposedBoard) {
+    //finds the empty spots on the propesed board and stores their
+    //location in the emptySpotArr, this helps the FillFromArray solve
+    //the proposed board quicker
     let returnArr = []
-    
-    for(var i = 0; i < 9; i++)
-    {
-        for(var j = 0; j < 9; j++)
-        {
-            if(0 === proposedBoard[i][j])
-            {
+    for(var i = 0; i < 9; i++) {
+        for(var j = 0; j < 9; j++) {
+            if(0 === proposedBoard[i][j]) {
                 returnArr.push({
                     row: i,
                     col: j
@@ -141,12 +147,16 @@ function Shuffle(arr) {
 }
 
 const RangeOfNum = (start, end) => {
-    //returns a range of numbers
+    //returns a range of numbers, this ensures that each spot only gets checked once
+    //in the ValueRemover function
     const length = end - start + 1;
     return Array.from( {length} , ( _ , i) => start + i)
 }
 
 function GetRandomNumber(min, max) {
+    //gets a random number between the min and max value
+    //helps get a random value and row / column
+    //also used to randomly pick a number of tiles to remove in a range
     min = Math.ceil(min);
     max = max + 1;
     max = Math.floor(max);
@@ -154,6 +164,9 @@ function GetRandomNumber(min, max) {
 }
 
 function FillBoard(initialBoard) {
+    //Fills the empty board as long as it follows the rules of the game
+    //uses recursion and a backtracking algorithm, so if the next number can't get placed
+    //it returns false and backtracks to the last tile and tries a different number. 
 
     //get the next empty tile
     let nextEmptySpot = EmptySpot(initialBoard)
@@ -164,9 +177,11 @@ function FillBoard(initialBoard) {
     if(row === -1)
         return initialBoard
 
+    //shuffle the numArr to get a random order
     let randNumArr = Shuffle(numArr)
     let num
 
+    //loop for the length of the randNumArr
     for(num of randNumArr) {
         // counter is a global variable tracking the iterations performed
         // every so often it could cause heavy backtracking
@@ -189,16 +204,21 @@ function FillBoard(initialBoard) {
     return false
 }
 
+
+function FillFromArray(board, emptySpotArr) {
 /*  This functions attempts to solve the puzzle by placing the values
     into the board in order from the emptySpotArr 
 */
-function FillFromArray(board, emptySpotArr) {
+    //get the next empty spot
     const emptySpot = NextStillEmptySpot(board, emptySpotArr)
 
+    //if no emptyspots return the solved board
     if(!emptySpot) 
         return board
 
     for(var num = 1; num <= 9; num++) {
+        //if iterations exceed the value then throw error, and try again
+        //do this because not all boards can be impossible game boards
         counter++
         if( counter > 60_000_000) throw new Error("Removal Timeout")
         if(CheckValue(board, emptySpot.row, emptySpot.col, num)) {
@@ -213,19 +233,21 @@ function FillFromArray(board, emptySpotArr) {
 const ValueRemover = (initialBoard, k) => {
     /* this function takes the board in and the amount of tiles to remove
     and then removed a value one at a time and checks to see if the board is still 
-    solvable */
+    solvable, k is the number of tiles to removed*/
     const removedVals = [];
     const val = Shuffle( RangeOfNum(0, 80) );
 
-    while(removedVals.length <= k) {
-        const nextVal = val.pop();
-        if(nextVal === undefined) throw new Error("Impossible Game");
-        const randRow = Math.floor(nextVal / 9); //integer 0-8
-        const randCol = nextVal % 9;
+    while(removedVals.length < k) {
+        const nextVal = val.pop() //gets the next random num between 0-80
+        //not all gameboards can be impossible or expert games, so if its exhausts all the possible 
+        //values to remove then throw an error
+        if(nextVal === undefined) throw new Error("Impossible Game")
+        const randRow = Math.floor(nextVal / 9) //row = math.floor((0-80 / 9)), get the rand row
+        const randCol = nextVal % 9 //col = (0-80) % 9, gets the modulus of the random number
 
         //guarding against possibly cloning
-        if(!initialBoard[randRow]) continue;
-        if(initialBoard[randRow][randCol] === 0) continue;
+        if(!initialBoard[randRow]) continue
+        if(initialBoard[randRow][randCol] === 0) continue //if value is already removed, continue
 
         removedVals.push({ //store the current value at the given coordinates
             row: randRow,
@@ -236,10 +258,13 @@ const ValueRemover = (initialBoard, k) => {
         initialBoard[randRow][randCol] = 0 //remove the value at that spot
         const proposedBoard = JSON.parse(JSON.stringify(initialBoard)) //clone the new updated board
 
-        /* Attempt to solve the board after removing the value, if it cannot be solved 
-        then remove that option from the list */
+        /* Attempt to solve the board after removing the value, if it cannot be solved,
+        or if it has more than one solution then remove that option from the list */
 
+        //call moreThanOneSolution on the proposed board
         if(moreThanOneSolution(proposedBoard)) {
+            //if there is more than one solution, then pop the last tile from the list and
+            //add it back to the board
             initialBoard[randRow][randCol] = removedVals.pop().val;
         }
     }
@@ -247,6 +272,8 @@ const ValueRemover = (initialBoard, k) => {
     return[removedVals, initialBoard];
 }
 
+
+function moreThanOneSolution(proposedBoard) {
 /*  the board passed in will be solved completly for each item in the empty spot list
     the empty spot array is rotated on each iteration to ensure that the order of the empty cells
     and the order of solving the game is different each time.
@@ -254,18 +281,19 @@ const ValueRemover = (initialBoard, k) => {
     track of how many possible solutions there are. If there is more than one solution at any point it will
     return true, thus prompting the removeVals function to try a different value
 */
-function moreThanOneSolution(proposedBoard) {
-
-    const possibleSolutions = []
-    const emptySpotArr = EmptySpotCoords(proposedBoard)
+    const possibleSolutions = [] //intialize the proposedSolutions list
+    const emptySpotArr = EmptySpotCoords(proposedBoard) //get the coords of the empty spots from the proposed board
     let emptySpotClone, thisSolution
 
     for(var index = 0; index < emptySpotArr.length; index++) {
-        //rotate a clone of the emptySpotArr by one for each iteration
+        //clone the emptySpotArr
         emptySpotClone = [...emptySpotArr]
+        //rotate a clone of the emptySpotArr by one for each iteration
         const startingPoint = emptySpotClone.splice(index, 1)
         emptySpotClone.unshift(startingPoint[0])
+        //save the solution from FillFromArray as this solution
         thisSolution = FillFromArray(JSON.parse(JSON.stringify(proposedBoard)), emptySpotClone)
+        //push the solution to possibleSolutions
         possibleSolutions.push(thisSolution.join())
         //if there is more than one solution, then return true
         if(Array.from(new Set(possibleSolutions)).length > 1) return true
@@ -274,10 +302,10 @@ function moreThanOneSolution(proposedBoard) {
 }
 
 const NewFilledBoard = _ => {
-    //let startTime = new Date();
 
+    //get a copy of the BLANK_BOARD
     const newBoard = JSON.parse(JSON.stringify(BLANK_BOARD))
-
+    //fill the empty board
     FillBoard(newBoard)
     
     return newBoard
@@ -290,11 +318,10 @@ function BeginnerBoardGenerator() {
     //generator a unique starting board
 
     let numOfTiles = GetRandomNumber(36, 46) //gets the amount of tiles to keep
-    numOfTiles = 81 - numOfTiles
-    //initialize the finalBoard and set it equal to the board
+    numOfTiles = 81 - numOfTiles //subtract the tiles to keep from the total tiles, to get the amount to remove
     try {
         counter = 0
-        let finalBoard = NewFilledBoard()
+        let finalBoard = NewFilledBoard() //final board equals the fully filled board
 
         //copy the new filled board and remove values from it
         //store the removed values to save for clues for later
@@ -310,8 +337,6 @@ function BeginnerBoardGenerator() {
 
 let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
 
-
-//let solvedBoard = NewFilledBoard()
 
 console.table(startBoard)
 console.table(finalBoard)
