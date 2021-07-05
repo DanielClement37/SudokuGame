@@ -1,38 +1,59 @@
 .App {
-  text-align: center;
+  position: static;
+  background-color: #527261;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-container{
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  aspect-ratio: 1 / 1;                      /*Tried using this to keep the white square, but not sure it really does much. Max width set to view height really does it.*/
+  min-height: 756px;
+  min-width: 756px;
+  max-height: 100vh;
+  max-width: 100vh;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  position: relative;
+  grid-area: 1 / 1 / 3 / 13;
+  flex-grow: 1;
+  flex-shrink: 1;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.header-title{
+  font-family: "Roboto";
+  font-weight: 700;
+  line-height: 152px;
+  line-height: 100%;
+  text-align: center;
+  vertical-align: center;
+  letter-spacing: 43%;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25)
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Game-container{
+  display: grid;
+  position: relative;
+  grid-area: 3 / 2 / 13 / 13;
+  grid-template-columns: repeat(11, 1fr);           /*Divided into columns/rows based on how many columns/rows it occupied from App container*/
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.image-container{
+  display: grid;
+  grid-area: 8/8/12/12;
+}
+
+.pepe-scrap{
+  width: 100%;
+  height: 100%;
 }

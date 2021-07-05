@@ -204,6 +204,10 @@ function FillBoard(initialBoard) {
     return false
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a9ec37a63e44b8822f73fc3da11385b4a55d3ac
 function FillFromArray(board, emptySpotArr) {
 /*  This functions attempts to solve the puzzle by placing the values
     into the board in order from the emptySpotArr 
@@ -271,6 +275,10 @@ const ValueRemover = (initialBoard, k) => {
     return[removedVals, initialBoard];
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3a9ec37a63e44b8822f73fc3da11385b4a55d3ac
 function moreThanOneSolution(proposedBoard) {
 /*  the board passed in will be solved completly for each item in the empty spot list
     the empty spot array is rotated on each iteration to ensure that the order of the empty cells
@@ -309,6 +317,7 @@ const NewFilledBoard = _ => {
     return newBoard
 }
 
+<<<<<<< HEAD
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* Functions for generating boards for varying levels of difficulty */
@@ -331,6 +340,23 @@ function BeginnerBoardGenerator() {
         //copy the new filled board and remove values from it
         //store the removed values to save for clues later
         let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
+=======
+function BeginnerBoardGenerator() {
+    /*this function generates a beginner board
+    in order for a board to be considered beginner it must show
+    between 36 and 46 tiles in the beginning of the game */
+    //generator a unique starting board
+
+    let numOfTiles = GetRandomNumber(36, 46) //gets the amount of tiles to keep
+    numOfTiles = 81 - numOfTiles //subtract the tiles to keep from the total tiles, to get the amount to remove
+    try {
+        counter = 0
+        let finalBoard = NewFilledBoard() //final board equals the fully filled board
+
+        //copy the new filled board and remove values from it
+        //store the removed values to save for clues for later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numOfTiles)
+>>>>>>> 3a9ec37a63e44b8822f73fc3da11385b4a55d3ac
 
         return [removedVals, startingBoard, finalBoard]
 
@@ -340,6 +366,7 @@ function BeginnerBoardGenerator() {
     }
 }
 
+<<<<<<< HEAD
 /* Function:    Generates Board of Intermediate Diffuclty
    Criteria:    Between 32 and 35 tiles must be initialized(displayed) with the board at start of game
    Parameters:  None Required
@@ -425,6 +452,10 @@ function ExpertBoardGenerator() {
 //let [removedVals, startBoard, finalBoard] = IntermediateBoardGenerator();
 //let [removedVals, startBoard, finalBoard] = AdvancedBoardGenerator();
 let [removedVals, startBoard, finalBoard] = ExpertBoardGenerator();
+=======
+let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
+
+>>>>>>> 3a9ec37a63e44b8822f73fc3da11385b4a55d3ac
 
 console.table(startBoard)
 console.table(finalBoard)
