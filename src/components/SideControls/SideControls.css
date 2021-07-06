@@ -139,3 +139,7 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+button:focus{
+    outline: none;   
+}
