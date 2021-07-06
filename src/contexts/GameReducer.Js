@@ -1,9 +1,10 @@
+
 function GameReducer(state,action){
     switch(action.type){
-        case 'CHANGE_BOARD':
+        case 'ADD_TILE':
             return{
                 ...state,
-                boardState:[action.payload, ...state.boardState]
+                boardState:[action.payload, ...state.boardValues]
             }
         default:
             return state

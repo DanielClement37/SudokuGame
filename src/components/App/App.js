@@ -2,14 +2,13 @@ import "./App.css";
 import React from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
-import { GameContextProvider } from "../../contexts/GameContext";
+//import { GameContextProvider } from "../../contexts/GameContext";
 import SideControls from "../SideControls/SideControls";
 import PepeScrap from "../../images/pepeScrap.png";
 
 const App = () => {
   return (
     <div className="flex content-center justify-center App bg-primary ">
-      <GameContextProvider>
         <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
           <header className="App-header">
             <div className="text-8xl tracking-header header-title text-bold text-primary">
@@ -25,7 +24,6 @@ const App = () => {
             </div>
           </div>
         </div>
-      </GameContextProvider>
     </div>
   );
 };
