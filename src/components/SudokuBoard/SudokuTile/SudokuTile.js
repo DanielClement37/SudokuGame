@@ -5,7 +5,7 @@ const Tile = (props) => {
     return (
         <div className="tile" id={props.tileId}>
             <div className="value-container">
-
+                {props.value}
             </div>
         </div>
     )

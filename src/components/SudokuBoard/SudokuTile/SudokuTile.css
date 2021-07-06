@@ -9,6 +9,7 @@
     cursor: pointer;
     background-color: #fff;
     border: 1px solid #527261;
+    color: #527261;
 }
 
 .Board-container .value-container {
@@ -23,6 +24,8 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+    font-family: "Roboto";
+    font-size: 2rem;
 }
 
 .Board-container .value-container:hover{

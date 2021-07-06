@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
 import "./SideControls.css";
 
@@ -6,7 +6,7 @@ export default function SideControls() {
   const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let interval = null;
     if (isActive === false) {
       interval = setInterval(() => {

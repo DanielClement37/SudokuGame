@@ -1,20 +1,22 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
-//import { GameContextProvider } from "../../contexts/GameContext";
 import SideControls from "../SideControls/SideControls";
+import { useStore } from "../../store/Store";
 import PepeScrap from "../../images/pepeScrap.png";
 
 const App = () => {
+  
+
   return (
     <div className="flex content-center justify-center App bg-primary ">
-        <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
-          <header className="App-header">
-            <div className="text-8xl tracking-header header-title text-bold text-primary">
-              SUDOKU
-            </div>
-          </header>
+      <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
+        <header className="App-header">
+          <div className="text-8xl tracking-header header-title text-bold text-primary">
+            SUDOKU
+          </div>
+        </header>
           <div className="Game-container">
             <SudokuBoard />
             <NumPad />
@@ -23,7 +25,7 @@ const App = () => {
               <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" />
             </div>
           </div>
-        </div>
+      </div>
     </div>
   );
 };
