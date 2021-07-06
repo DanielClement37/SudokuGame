@@ -114,6 +114,8 @@
 .controls-container button:hover{
     transform: scale(1.1);
 }
+
+/*Base for modal that covers side controls (new game, settings)*/
 .side-modal {
     display: none;
     position: absolute;
@@ -126,6 +128,7 @@
     border-radius: 10px;
 }
 
+/*Two below functions control the x of the modal*/
 .close {
     color: #527261;
     float: right;
@@ -140,6 +143,7 @@
     cursor: pointer;
 }
 
+/*Below removes black border from buttons when clicked*/
 button:focus{
     outline: none;   
 }

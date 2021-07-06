@@ -44,7 +44,10 @@ export default function SideControls() {
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
-        <button className="new-game-btn">New Game</button>
+        <button id="ng-btn" className="new-game-btn">New Game</button>
+        <div id="new-game-modal" className="side-modal">
+                    <span class="close">&times;</span>
+                </div>
         <button id="set-btn" className="settings-btn">Settings</button>
                 <div id="settings-modal" className="side-modal">
                     <span class="close">&times;</span>
@@ -56,22 +59,36 @@ export default function SideControls() {
 
 window.onload = function () {
   /*Area below operatess setting modal*/
+  /*Modal refers to settings, modal2 refers to new game. close[i], i = occurence of close*/
   var modal = document.getElementById("settings-modal");
+  var modal2 = document.getElementById("new-game-modal");
 
   var btn = document.getElementById("set-btn");
+  var btn2 = document.getElementById("ng-btn");
 
-  var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementsByClassName("close")[1];
+  var span2 = document.getElementsByClassName("close")[0];
 
   btn.onclick = function () {
       modal.style.display = "block";
+  }
+  btn2.onclick = function () {
+    modal2.style.display = "block";
   }
 
   span.onclick = function () {
       modal.style.display = "none";
   }
+  span2.onclick = function () {
+    modal2.style.display = "none";
+}
 
   window.onclick = function (event) {
       if (event.target == modal) {
+          modal.style.display = "none";
+      }
+
+      if (event.target == modal2) {
           modal.style.display = "none";
       }
   }
