@@ -1,6 +1,8 @@
 .App {
   position: static;
   background-color: #527261;
+  background-image: url(../../images/pepeScrap25.png);
+  background-size: 10vw;
 }
 
 .App-container{
