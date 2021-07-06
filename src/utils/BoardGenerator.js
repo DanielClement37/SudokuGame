@@ -204,7 +204,6 @@ function FillBoard(initialBoard) {
     return false
 }
 
-
 function FillFromArray(board, emptySpotArr) {
 /*  This functions attempts to solve the puzzle by placing the values
     into the board in order from the emptySpotArr 
@@ -272,7 +271,6 @@ const ValueRemover = (initialBoard, k) => {
     return[removedVals, initialBoard];
 }
 
-
 function moreThanOneSolution(proposedBoard) {
 /*  the board passed in will be solved completly for each item in the empty spot list
     the empty spot array is rotated on each iteration to ensure that the order of the empty cells
@@ -311,21 +309,28 @@ const NewFilledBoard = _ => {
     return newBoard
 }
 
-function BeginnerBoardGenerator() {
-    /*this function generates a beginner board
-    in order for a board to be considered beginner it must show
-    between 36 and 46 tiles in the beginning of the game */
-    //generator a unique starting board
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    let numOfTiles = GetRandomNumber(36, 46) //gets the amount of tiles to keep
-    numOfTiles = 81 - numOfTiles //subtract the tiles to keep from the total tiles, to get the amount to remove
+/* Functions for generating boards for varying levels of difficulty */
+
+/* Function:    Generates Board of Beginner Diffuclty
+   Criteria:    Between 36 and 46 tiles must be initialized(displayed) with the board at start of game
+   Parameters:  None Required
+   Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
+                If error caught, return BeginnerBoardGenerator()
+*/
+function BeginnerBoardGenerator() {
+
+    let numTiles = GetRandomNumber(36, 46)  //number of tiles to keep on a beginner level board
+    numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
+
     try {
         counter = 0
-        let finalBoard = NewFilledBoard() //final board equals the fully filled board
+        let finalBoard = NewFilledBoard()   //final board equals the fully filled board
 
         //copy the new filled board and remove values from it
-        //store the removed values to save for clues for later
-        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numOfTiles)
+        //store the removed values to save for clues later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
 
         return [removedVals, startingBoard, finalBoard]
 
@@ -335,8 +340,91 @@ function BeginnerBoardGenerator() {
     }
 }
 
-let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
+/* Function:    Generates Board of Intermediate Diffuclty
+   Criteria:    Between 32 and 35 tiles must be initialized(displayed) with the board at start of game
+   Parameters:  None Required
+   Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
+                If error caught, return IntermediateBoardGenerator()
+*/
+function IntermediateBoardGenerator() {
 
+    let numTiles = GetRandomNumber(32, 35)  //number of tiles to keep on a beginner level board
+    numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
+
+    try {
+        counter = 0
+        let finalBoard = NewFilledBoard()   //final board equals the fully filled board
+
+        //copy the new filled board and remove values from it
+        //store the removed values to save for clues later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
+
+        return [removedVals, startingBoard, finalBoard]
+
+    }catch (error) {
+        //if error is caught, recall the function
+        return IntermediateBoardGenerator()
+    }
+}
+
+/* Function:    Generates Board of Advanced Diffuclty
+   Criteria:    Between 28 and 31 tiles must be initialized(displayed) with the board at start of game
+   Parameters:  None Required
+   Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
+                If error caught, return AdvancedBoardGenerator()
+*/
+function AdvancedBoardGenerator() {
+
+    let numTiles = GetRandomNumber(28, 31)  //number of tiles to keep on a beginner level board
+    numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
+
+    try {
+        counter = 0
+        let finalBoard = NewFilledBoard()   //final board equals the fully filled board
+
+        //copy the new filled board and remove values from it
+        //store the removed values to save for clues later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
+
+        return [removedVals, startingBoard, finalBoard]
+
+    }catch (error) {
+        //if error is caught, recall the function
+        return AdvancedBoardGenerator()
+    }
+}
+
+/* Function:    Generates Board of Expert Diffuclty
+   Criteria:    Between 17 and 27 tiles must be initialized(displayed) with the board at start of game
+   Parameters:  None Required
+   Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
+                If error caught, return ExpertBoardGenerator()
+*/
+function ExpertBoardGenerator() {
+
+    let numTiles = GetRandomNumber(17, 27)  //number of tiles to keep on a beginner level board
+    numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
+
+    try {
+        counter = 0
+        let finalBoard = NewFilledBoard()   //final board equals the fully filled board
+
+        //copy the new filled board and remove values from it
+        //store the removed values to save for clues later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
+
+        return [removedVals, startingBoard, finalBoard]
+
+    }catch (error) {
+        //if error is caught, recall the function
+        return ExpertBoardGenerator()
+    }
+}
+
+//let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
+//let [removedVals, startBoard, finalBoard] = IntermediateBoardGenerator();
+//let [removedVals, startBoard, finalBoard] = AdvancedBoardGenerator();
+let [removedVals, startBoard, finalBoard] = ExpertBoardGenerator();
 
 console.table(startBoard)
 console.table(finalBoard)
