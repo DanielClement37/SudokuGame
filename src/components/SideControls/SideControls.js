@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
 import "./SideControls.css";
 
@@ -6,7 +6,7 @@ export default function SideControls() {
   const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let interval = null;
     if (isActive === false) {
       interval = setInterval(() => {
@@ -45,8 +45,34 @@ export default function SideControls() {
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
         <button className="new-game-btn">New Game</button>
-        <button className="settings-btn">Settings</button>
+        <button id="set-btn" className="settings-btn">Settings</button>
+                <div id="settings-modal" className="side-modal">
+                    <span class="close">&times;</span>
+                </div>
       </div>
     </div>
   );
+}
+
+window.onload = function () {
+  /*Area below operatess setting modal*/
+  var modal = document.getElementById("settings-modal");
+
+  var btn = document.getElementById("set-btn");
+
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function () {
+      modal.style.display = "block";
+  }
+
+  span.onclick = function () {
+      modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
 }
