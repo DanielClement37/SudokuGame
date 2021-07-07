@@ -1,25 +1,78 @@
-import React from 'react'
-import './SideControls.css'
+import React, { useState, useEffect } from "react";
+import Timer from "./Timer";
+import "./SideControls.css";
 
 export default function SideControls() {
-    return (
-        <div className="side-controls">
-            <div className="timer-container">
-                <div className="timer-item">
-                    <h3>EASY</h3>
-                </div>
-                <div className="timer-item">
-                    <h1>03:13</h1>
-                </div>
-            </div>
-            <div className="controls-container">
-                <button className="undo-btn">Undo</button>
-                <button className="hint-btn">Hint</button>
-                <button className="notes-btn">Notes</button>
-                <button className="eraser-btn">Eraser</button>
-                <button className="new-game-btn">New Game</button>
-                <button className="settings-btn">Settings</button>
-            </div>
+  const [isActive, setIsActive] = useState(false);
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    let interval = null;
+    if (isActive === false) {
+      interval = setInterval(() => {
+        setTime((time) => time + 1);
+      }, 1000);
+    } else{
+        clearInterval(interval);
+    }
+    return()=>{
+        clearInterval(interval);
+    }
+  }, [isActive]);
+
+  const handleStart = () => {
+    setIsActive(true);
+  };
+
+  const handleReset = () => {
+    setIsActive(false);
+    setTime(0);
+  };
+
+  return (
+    <div className="side-controls">
+      <div className="timer-container">
+        <div className="timer-item">
+          <h3>EASY</h3>
         </div>
-    )
+        <div className="timer-item">
+          <Timer time={time} />
+        </div>
+      </div>
+      <div className="controls-container">
+        <button className="undo-btn">Undo</button>
+        <button className="hint-btn">Hint</button>
+        <button className="notes-btn">Notes</button>
+        <button className="eraser-btn">Eraser</button>
+        <button className="new-game-btn">New Game</button>
+        <button id="set-btn" className="settings-btn">Settings</button>
+                <div id="settings-modal" className="side-modal">
+                    <span class="close">&times;</span>
+                </div>
+      </div>
+    </div>
+  );
+}
+
+window.onload = function () {
+  /*Area below operatess setting modal*/
+  var modal = document.getElementById("settings-modal");
+
+  var btn = document.getElementById("set-btn");
+
+  var span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function () {
+      modal.style.display = "block";
+  }
+
+  span.onclick = function () {
+      modal.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
 }
