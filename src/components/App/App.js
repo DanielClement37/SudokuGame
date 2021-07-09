@@ -1,13 +1,33 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
 import SideControls from "../SideControls/SideControls";
-import { useStore } from "../../store/Store";
 import PepeScrap from "../../images/pepeScrap.png";
+import { useStore } from "../../store/Store";
+import { actionTypes } from "../../store/types";
+import { getRowNum } from "../../utils/Conveter";
 
 const App = () => {
-  
+  const [state, dispatch] = useStore();
+  const { boardState, selectedValue, selectedTile } = state;
+
+  const updateTile = (numInput) => {
+    let newBoardState = [...boardState];
+
+    if (selectedValue === 0) {
+      const rowNum = getRowNum(selectedTile.row);
+      newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
+      dispatch({
+        type: actionTypes.UPDATE_TILE_VALUE,
+        boardState: newBoardState,
+      });
+    }
+  };
+
+  const btnUpdateTileHandler = (btnValue) => {
+    updateTile(btnValue);
+  };
 
   return (
     <div className="flex content-center justify-center App bg-primary ">
@@ -17,14 +37,14 @@ const App = () => {
             SUDOKU
           </div>
         </header>
-          <div className="Game-container">
-            <SudokuBoard />
-            <NumPad />
-            <SideControls />
-            <div className="image-container">
-              <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" />
-            </div>
+        <div className="Game-container">
+          <SudokuBoard />
+          <NumPad btnHandler={btnUpdateTileHandler} />
+          <SideControls />
+          <div className="image-container">
+            <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" />
           </div>
+        </div>
       </div>
     </div>
   );
