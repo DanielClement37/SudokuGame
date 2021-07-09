@@ -1,4 +1,4 @@
-export const UPDATE_TILE = "APP/BOARD/UPDATE_TILE";
+import {actionTypes} from "./types";
 
 export const initialState = {
   boardState: [
@@ -23,18 +23,34 @@ export const initialState = {
     [5, 4, 3, 2, 7, 8, 6, 9, 1],
     [1, 7, 8, 3, 9, 6, 5, 4, 2],
   ],
+  selectedTile: {
+    row: '',
+    col:''
+  },
+  selectedUnit: '',
+  selectedValue: 0,
+  selectedRow: '',
+  selectedColumn: '',
 };
 
-export const updateTile = (boardState) => ({
-  type: UPDATE_TILE,
-  boardState,
-});
 
 export const gameBoardReducer = (state = initialState, action) => {
-  if (action.type === UPDATE_TILE) {
-    return {
-      ...state,
-      boardState: state.boardState
-    };
+  switch (action.type) {
+    case actionTypes.SELECT_TILE:
+      return{
+        ...state,
+        selectedTile:   action.selectedTile,
+        selectedUnit:   action.selectedUnit,
+        selectedRow:    action.selectedRow,
+        selectedColumn: action.selectedColumn,
+        selectedValue:  action.selectedValue
+      }
+    case actionTypes.UPDATE_TILE_VALUE:
+      return {
+        ...state,
+        boardState: action.payload.boardState
+      }
+    default:
+      break;
   }
 };

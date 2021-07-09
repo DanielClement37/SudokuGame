@@ -1,14 +1,11 @@
 import "./App.css";
-import React, { useState } from "react";
+import React from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
 import SideControls from "../SideControls/SideControls";
-import { useStore } from "../../store/Store";
 import PepeScrap from "../../images/pepeScrap.png";
 
 const App = () => {
-  
-
   return (
     <div className="flex content-center justify-center App bg-primary ">
       <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
