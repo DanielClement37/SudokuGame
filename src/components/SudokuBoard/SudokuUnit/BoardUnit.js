@@ -3,6 +3,7 @@ import "./BoardUnit.css";
 import Tile from "../SudokuTile/SudokuTile";
 import { useStore } from "../../../store/Store";
 import { actionTypes } from "../../../store/types";
+import { getRowNum } from "../../../utils/Conveter";
 
 const BoardUnit = (props) => {
   const [state, dispatch] = useStore();
@@ -26,32 +27,6 @@ const BoardUnit = (props) => {
     const rowNum = getRowNum(row);
     return boardState[rowNum - 1][col - 1];
   };
-
-  const getRowNum = (row) => {
-    switch (row) {
-      case "A":
-        return 1;
-      case "B":
-        return 2;
-      case "C":
-        return 3;
-      case "D":
-        return 4;
-      case "E":
-        return 5;
-      case "F":
-        return 6;
-      case "G":
-        return 7;
-      case "H":
-        return 8;
-      case "I":
-        return 9;
-      default:
-        break;
-    }
-  };
-
   const tiles = () => {
     const tileArray = [];
 
