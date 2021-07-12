@@ -5,16 +5,16 @@ let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
 
 export const initialState = {
   boardState: startingBoard,
+  initBoardState:startingBoard,
   solvedBoardState: finalBoard,
   removedVals: removedVals,
   selectedTile: {
     row: null,
-    col:null
+    col:null,
+    value: null,
+    unit: null,
   },
-  selectedUnit: null,
-  selectedValue: null,
-  selectedRow: null,
-  selectedColumn: null,
+  
 };
 
 
@@ -24,10 +24,6 @@ export const gameBoardReducer = (state = initialState, action) => {
       return{
         ...state,
         selectedTile:   action.selectedTile,
-        selectedUnit:   action.selectedUnit,
-        selectedRow:    action.selectedRow,
-        selectedColumn: action.selectedColumn,
-        selectedValue:  action.selectedValue
       }
     case actionTypes.UPDATE_TILE_VALUE:
       return {

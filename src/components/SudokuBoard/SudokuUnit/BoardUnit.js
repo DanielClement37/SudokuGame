@@ -4,25 +4,24 @@ import Tile from "../SudokuTile/SudokuTile";
 import { useStore } from "../../../store/Store";
 import { actionTypes } from "../../../store/types";
 import { getRowNum } from "../../../utils/Conveter";
+import { classNames } from "../../../utils/classNames";
 
 const BoardUnit = (props) => {
   const [state, dispatch] = useStore();
-  const { boardState } = state;
+  const { boardState, selectedTile } = state;
 
-  const selectTileHandler = (tileProps) =>{
+  const selectTileHandler = (tileProps) => {
     dispatch({
       type: actionTypes.SELECT_TILE,
       selectedTile: {
         row: tileProps.row,
-        col:tileProps.col
+        col: tileProps.col,
+        value: getValue(tileProps.row, tileProps.col),
+        unit: props.id,
       },
-      selectedUnit: props.id,
-      selectedValue: getValue(tileProps.row,tileProps.col),
-      selectedRow: tileProps.row,
-      selectedColumn: tileProps.col
-    })
-  }
-  
+    });
+  };
+
   const getValue = (row, col) => {
     const rowNum = getRowNum(row);
     return boardState[rowNum - 1][col - 1];
@@ -37,7 +36,13 @@ const BoardUnit = (props) => {
         const tileId = "tile" + row + col;
         const value = getValue(row, col);
         tileArray.push(
-          <Tile row={row} col={col} tileId={tileId} value={value} selectTileHandler={selectTileHandler} />
+          <Tile
+            row={row}
+            col={col}
+            tileId={tileId}
+            value={value}
+            selectTileHandler={selectTileHandler}
+          />
         );
       }
     }
@@ -45,7 +50,13 @@ const BoardUnit = (props) => {
   };
 
   return (
-    <div className="board-unit" id={props.id}>
+    <div
+      id={props.id}
+      className={classNames(
+        "board-unit",
+        props.id === selectedTile.unit && "selected-unit-class"
+      )}
+    >
       {tiles()}
     </div>
   );

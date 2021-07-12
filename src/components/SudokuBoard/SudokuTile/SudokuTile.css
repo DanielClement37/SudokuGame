@@ -7,7 +7,6 @@
     justify-content: center;
     position: relative;
     cursor: pointer;
-    background-color: #fff;
     border: 1px solid #527261;
     color: #527261;
 }
@@ -35,6 +34,37 @@
     transform: scale(1.1);
     border-radius: 10px;
     z-index: +1;
+}
+
+.Board-container .selected-tile-class{
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    z-index: +1;
+}
+
+.tile > .selected-tile-class{
+    background-color: white !important;
+}
+
+.Board-container .selected-row-class{
+    background-color: #cde7da;
+    width: 100%;
+    height: 100%;
+}
+
+.Board-container .selected-col-class{
+    background-color: #cde7da;
+    width: 100%;
+    height: 100%;
+}
+
+.Board-container .selected-value-class{
+    background-color: #cde7da;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    border: 1px solid #527261;
 }
 
 .Board-container #tileA1{

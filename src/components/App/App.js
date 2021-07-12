@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
 import SideControls from "../SideControls/SideControls";
@@ -10,12 +10,12 @@ import { getRowNum } from "../../utils/Conveter";
 
 const App = () => {
   const [state, dispatch] = useStore();
-  const { boardState, selectedValue, selectedTile } = state;
+  const { boardState, selectedTile } = state;
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
 
-    if (selectedValue === 0) {
+    if (selectedTile.value === 0) {    //TODO: switch to a check that sees if its not a pre placed tile
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
       dispatch({
