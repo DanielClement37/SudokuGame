@@ -3,7 +3,7 @@ import { BeginnerBoardGenerator, IntermediateBoardGenerator, AdvancedBoardGenera
 import {remainingValues} from '../utils/GetRemainingNums'
 import { StoreStates } from "./PreviousStates";
 
-let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
+let [removedVals, startingBoard, finalBoard] = ExpertBoardGenerator();
 
 export const initialState = {
   boardState: startingBoard,
