@@ -24,6 +24,12 @@ const App = () => {
         type: actionTypes.UPDATE_TILE_VALUE,
         boardState: newBoardState,
         remainingNums: remainingNums,
+        selectedTile:{
+          row: selectedTile.row,
+          col: selectedTile.col,
+          unit: selectedTile.unit,
+          value: numInput
+        }
       });
     }
   };

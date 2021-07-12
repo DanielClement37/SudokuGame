@@ -30,7 +30,8 @@ export const gameBoardReducer = (state = initialState, action) => {
       return {
         ...state,
         boardState: action.boardState,
-        remainingNums: action.remainingNums
+        remainingNums: action.remainingNums,
+        selectedTile: action.selectedTile
       }
     default:
       break;
