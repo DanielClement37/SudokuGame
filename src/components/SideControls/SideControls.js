@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
 import "./SideControls.css";
+import { useStore } from "../../store/Store";
 
-export default function SideControls() {
+export default function SideControls(props) {
   const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(0);
+  const [state] = useStore();
+  const {isSolved} = state;
 
   useEffect(() => {
     let interval = null;
-    if (isActive === false) {
+    if (isActive === false && isSolved === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
       }, 1000);
-    } else{
-        clearInterval(interval);
+    } else {
+      clearInterval(interval);
     }
-    return()=>{
-        clearInterval(interval);
-    }
+    return () => {
+      clearInterval(interval);
+    };
   }, [isActive]);
 
   const handleStart = () => {
@@ -45,10 +48,12 @@ export default function SideControls() {
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
         <button className="new-game-btn">New Game</button>
-        <button id="set-btn" className="settings-btn">Settings</button>
-                <div id="settings-modal" className="side-modal">
-                    <span class="close">&times;</span>
-                </div>
+        <button id="set-btn" className="settings-btn">
+          Settings
+        </button>
+        <div id="settings-modal" className="side-modal">
+          <span class="close">&times;</span>
+        </div>
       </div>
     </div>
   );
@@ -63,16 +68,16 @@ window.onload = function () {
   var span = document.getElementsByClassName("close")[0];
 
   btn.onclick = function () {
-      modal.style.display = "block";
-  }
+    modal.style.display = "block";
+  };
 
   span.onclick = function () {
-      modal.style.display = "none";
-  }
+    modal.style.display = "none";
+  };
 
   window.onclick = function (event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-}
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+};

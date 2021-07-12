@@ -8,6 +8,10 @@
     display:flex
 }
 
+.Board-container .selected-unit-class{
+    background-color: #cde7da;
+}
+
 .Board-container #unit1 {
     border-bottom: 4px solid #527261;
     border-right: 4px solid #527261;

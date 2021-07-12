@@ -1,20 +1,22 @@
 import {actionTypes} from "./types";
 import { BeginnerBoardGenerator, IntermediateBoardGenerator, AdvancedBoardGenerator, ExpertBoardGenerator } from "../utils/BoardGenerator";
+import {remainingValues} from '../utils/GetRemainingNums'
 
 let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
 
 export const initialState = {
   boardState: startingBoard,
+  initBoardState:startingBoard,
   solvedBoardState: finalBoard,
   removedVals: removedVals,
   selectedTile: {
     row: null,
-    col:null
+    col:null,
+    value: null,
+    unit: null,
   },
-  selectedUnit: null,
-  selectedValue: null,
-  selectedRow: null,
-  selectedColumn: null,
+  remainingNums: remainingValues(startingBoard),
+  isSolved: false,
 };
 
 
@@ -24,15 +26,14 @@ export const gameBoardReducer = (state = initialState, action) => {
       return{
         ...state,
         selectedTile:   action.selectedTile,
-        selectedUnit:   action.selectedUnit,
-        selectedRow:    action.selectedRow,
-        selectedColumn: action.selectedColumn,
-        selectedValue:  action.selectedValue
       }
     case actionTypes.UPDATE_TILE_VALUE:
       return {
         ...state,
-        boardState: action.boardState
+        boardState: action.boardState,
+        remainingNums: action.remainingNums,
+        selectedTile: action.selectedTile,
+        isSolved: action.isSolved
       }
     default:
       break;
