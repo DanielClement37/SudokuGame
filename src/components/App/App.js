@@ -7,6 +7,7 @@ import PepeScrap from "../../images/pepeScrap.png";
 import { useStore } from "../../store/Store";
 import { actionTypes } from "../../store/types";
 import { getRowNum } from "../../utils/Conveter";
+import { remainingValues } from "../../utils/GetRemainingNums";
 
 const App = () => {
   const [state, dispatch] = useStore();
@@ -18,9 +19,11 @@ const App = () => {
     if (selectedTile.value === 0) {    //TODO: switch to a check that sees if its not a pre placed tile
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
+      const remainingNums = remainingValues(newBoardState);
       dispatch({
         type: actionTypes.UPDATE_TILE_VALUE,
         boardState: newBoardState,
+        remainingNums: remainingNums,
       });
     }
   };

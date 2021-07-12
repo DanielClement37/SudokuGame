@@ -21,8 +21,12 @@ const Tile = (props) => {
         <div
           className={classNames(
             "value-container",
+            props.row === selectedTile.row &&
+              props.col === selectedTile.col &&
+              "selected-tile-class",
             props.row === selectedTile.row && "selected-row-class",
             props.col === selectedTile.col && "selected-col-class"
+            
           )}
         >
           {tileValue}
