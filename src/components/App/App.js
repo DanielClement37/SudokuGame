@@ -11,7 +11,7 @@ import { remainingValues } from "../../utils/GetRemainingNums";
 
 const App = () => {
   const [state, dispatch] = useStore();
-  const { boardState, selectedTile } = state;
+  const { boardState,solvedBoardState ,selectedTile } = state;
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
@@ -19,6 +19,7 @@ const App = () => {
     if (selectedTile.value === 0) {    //TODO: switch to a check that sees if its not a pre placed tile
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
+      const isSolved = checkWin(newBoardState);
       const remainingNums = remainingValues(newBoardState);
       dispatch({
         type: actionTypes.UPDATE_TILE_VALUE,
@@ -29,10 +30,22 @@ const App = () => {
           col: selectedTile.col,
           unit: selectedTile.unit,
           value: numInput
-        }
+        },
+        isSolved:isSolved
       });
     }
   };
+
+  const checkWin = (boardState) =>{
+    for(let i = 0; i < 9; i++){
+      for(let j = 0; j< 9; j++){
+        if(boardState[i][j] !== solvedBoardState[i][j]){
+          return false;
+        }
+      }
+    }
+    return true
+  }
 
   const btnUpdateTileHandler = (btnValue) => {
     updateTile(btnValue);

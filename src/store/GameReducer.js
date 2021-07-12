@@ -16,6 +16,7 @@ export const initialState = {
     unit: null,
   },
   remainingNums: remainingValues(startingBoard),
+  isSolved: false,
 };
 
 
@@ -31,7 +32,8 @@ export const gameBoardReducer = (state = initialState, action) => {
         ...state,
         boardState: action.boardState,
         remainingNums: action.remainingNums,
-        selectedTile: action.selectedTile
+        selectedTile: action.selectedTile,
+        isSolved: action.isSolved
       }
     default:
       break;
