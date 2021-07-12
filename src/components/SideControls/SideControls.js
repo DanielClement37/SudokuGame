@@ -6,8 +6,8 @@ import { useStore } from "../../store/Store";
 export default function SideControls(props) {
   const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(0);
-  const [state] = useStore();
-  const {isSolved} = state;
+  const [state, dispatch] = useStore();
+  const {isSolved, boardState, undoState} = state;
 
   useEffect(() => {
     let interval = null;
@@ -32,6 +32,19 @@ export default function SideControls(props) {
     setTime(0);
   };
 
+  const undoHandler = () => {
+    let newBoardState = [...boardState];
+    let newUndoState = [...undoState];
+    if(newUndoState.length > 1) {
+      newBoardState = newUndoState.pop()
+      dispatch({
+        boardState: newBoardState,
+        undoState: newUndoState
+      });
+    }
+  };
+
+
   return (
     <div className="side-controls">
       <div className="timer-container">
@@ -43,7 +56,7 @@ export default function SideControls(props) {
         </div>
       </div>
       <div className="controls-container">
-        <button className="undo-btn">Undo</button>
+        <button className="undo-btn" onClick={(e)=>{undoHandler()}}>Undo</button>
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
