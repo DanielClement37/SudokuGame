@@ -40,6 +40,7 @@
     width: 90%;
     height: 90%;
     border-radius: 10px;
+    color: #527261 !important;
     z-index: +1;
 }
 
@@ -61,10 +62,11 @@
 
 .Board-container .selected-value-class{
     background-color: #cde7da;
-    width: 90%;
-    height: 90%;
+    
+    width: 80%;
+    height: 80%;
     border-radius: 10px;
-    border: 1px solid #527261;
+    border: 2px solid #527261;
 }
 
 .Board-container #tileA1{
