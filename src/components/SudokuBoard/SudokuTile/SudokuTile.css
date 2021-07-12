@@ -37,8 +37,8 @@
 }
 
 .Board-container .selected-tile-class {
-  width: 90% !important;
-  height: 90% !important;
+  width: 80% !important;
+  height: 80% !important;
   border-radius: 10px;
   border: 2px solid #527261 !important;
   color: #527261 !important;
