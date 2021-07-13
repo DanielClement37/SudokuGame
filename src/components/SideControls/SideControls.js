@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
 import "./SideControls.css";
 import { useStore } from "../../store/Store";
+import { actionTypes } from "../../store/types";
 
 export default function SideControls(props) {
-  const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(0);
   const [state, dispatch] = useStore();
-  const {isSolved, boardState, undoState} = state;
+  const {boardState,  isSolved, undoState } = state;
+
 
   useEffect(() => {
     let interval = null;
-    if (isActive === false && isSolved === false) {
+    if ( isSolved === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
       }, 1000);
@@ -21,23 +22,23 @@ export default function SideControls(props) {
     return () => {
       clearInterval(interval);
     };
-  }, [isActive]);
+  }, [isSolved]);
 
   const handleStart = () => {
-    setIsActive(true);
+    
   };
 
   const handleReset = () => {
-    setIsActive(false);
     setTime(0);
   };
 
   const undoHandler = () => {
-    let newBoardState = [...boardState];
+    let newBoardState = [...boardState]
     let newUndoState = [...undoState];
     if(newUndoState.length > 1) {
-      newBoardState = newUndoState.pop()
+      newBoardState = newUndoState.pop();
       dispatch({
+        type: actionTypes.UNDO_MOVE,
         boardState: newBoardState,
         undoState: newUndoState
       });
@@ -65,7 +66,7 @@ export default function SideControls(props) {
           Settings
         </button>
         <div id="settings-modal" className="side-modal">
-          <span class="close">&times;</span>
+          <span className="close">&times;</span>
         </div>
       </div>
     </div>

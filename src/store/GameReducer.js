@@ -1,7 +1,6 @@
 import {actionTypes} from "./types";
 import { BeginnerBoardGenerator, IntermediateBoardGenerator, AdvancedBoardGenerator, ExpertBoardGenerator } from "../utils/BoardGenerator";
 import {remainingValues} from '../utils/GetRemainingNums'
-import { StoreStates } from "./PreviousStates";
 
 let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
 
@@ -18,7 +17,7 @@ export const initialState = {
   },
   remainingNums: remainingValues(startingBoard),
   isSolved: false,
-  undoState: startingBoard
+  undoState: [startingBoard]
 };
 
 

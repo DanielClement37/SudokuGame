@@ -51,6 +51,7 @@ const BoardUnit = (props) => {
 
   return (
     <div
+      key={props.id}
       id={props.id}
       className={classNames(
         "board-unit",
