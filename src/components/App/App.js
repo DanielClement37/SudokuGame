@@ -17,41 +17,44 @@ const App = () => {
     let newBoardState = [...boardState];
     let newUndoState = [...undoState];
 
-    if (selectedTile.value === 0) {    //TODO: switch to a check that sees if its not a pre placed tile
+    if (selectedTile.value === 0) {
+      //TODO: switch to a check that sees if its not a pre placed tile
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
-      if(newUndoState.length > 15) {
-        newUndoState.splice(0, 1)
+
+      if (newUndoState.length > 15) {
+        newUndoState.splice(0, 1);
       }
       newUndoState.push(newBoardState);
+      
       const isSolved = checkWin(newBoardState);
       const remainingNums = remainingValues(newBoardState);
       dispatch({
         type: actionTypes.UPDATE_TILE_VALUE,
         boardState: newBoardState,
         remainingNums: remainingNums,
-        selectedTile:{
+        selectedTile: {
           row: selectedTile.row,
           col: selectedTile.col,
           unit: selectedTile.unit,
-          value: numInput
+          value: numInput,
         },
-        isSolved:isSolved,
-        undoState: newUndoState
+        isSolved: isSolved,
+        undoState: newUndoState,
       });
     }
   };
 
-  const checkWin = (boardState) =>{
-    for(let i = 0; i < 9; i++){
-      for(let j = 0; j< 9; j++){
-        if(boardState[i][j] !== solvedBoardState[i][j]){
+  const checkWin = (boardState) => {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if (boardState[i][j] !== solvedBoardState[i][j]) {
           return false;
         }
       }
     }
-    return true
-  }
+    return true;
+  };
 
   const btnUpdateTileHandler = (btnValue) => {
     updateTile(btnValue);
