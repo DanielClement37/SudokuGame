@@ -1,24 +1,18 @@
-import React, { useRef } from "react";
-import reactDom from "react-dom";
+import React, { useState } from "react";
+//import reactDom from "react-dom";
 import './Modal.css';
 import './SideControls.css';
 
-export const Modal = ({setShowModal}) => {
-    //below closes modal if outside modal is clicked
-    const modalRef  = useRef();
-    const closeModal = (e) => {
-        if (e.target === modalRef.current) {
-            setShowModal(false);
-        }
-    };
+export default function Modal({ open, children, onClose }) {
 
-    //below creates modal itself
-    return reactDom.createPortal(
-        <div className="side-controls" ref={modalRef} onClick={closeModal}>
-            <div className="side-modal">
-                <button onClick={() => setShowModal(false)}>X</button>
+    if (!open) return null;
+    
+    return (
+        <>
+            <div>
+                <button className='close' onClick={onClose}>x</button>
+                {children}
             </div>
-        </div>,
-        document.getElementById("portal")
-    );
-};
+        </>
+    );   
+}

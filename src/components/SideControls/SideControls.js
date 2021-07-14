@@ -1,41 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
 import "./SideControls.css";
+import { useStore } from "../../store/Store";
+import { actionTypes } from "../../store/types";
 import "./Modal.css";
-import { Modal } from "./Modal";
+import Modal from './Modal'
 
-export default function SideControls() {
-  const [isActive, setIsActive] = useState(false);
+export default function SideControls(props) {
   const [time, setTime] = useState(0);
+  const [state, dispatch] = useStore();
+  const {boardState,  isSolved, undoState } = state;
+  const [isOpen, setIsOpen] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let interval = null;
-    if (isActive === false) {
+    if ( isSolved === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
       }, 1000);
-    } else{
-        clearInterval(interval);
+    } else {
+      clearInterval(interval);
     }
-    return()=>{
-        clearInterval(interval);
-    }
-  }, [isActive]);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isSolved]);
 
   const handleStart = () => {
-    setIsActive(true);
+    
   };
 
   const handleReset = () => {
-    setIsActive(false);
     setTime(0);
   };
 
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => {
-    setShowModal(true);
+  const undoHandler = () => {
+    let newBoardState = [...boardState]
+    let newUndoState = [...undoState];
+    if(newUndoState.length > 1) {
+      newBoardState = newUndoState.pop();
+      dispatch({
+        type: actionTypes.UNDO_MOVE,
+        boardState: newBoardState,
+        undoState: newUndoState
+      });
+    }
   };
+
 
   return (
     <div className="side-controls">
@@ -48,53 +59,19 @@ export default function SideControls() {
         </div>
       </div>
       <div className="controls-container">
-        <button className="undo-btn">Undo</button>
+        <button className="undo-btn" onClick={(e)=>{undoHandler()}}>Undo</button>
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
-        <button id="ng-btn" className="new-game-btn" onClick={openModal}>New Game</button>
-          {showModal ? <Modal setShowModal={setShowModal} /> : null}
-        <button id="set-btn" className="settings-btn" onClick={openModal}>Settings</button>
-          {showModal ? <Modal setShowModal={setShowModal} /> : null}  
+        <button className="new-game-btn">New Game</button>
+        <button className="settings-btn" onClick={() => setIsOpen(true)}>Settings</button>
+        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+            <div className="side-modal">
+              <div className="side-modal-header">Settings</div>
+              <div className="side-modal-text">Example</div>
+            </div>
+        </Modal>
       </div>
     </div>
   );
 }
-
-/*window.onload = function () {
-  /*Area below operatess setting modal*/
-  /*Modal refers to settings, modal2 refers to new game. close[i], i = occurence of close
-  var modal = document.getElementById("settings-modal");
-  var modal2 = document.getElementById("new-game-modal");
-
-  var btn = document.getElementById("set-btn");
-  var btn2 = document.getElementById("ng-btn");
-
-  var span = document.getElementsByClassName("close")[1];
-  var span2 = document.getElementsByClassName("close")[0];
-
-  btn.onclick = function () {
-      modal.style.display = "block";
-  }
-  btn2.onclick = function () {
-    modal2.style.display = "block";
-  }
-
-  span.onclick = function () {
-      modal.style.display = "none";
-  }
-  span2.onclick = function () {
-    modal2.style.display = "none";
-}
-
-/*below needs fixing, closes modal when modal is clicked instead of when clicking outside modal
-  window.onclick = function(event) {
-      if (event.target === modal) {
-          modal.style.display = "none";
-      }
-
-      if (event.target === modal2) {
-          modal2.style.display = "none";
-      }
-  }
-}*/

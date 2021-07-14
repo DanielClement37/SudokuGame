@@ -1,235 +1,271 @@
 .Board-container .tile {
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #527261;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #527261;
+  color: #527261;
 }
 
 .Board-container .value-container {
-    width: 90%;
-    height: 90%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+  width: 90%;
+  height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-family: "Roboto";
+  font-size: 2rem;
 }
 
-.Board-container .value-container:hover{
-    border: 4px solid #27a384;
-    width: 100%;
-    height: 100%;
-    transform: scale(1.1);
-    border-radius: 10px;
-    z-index: +1;
+.Board-container .value-container:hover {
+  border: 4px solid #27a384;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
+  border-radius: 10px;
+  z-index: +1;
 }
 
-.Board-container #tileA1{
-    border-top-left-radius: 10px;
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top: none;
-}
-.Board-container #tileA2{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: none;
-}
-.Board-container #tileA3{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: none;
-}
-.Board-container #tileA4{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: none;
-}
-.Board-container #tileA5{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: none;
-}
-.Board-container #tileA6{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: none;
-}
-.Board-container #tileA7{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: none;
-}
-.Board-container #tileA8{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-top: none;
-}
-.Board-container #tileA9{
-    border-top-right-radius: 10px;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-left: 1px solid #527261;
-    border-top: none;
+.Board-container .selected-tile-class {
+  width: 80% !important;
+  height: 80% !important;
+  border-radius: 10px;
+  border: 2px solid #527261 !important;
+  color: #527261 !important;
+  z-index: +1;
 }
 
-.Board-container #tileI1{
-    border-bottom-left-radius: 10px;
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: none;
-    border-bottom: none;
-}
-.Board-container #tileI2{
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: none;
-}
-.Board-container #tileI3{
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: none;
-}
-.Board-container #tileI4{
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: none;
-}
-.Board-container #tileI5{
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: none;
-}
-.Board-container #tileI6{
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: none;
-}
-.Board-container #tileI7{
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: none;
-}
-.Board-container #tileI8{
-    border-right:1px solid #527261;
-    border-top: 1px solid #527261;
-    border-left: 1px solid #527261;
-    border-bottom: none;
-}
-.Board-container #tileI9{
-    border-bottom-right-radius: 10px;
-    border-top: 1px solid #527261;
-    border-right: none;
-    border-left: 1px solid #527261;
-    border-bottom: none;
+.tile > .selected-tile-class {
+  background-color: white !important;
 }
 
-.Board-container #tileB1{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top:  1px solid #527261;
-}
-.Board-container #tileC1{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top:  1px solid #527261;
-}
-.Board-container #tileD1{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top:  1px solid #527261;
-}
-.Board-container #tileE1{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top:  1px solid #527261;
-}
-.Board-container #tileF1{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top:  1px solid #527261;
-}
-.Board-container #tileG1{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top:  1px solid #527261;
-}
-.Board-container #tileH1{
-    border-right:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-left: none;
-    border-top:  1px solid #527261;
+.Board-container .selected-row-class {
+  background-color: #cde7da;
+  width: 100%;
+  height: 100%;
 }
 
-.Board-container #tileB9{
-    border-left:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-top:  1px solid #527261;
+.Board-container .selected-col-class {
+  background-color: #cde7da;
+  width: 100%;
+  height: 100%;
 }
-.Board-container #tileC9{
-    border-left:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-top:  1px solid #527261;
+
+.Board-container .selected-value-class {
+  background-color: #cde7da;
+
+  width: 80%;
+  height: 80%;
+  border-radius: 10px;
+  border: 2px solid #527261;
 }
-.Board-container #tileD9{
-    border-left:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-top:  1px solid #527261;
+
+.Board-container #tileA1 {
+  border-top-left-radius: 10px;
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: none;
 }
-.Board-container #tileE9{
-    border-left:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-top:  1px solid #527261;
+.Board-container #tileA2 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-top: none;
 }
-.Board-container #tileF9{
-    border-left:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-top:  1px solid #527261;
+.Board-container #tileA3 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-top: none;
 }
-.Board-container #tileG9{
-    border-left:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-top:  1px solid #527261;
+.Board-container #tileA4 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-top: none;
 }
-.Board-container #tileH9{
-    border-left:1px solid #527261;
-    border-bottom: 1px solid #527261;
-    border-right: none;
-    border-top:  1px solid #527261;
+.Board-container #tileA5 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-top: none;
+}
+.Board-container #tileA6 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-top: none;
+}
+.Board-container #tileA7 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-top: none;
+}
+.Board-container #tileA8 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-top: none;
+}
+.Board-container #tileA9 {
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-left: 1px solid #527261;
+  border-top: none;
+}
+
+.Board-container #tileI1 {
+  border-bottom-left-radius: 10px;
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: none;
+  border-bottom: none;
+}
+.Board-container #tileI2 {
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+.Board-container #tileI3 {
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+.Board-container #tileI4 {
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+.Board-container #tileI5 {
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+.Board-container #tileI6 {
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+.Board-container #tileI7 {
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+.Board-container #tileI8 {
+  border-right: 1px solid #527261;
+  border-top: 1px solid #527261;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+.Board-container #tileI9 {
+  border-bottom-right-radius: 10px;
+  border-top: 1px solid #527261;
+  border-right: none;
+  border-left: 1px solid #527261;
+  border-bottom: none;
+}
+
+.Board-container #tileB1 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileC1 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileD1 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileE1 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileF1 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileG1 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileH1 {
+  border-right: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-left: none;
+  border-top: 1px solid #527261;
+}
+
+.Board-container #tileB9 {
+  border-left: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileC9 {
+  border-left: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileD9 {
+  border-left: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileE9 {
+  border-left: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileF9 {
+  border-left: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileG9 {
+  border-left: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-top: 1px solid #527261;
+}
+.Board-container #tileH9 {
+  border-left: 1px solid #527261;
+  border-bottom: 1px solid #527261;
+  border-right: none;
+  border-top: 1px solid #527261;
 }

@@ -9,7 +9,7 @@
 /* Contains the blank starting board as well as the functions to check rows, columns and squares
     to see if a value can be placed at the tile at question
 */
-const BLANK_BOARD = [
+export const BLANK_BOARD = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -21,7 +21,7 @@ const BLANK_BOARD = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-function EmptySpot(board) {
+export function EmptySpot(board) {
     // checks for the next empty spot in the board
 
     for(var i = 0; i < board.length; i++) {
@@ -33,7 +33,7 @@ function EmptySpot(board) {
     return [-1, -1];
 }
 
-function CheckRow(board, row, value) {
+export function CheckRow(board, row, value) {
     /*takes in row for the value at question
     gets the value from the row and column and sets it equal to 'testValue'
     iterates through the row to check for any conflictions
@@ -46,7 +46,7 @@ function CheckRow(board, row, value) {
     return true
 }
 
-function CheckColumn(board, column, value) {
+export function CheckColumn(board, column, value) {
     /*
     takes the board, column and value as parameters
     gets the value at question from the row and column and sets it equal to 'testValue'
@@ -60,7 +60,7 @@ function CheckColumn(board, column, value) {
     return true
 }
 
-function CheckSquare(board, row, column, value) {
+export function CheckSquare(board, row, column, value) {
     /*
     take the board, row, and column as parameters
     gets the value at question from the row and column
@@ -83,7 +83,7 @@ function CheckSquare(board, row, column, value) {
     return true
 }
 
-function CheckValue(board, row, column, value) {
+export function CheckValue(board, row, column, value) {
     /*
     this function takes the value and checks the row, column
     and sqaure to check for conflicts, if there are any conflicts
@@ -107,7 +107,7 @@ let counter;  //global counter for termination if board generation takes too lon
 
 const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9] //the numbers that can be placed on the board.
 
-function NextStillEmptySpot(board, emptySpotArr) {
+export function NextStillEmptySpot(board, emptySpotArr) {
     //updates the emptySpotArr with cells that are still empty
     //helps the fillFromArray solve the board at question, quicker
     for(var i = 0; i < emptySpotArr.length; i++) {
@@ -117,7 +117,7 @@ function NextStillEmptySpot(board, emptySpotArr) {
     return false
 }
 
-function EmptySpotCoords(proposedBoard) {
+export function EmptySpotCoords(proposedBoard) {
     //finds the empty spots on the propesed board and stores their
     //location in the emptySpotArr, this helps the FillFromArray solve
     //the proposed board quicker
@@ -136,7 +136,7 @@ function EmptySpotCoords(proposedBoard) {
     return returnArr
 }
 
-function Shuffle(arr) {
+export function Shuffle(arr) {
     //randomly shuffles an array's contents
     let newArr = [...arr]
     for(let i = newArr.length - 1; i > 0; i--) {
@@ -146,14 +146,14 @@ function Shuffle(arr) {
     return newArr
 }
 
-const RangeOfNum = (start, end) => {
+export const RangeOfNum = (start, end) => {
     //returns a range of numbers, this ensures that each spot only gets checked once
     //in the ValueRemover function
     const length = end - start + 1;
     return Array.from( {length} , ( _ , i) => start + i)
 }
 
-function GetRandomNumber(min, max) {
+export function GetRandomNumber(min, max) {
     //gets a random number between the min and max value
     //helps get a random value and row / column
     //also used to randomly pick a number of tiles to remove in a range
@@ -163,7 +163,7 @@ function GetRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-function FillBoard(initialBoard) {
+export function FillBoard(initialBoard) {
     //Fills the empty board as long as it follows the rules of the game
     //uses recursion and a backtracking algorithm, so if the next number can't get placed
     //it returns false and backtracks to the last tile and tries a different number. 
@@ -204,7 +204,7 @@ function FillBoard(initialBoard) {
     return false
 }
 
-function FillFromArray(board, emptySpotArr) {
+export function FillFromArray(board, emptySpotArr) {
 /*  This functions attempts to solve the puzzle by placing the values
     into the board in order from the emptySpotArr 
 */
@@ -229,7 +229,7 @@ function FillFromArray(board, emptySpotArr) {
     return false
 }
 
-const ValueRemover = (initialBoard, k) => {
+export const ValueRemover = (initialBoard, k) => {
     /* this function takes the board in and the amount of tiles to remove
     and then removed a value one at a time and checks to see if the board is still 
     solvable, k is the number of tiles to removed*/
@@ -271,7 +271,7 @@ const ValueRemover = (initialBoard, k) => {
     return[removedVals, initialBoard];
 }
 
-function moreThanOneSolution(proposedBoard) {
+export function moreThanOneSolution(proposedBoard) {
 /*  the board passed in will be solved completly for each item in the empty spot list
     the empty spot array is rotated on each iteration to ensure that the order of the empty cells
     and the order of solving the game is different each time.
@@ -299,7 +299,7 @@ function moreThanOneSolution(proposedBoard) {
     return false
 }
 
-const NewFilledBoard = _ => {
+export const NewFilledBoard = _ => {
 
     //get a copy of the BLANK_BOARD
     const newBoard = JSON.parse(JSON.stringify(BLANK_BOARD))
@@ -319,7 +319,7 @@ const NewFilledBoard = _ => {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return BeginnerBoardGenerator()
 */
-function BeginnerBoardGenerator() {
+export function BeginnerBoardGenerator() {
 
     let numTiles = GetRandomNumber(36, 46)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -346,7 +346,7 @@ function BeginnerBoardGenerator() {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return IntermediateBoardGenerator()
 */
-function IntermediateBoardGenerator() {
+export function IntermediateBoardGenerator() {
 
     let numTiles = GetRandomNumber(32, 35)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -373,7 +373,7 @@ function IntermediateBoardGenerator() {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return AdvancedBoardGenerator()
 */
-function AdvancedBoardGenerator() {
+export function AdvancedBoardGenerator() {
 
     let numTiles = GetRandomNumber(28, 31)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -400,7 +400,7 @@ function AdvancedBoardGenerator() {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return ExpertBoardGenerator()
 */
-function ExpertBoardGenerator() {
+export function ExpertBoardGenerator() {
 
     let numTiles = GetRandomNumber(17, 27)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -421,11 +421,10 @@ function ExpertBoardGenerator() {
     }
 }
 
-//let [removedVals, startBoard, finalBoard] = BeginnerBoardGenerator();
-//let [removedVals, startBoard, finalBoard] = IntermediateBoardGenerator();
-//let [removedVals, startBoard, finalBoard] = AdvancedBoardGenerator();
-let [removedVals, startBoard, finalBoard] = ExpertBoardGenerator();
-
-console.table(startBoard)
-console.table(finalBoard)
-
+//IMPORT STATEMENTS FOR DANIEL
+/*
+import { NextStillEmptySpot, EmptySpotCoords, Shuffle, RangeOfNum, GetRandomNumber } from "./BoardGenerator";
+import { BLANK_BOARD, CheckColumn, CheckRow, CheckSquare, CheckValue, EmptySpot } from './BoardGenerator';
+import { FillBoard, FillFromArray, ValueRemover, moreThanOneSolution, NewFilledBoard } from './BoardGenerator';
+import { BeginnerBoardGenerator, IntermediateBoardGenerator, AdvancedBoardGenerator, ExpertBoardGenerator } from "./BoardGenerator";
+*/
