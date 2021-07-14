@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Timer from "./Timer";
 import "./SideControls.css";
+import "./Modal.css";
+import { Modal } from "./Modal";
 
 export default function SideControls() {
   const [isActive, setIsActive] = useState(false);
@@ -29,6 +31,12 @@ export default function SideControls() {
     setTime(0);
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className="side-controls">
       <div className="timer-container">
@@ -44,22 +52,18 @@ export default function SideControls() {
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
-        <button id="ng-btn" className="new-game-btn">New Game</button>
-        <div id="new-game-modal" className="side-modal">
-                    <span class="close">&times;</span>
-                </div>
-        <button id="set-btn" className="settings-btn">Settings</button>
-                <div id="settings-modal" className="side-modal">
-                    <span class="close">&times;</span>
-                </div>
+        <button id="ng-btn" className="new-game-btn" onClick={openModal}>New Game</button>
+          {showModal ? <Modal setShowModal={setShowModal} /> : null}
+        <button id="set-btn" className="settings-btn" onClick={openModal}>Settings</button>
+          {showModal ? <Modal setShowModal={setShowModal} /> : null}  
       </div>
     </div>
   );
 }
 
-window.onload = function () {
+/*window.onload = function () {
   /*Area below operatess setting modal*/
-  /*Modal refers to settings, modal2 refers to new game. close[i], i = occurence of close*/
+  /*Modal refers to settings, modal2 refers to new game. close[i], i = occurence of close
   var modal = document.getElementById("settings-modal");
   var modal2 = document.getElementById("new-game-modal");
 
@@ -83,13 +87,14 @@ window.onload = function () {
     modal2.style.display = "none";
 }
 
-  window.onclick = function (event) {
-      if (event.target == modal) {
+/*below needs fixing, closes modal when modal is clicked instead of when clicking outside modal
+  window.onclick = function(event) {
+      if (event.target === modal) {
           modal.style.display = "none";
       }
 
-      if (event.target == modal2) {
-          modal.style.display = "none";
+      if (event.target === modal2) {
+          modal2.style.display = "none";
       }
   }
-}
+}*/

@@ -1,0 +1,65 @@
+/*Base for modal that covers side controls (new game, settings)*/
+.side-modal {
+    display: none;
+    position: absolute;
+    z-index: 1; /* Stays on top*/
+    width: 100%;
+    height: 100%;
+    background-color: #F3F3F3; 
+    border: 5px solid #527261;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.side-modal-header {
+    display: flex;
+    position: relative;
+    color: #ffffff;
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    top: -5px;
+    background-color: #527261;
+    font-family: "Roboto";
+    font-style: normal;
+    font-size: 33px;
+    border-radius: 9px;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-modal-text {
+    color: #527261;
+    font-size: 24px;
+    line-height: 30px;
+    width: 100%;
+    text-align: center;
+    font-family: "Roboto";
+    font-style: normal;
+}
+
+/*Two below functions control the x of the modal*/
+.close {
+    display: flex;
+    position: absolute;
+    left: 85%;
+    top: 2px;
+    z-index: 1;
+    color: white;
+    background-color:#527261;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 28px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
