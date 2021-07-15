@@ -7,7 +7,7 @@ import {
 } from "../utils/BoardGenerator";
 import { remainingValues } from "../utils/GetRemainingNums";
 
-let [removedVals, startingBoard, finalBoard] = ExpertBoardGenerator();
+let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
 
 export const initialState = {
   boardState: startingBoard,

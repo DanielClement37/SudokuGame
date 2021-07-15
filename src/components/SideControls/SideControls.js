@@ -7,12 +7,14 @@ import "./Modal.css";
 import Modal from "./Modal";
 import { getRowNum } from "../../utils/Conveter";
 import { remainingValues } from "../../utils/GetRemainingNums";
+import { generatedCheck } from "../../utils/GeneratedCheck";
 
 export default function SideControls(props) {
   const [time, setTime] = useState(0);
   const [state, dispatch] = useStore();
   const [isOpen, setIsOpen] = useState(false);
-  const {isSolved, boardState, undoState, selectedTile} = state;
+  const { isSolved, boardState, undoState, selectedTile, initBoardState } =
+    state;
 
   useEffect(() => {
     let interval = null;
@@ -36,24 +38,24 @@ export default function SideControls(props) {
 
   const eraseHandler = () => {
     //check to see if tile was an intial tile
-    /* add code here */
-
-    let newBoardState = [...boardState] //copy the current board state to newBoardState
-    const rowNum = getRowNum(selectedTile.row) //get the row of the selected tile
-    newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = 0 //set the value at the selected tile = 0
-    const remainingNums = remainingValues(newBoardState) //get remaining nums
-    dispatch({
-      type: actionTypes.UPDATE_TILE_VALUE,
-      boardState: newBoardState,
-      remainingNums: remainingNums,
-      selectedTile: {
-        row: selectedTile.row,
-        col: selectedTile.col,
-        unit: selectedTile.unit,
-        value: 0
-      }
-    });
-  }
+    if (!generatedCheck(selectedTile, initBoardState)) {
+      let newBoardState = [...boardState]; //copy the current board state to newBoardState
+      const rowNum = getRowNum(selectedTile.row); //get the row of the selected tile
+      newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = 0; //set the value at the selected tile = 0
+      const remainingNums = remainingValues(newBoardState); //get remaining nums
+      dispatch({
+        type: actionTypes.UPDATE_TILE_VALUE,
+        boardState: newBoardState,
+        remainingNums: remainingNums,
+        selectedTile: {
+          row: selectedTile.row,
+          col: selectedTile.col,
+          unit: selectedTile.unit,
+          value: 0,
+        },
+      });
+    }
+  };
 
   const undoHandler = () => {
     let newUndoState = undoState.map((copy) => copy.slice());
@@ -90,7 +92,14 @@ export default function SideControls(props) {
         </button>
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
-        <button className="eraser-btn" onClick={(e)=>{eraseHandler()}}>Eraser</button>
+        <button
+          className="eraser-btn"
+          onClick={(e) => {
+            eraseHandler();
+          }}
+        >
+          Eraser
+        </button>
         <button className="new-game-btn">New Game</button>
         <button className="settings-btn" onClick={() => setIsOpen(true)}>
           Settings
