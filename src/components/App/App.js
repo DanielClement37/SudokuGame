@@ -8,24 +8,22 @@ import { useStore } from "../../store/Store";
 import { actionTypes } from "../../store/types";
 import { getRowNum } from "../../utils/Conveter";
 import { remainingValues } from "../../utils/GetRemainingNums";
+import { generatedCheck } from "../../utils/GeneratedCheck";
 
 const App = () => {
   const [state, dispatch] = useStore();
-  const { boardState, solvedBoardState, selectedTile, undoState } = state;
+  const { boardState, solvedBoardState, selectedTile, undoState, initBoardState } = state;
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
-    let newUndoState = [...undoState];
 
-    if (selectedTile.value === 0) {
-      //TODO: switch to a check that sees if its not a pre placed tile
+    if (!generatedCheck(selectedTile, initBoardState)) {
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
 
-      if (newUndoState.length > 15) {
-        newUndoState.splice(0, 1);
+      if (undoState.length > 15) {
+        undoState.splice(0, 1);
       }
-      newUndoState.push(newBoardState);
       
       const isSolved = checkWin(newBoardState);
       const remainingNums = remainingValues(newBoardState);
@@ -40,7 +38,6 @@ const App = () => {
           value: numInput,
         },
         isSolved: isSolved,
-        undoState: newUndoState,
       });
     }
   };
