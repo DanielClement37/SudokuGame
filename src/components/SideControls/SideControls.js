@@ -105,10 +105,29 @@ export default function SideControls(props) {
           Settings
         </button>
         <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-          <div className="side-modal">
-            <div className="side-modal-header">Settings</div>
-            <div className="side-modal-text">Example</div>
-          </div>
+            <div className="side-modal">
+              <div className="side-modal-header">Settings</div>
+              <div className="side-modal-text">Error Limits</div>
+                <label class="switch">
+                  <input type="checkbox"></input>
+                  <span class="slider"></span>
+                </label>
+              <div className="side-modal-text">Auto - Detect Mistakes</div>
+              <label class="switch">
+                  <input type="checkbox"></input>
+                  <span class="slider"></span>
+                </label>
+              <div className="side-modal-text">Auto - Update Hints</div>
+              <label class="switch">
+                  <input type="checkbox"></input>
+                  <span class="slider"></span>
+                </label>
+              <div className="side-modal-text">Light / Dark Mode</div>
+              <label class="switch">
+                  <input type="checkbox"></input>
+                  <span class="slider"></span>
+                </label>
+            </div>
         </Modal>
       </div>
     </div>
