@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
 import "./SideControls.css";
 import { useStore } from "../../store/Store";
+import { getRowNum } from "../../utils/Conveter";
+import { actionTypes } from "../../store/types";
+import { remainingValues } from "../../utils/GetRemainingNums";
 
 export default function SideControls(props) {
   const [isActive, setIsActive] = useState(false);
   const [time, setTime] = useState(0);
   const [state, dispatch] = useStore();
-  const {isSolved, boardState, undoState} = state;
+  const {isSolved, boardState, undoState, selectedTile} = state;
 
   useEffect(() => {
     let interval = null;
@@ -31,6 +34,27 @@ export default function SideControls(props) {
     setIsActive(false);
     setTime(0);
   };
+
+  const eraseHandler = () => {
+    //check to see if tile was an intial tile
+    /* add code here */
+
+    let newBoardState = [...boardState] //copy the current board state to newBoardState
+    const rowNum = getRowNum(selectedTile.row) //get the row of the selected tile
+    newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = 0 //set the value at the selected tile = 0
+    const remainingNums = remainingValues(newBoardState) //get remaining nums
+    dispatch({
+      type: actionTypes.UPDATE_TILE_VALUE,
+      boardState: newBoardState,
+      remainingNums: remainingNums,
+      selectedTile: {
+        row: selectedTile.row,
+        col: selectedTile.col,
+        unit: selectedTile.unit,
+        value: 0
+      }
+    });
+  }
 
   const undoHandler = () => {
     let newBoardState = [...boardState];
@@ -59,7 +83,7 @@ export default function SideControls(props) {
         <button className="undo-btn" onClick={(e)=>{undoHandler()}}>Undo</button>
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
-        <button className="eraser-btn">Eraser</button>
+        <button className="eraser-btn" onClick={(e)=>{eraseHandler()}}>Eraser</button>
         <button className="new-game-btn">New Game</button>
         <button id="set-btn" className="settings-btn">
           Settings
