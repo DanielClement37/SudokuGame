@@ -12,7 +12,7 @@ import { generatedCheck } from "../../utils/GeneratedCheck";
 
 const App = () => {
   const [state, dispatch] = useStore();
-  const { boardState, solvedBoardState, selectedTile, undoState, initBoardState } = state;
+  const { boardState, solvedBoardState, selectedTile, initBoardState, undoState } = state;
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
@@ -21,10 +21,6 @@ const App = () => {
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
 
-      if (undoState.length > 15) {
-        undoState.splice(0, 1);
-      }
-      
       const isSolved = checkWin(newBoardState);
       const remainingNums = remainingValues(newBoardState);
       dispatch({

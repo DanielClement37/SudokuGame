@@ -4,17 +4,17 @@ import "./SideControls.css";
 import { useStore } from "../../store/Store";
 import { actionTypes } from "../../store/types";
 import "./Modal.css";
-import Modal from './Modal'
+import Modal from "./Modal";
 
 export default function SideControls(props) {
   const [time, setTime] = useState(0);
   const [state, dispatch] = useStore();
-  const {boardState,  isSolved, undoState } = state;
+  const { isSolved, undoState } = state;
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     let interval = null;
-    if ( isSolved === false) {
+    if (isSolved === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
       }, 1000);
@@ -26,27 +26,25 @@ export default function SideControls(props) {
     };
   }, [isSolved]);
 
-  const handleStart = () => {
-    
-  };
+  const handleStart = () => {};
 
   const handleReset = () => {
     setTime(0);
   };
 
   const undoHandler = () => {
-    let newBoardState = [...boardState]
-    let newUndoState = [...undoState];
-    if(newUndoState.length > 1) {
-      newBoardState = newUndoState.pop();
+    let newUndoState = undoState.map((copy) => copy.slice());
+
+    if (undoState.length > 1) {
+      newUndoState.pop();
+      let newBoardState = newUndoState.slice(newUndoState.length - 1);
       dispatch({
         type: actionTypes.UNDO_MOVE,
-        boardState: newBoardState,
-        undoState: newUndoState
+        boardState: newBoardState[0],
+        undoState: newUndoState,
       });
     }
   };
-
 
   return (
     <div className="side-controls">
@@ -59,17 +57,26 @@ export default function SideControls(props) {
         </div>
       </div>
       <div className="controls-container">
-        <button className="undo-btn" onClick={(e)=>{undoHandler()}}>Undo</button>
+        <button
+          className="undo-btn"
+          onClick={(e) => {
+            undoHandler();
+          }}
+        >
+          Undo
+        </button>
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
         <button className="new-game-btn">New Game</button>
-        <button className="settings-btn" onClick={() => setIsOpen(true)}>Settings</button>
+        <button className="settings-btn" onClick={() => setIsOpen(true)}>
+          Settings
+        </button>
         <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-            <div className="side-modal">
-              <div className="side-modal-header">Settings</div>
-              <div className="side-modal-text">Example</div>
-            </div>
+          <div className="side-modal">
+            <div className="side-modal-header">Settings</div>
+            <div className="side-modal-text">Example</div>
+          </div>
         </Modal>
       </div>
     </div>
