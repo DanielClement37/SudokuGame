@@ -38,6 +38,58 @@
     text-align: center;
     font-family: "Roboto";
     font-style: normal;
+    padding: 10px;
+}
+
+.switch {
+    position: relative;
+    display:inline-block;
+    width: 30%;
+    left: 35%;
+    height: 5%;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #A6A6A6;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 30px;
+} 
+
+.slider:before {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    height: 80%;
+    width: 32%;
+    left: 4px;
+    bottom: 10%;
+    background-color: #527261;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #D9D9D9;
+}
+
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(36px);
+    -ms-transform: translateX(36px);
+    transform: translateX(36px);
 }
 
 /*Two below functions control the x of the modal*/
