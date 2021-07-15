@@ -8,16 +8,16 @@ import { useStore } from "../../store/Store";
 import { actionTypes } from "../../store/types";
 import { getRowNum } from "../../utils/Conveter";
 import { remainingValues } from "../../utils/GetRemainingNums";
+import { generatedCheck } from "../../utils/GeneratedCheck";
 
 const App = () => {
   const [state, dispatch] = useStore();
-  const { boardState, solvedBoardState, selectedTile, undoState } = state;
+  const { boardState, solvedBoardState, selectedTile, undoState, initBoardState } = state;
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
 
-    if (selectedTile.value === 0) {
-      //TODO: switch to a check that sees if its not a pre placed tile
+    if (!generatedCheck(selectedTile, initBoardState)) {
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
 
