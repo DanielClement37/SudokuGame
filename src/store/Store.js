@@ -9,6 +9,6 @@ export const StoreProvider = ({ children, initialState, reducer }) => {
   const [globalState, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <Store.Provider value={[globalState, dispatch]}>{children}</Store.Provider>
+    <Store.Provider value={[globalState, dispatch]} displayName="Game Context">{children}</Store.Provider>
   );
 };

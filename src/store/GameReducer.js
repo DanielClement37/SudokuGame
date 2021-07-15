@@ -1,34 +1,37 @@
-import {actionTypes} from "./types";
-import { BeginnerBoardGenerator, IntermediateBoardGenerator, AdvancedBoardGenerator, ExpertBoardGenerator } from "../utils/BoardGenerator";
-import {remainingValues} from '../utils/GetRemainingNums'
-import { StoreStates } from "./PreviousStates";
+import { actionTypes } from "./types";
+import {
+  BeginnerBoardGenerator,
+  IntermediateBoardGenerator,
+  AdvancedBoardGenerator,
+  ExpertBoardGenerator,
+} from "../utils/BoardGenerator";
+import { remainingValues } from "../utils/GetRemainingNums";
 
-let [removedVals, startingBoard, finalBoard] = ExpertBoardGenerator();
+let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
 
 export const initialState = {
   boardState: startingBoard,
-  initBoardState:startingBoard,
+  initBoardState: startingBoard.map((inner) => inner.slice()),
   solvedBoardState: finalBoard,
   removedVals: removedVals,
   selectedTile: {
     row: null,
-    col:null,
+    col: null,
     value: null,
     unit: null,
   },
   remainingNums: remainingValues(startingBoard),
   isSolved: false,
-  undoState: startingBoard
+  undoState: [startingBoard.map((copy) => copy.slice())],
 };
-
 
 export const gameBoardReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SELECT_TILE:
-      return{
+      return {
         ...state,
-        selectedTile:   action.selectedTile,
-      }
+        selectedTile: action.selectedTile,
+      };
     case actionTypes.UPDATE_TILE_VALUE:
       return {
         ...state,
@@ -36,14 +39,16 @@ export const gameBoardReducer = (state = initialState, action) => {
         remainingNums: action.remainingNums,
         selectedTile: action.selectedTile,
         isSolved: action.isSolved,
+        undoState: state.undoState.concat([
+          action.boardState.map((copy) => copy.slice()),
+        ]),
+      };
+    case actionTypes.UNDO_MOVE:
+      return {
+        ...state,
+        boardState: action.boardState,
         undoState: action.undoState
-      }
-      case actionTypes.UNDO_MOVE:
-        return {
-          ...state,
-          boardState: action.boardState,
-          undoState: action.undoState
-        }
+      };
     default:
       break;
   }
