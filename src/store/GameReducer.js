@@ -6,18 +6,18 @@ let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
 
 export const initialState = {
   boardState: startingBoard,
-  initBoardState:startingBoard,
+  initBoardState: startingBoard.map(inner => inner.slice()),
   solvedBoardState: finalBoard,
   removedVals: removedVals,
   selectedTile: {
     row: null,
-    col:null,
+    col: null,
     value: null,
     unit: null,
   },
   remainingNums: remainingValues(startingBoard),
   isSolved: false,
-  undoState: [startingBoard]
+  undoState: [startingBoard.map(copy => copy.slice())]
 };
 
 
@@ -35,7 +35,7 @@ export const gameBoardReducer = (state = initialState, action) => {
         remainingNums: action.remainingNums,
         selectedTile: action.selectedTile,
         isSolved: action.isSolved,
-        undoState: action.undoState
+        undoState: state.undoState.concat(action.undoState),
       }
       case actionTypes.UNDO_MOVE:
         return {

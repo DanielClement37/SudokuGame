@@ -12,8 +12,8 @@
  *   Text
  * </button>
  */
- export const classNames = (
-    ...classes: (false | null | undefined | string)[]
-  ): string => {
-    return classes.filter(Boolean).join(' ');
-  };
+export const classNames = (
+  ...classes: (false | null | undefined | string)[]
+): string => {
+  return classes.filter(Boolean).join(" ");
+};
