@@ -8,6 +8,7 @@ import Modal from "./Modal";
 import { getRowNum } from "../../utils/Conveter";
 import { remainingValues } from "../../utils/GetRemainingNums";
 import { generatedCheck } from "../../utils/GeneratedCheck";
+import { classNames } from "../../utils/classNames";
 
 export default function SideControls(props) {
   const [time, setTime] = useState(0);
@@ -21,6 +22,7 @@ export default function SideControls(props) {
     selectedTile,
     initBoardState,
     difficulty,
+    isNotesMode,
   } = state;
 
   useEffect(() => {
@@ -77,6 +79,13 @@ export default function SideControls(props) {
     }
   };
 
+  const notesHandler = () => {
+    dispatch({
+      type: actionTypes.NOTES_TOGGLE,
+      isNotesMode: isNotesMode ? false : true,
+    })
+  }
+
   return (
     <div className="side-controls">
       <div className="timer-container">
@@ -95,7 +104,17 @@ export default function SideControls(props) {
           Undo
         </button>
         <button className="hint-btn">Hint</button>
-        <button className="notes-btn">Notes</button>
+        <button
+          className={classNames(
+            "notes-btn",
+            isNotesMode ? "notes-on" : "notes-off"
+          )}
+          onClick={(e) => {
+            notesHandler();
+          }}
+        >
+          Notes
+        </button>
         <button
           className="eraser-btn"
           onClick={(e) => {
@@ -111,7 +130,7 @@ export default function SideControls(props) {
           name="isNewGame"
           open={isOpen2}
           onClose={() => setIsOpen2(false)}
-        ></Modal>
+        />
         <button className="settings-btn" onClick={() => setIsOpen(true)}>
           Settings
         </button>
@@ -119,7 +138,7 @@ export default function SideControls(props) {
           name="isSettings"
           open={isOpen}
           onClose={() => setIsOpen(false)}
-        ></Modal>
+        />
       </div>
     </div>
   );

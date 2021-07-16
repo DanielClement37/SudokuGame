@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { isPropertySignature } from "typescript";
-//import reactDom from "react-dom";
 import './Modal.css';
 import './SideControls.css';
 
