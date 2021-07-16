@@ -319,7 +319,7 @@ export const NewFilledBoard = _ => {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return BeginnerBoardGenerator()
 */
-export function BeginnerBoardGenerator() {
+export async function BeginnerBoardGenerator() {
 
     let numTiles = GetRandomNumber(36, 46)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -346,7 +346,7 @@ export function BeginnerBoardGenerator() {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return IntermediateBoardGenerator()
 */
-export function IntermediateBoardGenerator() {
+export async function IntermediateBoardGenerator() {
 
     let numTiles = GetRandomNumber(32, 35)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -373,7 +373,7 @@ export function IntermediateBoardGenerator() {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return AdvancedBoardGenerator()
 */
-export function AdvancedBoardGenerator() {
+export async function AdvancedBoardGenerator() {
 
     let numTiles = GetRandomNumber(28, 31)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -400,7 +400,7 @@ export function AdvancedBoardGenerator() {
    Return:      List removedVals, 2D array startingBoard, 2D array finalBoard when board is valid
                 If error caught, return ExpertBoardGenerator()
 */
-export function ExpertBoardGenerator() {
+export async function ExpertBoardGenerator() {
 
     let numTiles = GetRandomNumber(17, 27)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
