@@ -98,17 +98,17 @@ const useKeyboardShortcut = (shortcutKeys, callback, options) => {
     } else {
       setKeys({ type: null })
     }
-  });
+  }, [callback, keys]);
 
   useEffect(() => {
     shortcutKeys.forEach(k => window.addEventListener("keydown", keydownListener(k)));
     return () => shortcutKeys.forEach(k => window.removeEventListener("keydown", keydownListener(k)));
-  });
+  }, []);
 
   useEffect(() => {
     shortcutKeys.forEach(k => window.addEventListener("keyup", keyupListener(k)));
     return () => shortcutKeys.forEach(k => window.removeEventListener("keyup", keyupListener(k)));
-  });
+  }, []);
 };
 
 export default useKeyboardShortcut;

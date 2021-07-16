@@ -44,7 +44,8 @@ export const gameBoardReducer = (state = initialState, action) => {
       return {
         ...state,
         boardState: action.boardState,
-        undoState: action.undoState
+        undoState: action.undoState,
+        remainingNums: action.remainingNums,
       };
     default:
       break;

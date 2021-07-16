@@ -57,10 +57,12 @@ export default function SideControls(props) {
     if (undoState.length > 1) {
       newUndoState.pop();
       let newBoardState = newUndoState.slice(newUndoState.length - 1);
+      const remainingNums = remainingValues(newBoardState[0]);
       dispatch({
         type: actionTypes.UNDO_MOVE,
         boardState: newBoardState[0],
         undoState: newUndoState,
+        remainingNums: remainingNums,
       });
     }
   };
