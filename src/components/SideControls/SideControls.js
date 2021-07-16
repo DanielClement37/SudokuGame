@@ -14,6 +14,7 @@ export default function SideControls(props) {
   const [state, dispatch] = useStore();
   const [isOpen, setIsOpen] = useState(false); //useStates for modals. Each needs its own to display properly.
   const [isOpen2, setIsOpen2] = useState(false);
+  const [isOpenWin, setIsOpenWin] = useState(false);
   const {
     isSolved,
     boardState,
@@ -31,6 +32,7 @@ export default function SideControls(props) {
       }, 1000);
     } else {
       clearInterval(interval);
+      setIsOpenWin(true); //Where win is opened
     }
     return () => {
       clearInterval(interval);
@@ -86,6 +88,12 @@ export default function SideControls(props) {
         </div>
       </div>
       <div className="controls-container">
+        <Modal 
+        name="isWin" 
+        open={isOpenWin} 
+        onClose={() => setIsOpenWin(false)} 
+        time={time}
+        ></Modal>
         <button
           className="undo-btn"
           onClick={(e) => {
