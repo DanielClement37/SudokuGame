@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import './Modal.css';
 import './SideControls.css';
+import PepeScrapWin from "../../images/pepeScrapWin.png";
 
 export default function Modal(props) {
 
@@ -56,4 +57,22 @@ export default function Modal(props) {
             </>
         );
     }
+
+    if (type === "isWin") {
+        return (
+            <>
+                <div>
+                    <div className="page-modal">
+                    <button className='close' onClick={props.onClose}>x</button>
+                    <div className="page-modal-header">
+                        YOU WIN!
+                    </div>
+                    <div className="page-modal-text">Board complete in {("0" + Math.floor((props.time / 60) % 60)).slice(-2)}:{("0" + Math.floor((props.time) % 60)).slice(-2)}!</div>
+                    <img src={PepeScrapWin} alt="pepe scrappy win" className="pepe-scrap-win" draggable="false"/>
+                    </div>
+                </div>
+            </>
+        );
+    }
+
 }
