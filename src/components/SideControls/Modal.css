@@ -32,15 +32,16 @@
 
 .side-modal-text {
     color: #527261;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 1.3vw;
+    line-height: 115%;
     width: 100%;
     text-align: center;
     font-family: "Roboto";
     font-style: normal;
-    padding: 10px;
+    padding: 3%;
 }
 
+/*Following are for the settings toggle buttons*/
 .switch {
     position: relative;
     display:inline-block;
@@ -87,9 +88,38 @@ input:checked + .slider {
 
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(36px);
-    -ms-transform: translateX(36px);
-    transform: translateX(36px);
+    -webkit-transform: translateX(175%);
+    -ms-transform: translateX(175%);
+    transform: translateX(175%);
+}
+
+/*For New Game Buttons*/
+.new-game-modal-btn{
+    display: inline-block;
+    position: relative;
+    height: 12%;
+    width: 60%;
+    border: 2px solid #527261;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    color: #527261;
+    justify-content: center;
+    align-items: center;
+    left: 20%;
+    margin-top: 10%;
+}
+
+.side-modal button{
+    transition: transform .1s; /* Animation */
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 100%;
+    line-height: 100%;
+}
+
+.controls-container button:hover{
+    transform: scale(1.1);
 }
 
 /*Two below functions control the x of the modal*/
