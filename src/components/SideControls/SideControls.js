@@ -12,9 +12,16 @@ import { generatedCheck } from "../../utils/GeneratedCheck";
 export default function SideControls(props) {
   const [time, setTime] = useState(0);
   const [state, dispatch] = useStore();
-  const [isOpen, setIsOpen] = useState(false);
-  const { isSolved, boardState, undoState, selectedTile, initBoardState } =
-    state;
+  const [isOpen, setIsOpen] = useState(false); //useStates for modals. Each needs its own to display properly.
+  const [isOpen2, setIsOpen2] = useState(false);
+  const {
+    isSolved,
+    boardState,
+    undoState,
+    selectedTile,
+    initBoardState,
+    difficulty,
+  } = state;
 
   useEffect(() => {
     let interval = null;
@@ -30,14 +37,11 @@ export default function SideControls(props) {
     };
   }, [isSolved]);
 
-  const handleStart = () => {};
-
-  const handleReset = () => {
-    setTime(0);
-  };
-
   const eraseHandler = () => {
     //check to see if tile was an intial tile
+    if (selectedTile.row === null) {
+      return;
+    }
     if (!generatedCheck(selectedTile, initBoardState)) {
       let newBoardState = [...boardState]; //copy the current board state to newBoardState
       const rowNum = getRowNum(selectedTile.row); //get the row of the selected tile
@@ -63,10 +67,12 @@ export default function SideControls(props) {
     if (undoState.length > 1) {
       newUndoState.pop();
       let newBoardState = newUndoState.slice(newUndoState.length - 1);
+      const remainingNums = remainingValues(newBoardState[0]);
       dispatch({
         type: actionTypes.UNDO_MOVE,
         boardState: newBoardState[0],
         undoState: newUndoState,
+        remainingNums: remainingNums,
       });
     }
   };
@@ -74,9 +80,7 @@ export default function SideControls(props) {
   return (
     <div className="side-controls">
       <div className="timer-container">
-        <div className="timer-item">
-          <h3>EASY</h3>
-        </div>
+        <div className="timer-item">{difficulty}</div>
         <div className="timer-item">
           <Timer time={time} />
         </div>
@@ -100,35 +104,22 @@ export default function SideControls(props) {
         >
           Eraser
         </button>
-        <button className="new-game-btn">New Game</button>
+        <button className="new-game-btn" onClick={() => setIsOpen2(true)}>
+          New Game
+        </button>
+        <Modal
+          name="isNewGame"
+          open={isOpen2}
+          onClose={() => setIsOpen2(false)}
+        ></Modal>
         <button className="settings-btn" onClick={() => setIsOpen(true)}>
           Settings
         </button>
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-            <div className="side-modal">
-              <div className="side-modal-header">Settings</div>
-              <div className="side-modal-text">Error Limits</div>
-                <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-              <div className="side-modal-text">Auto - Detect Mistakes</div>
-              <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-              <div className="side-modal-text">Auto - Update Hints</div>
-              <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-              <div className="side-modal-text">Light / Dark Mode</div>
-              <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-            </div>
-        </Modal>
+        <Modal
+          name="isSettings"
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+        ></Modal>
       </div>
     </div>
   );
