@@ -10,7 +10,8 @@ export default function SideControls(props) {
   const [time, setTime] = useState(0);
   const [state, dispatch] = useStore();
   const {boardState,  isSolved, undoState } = state;
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);          //useStates for modals. Each needs its own to display properly.
+  const [isOpen2, setIsOpen2] = useState(false);
 
   useEffect(() => {
     let interval = null;
@@ -63,32 +64,11 @@ export default function SideControls(props) {
         <button className="hint-btn">Hint</button>
         <button className="notes-btn">Notes</button>
         <button className="eraser-btn">Eraser</button>
-        <button className="new-game-btn">New Game</button>
+        <button className="new-game-btn" onClick={() => setIsOpen2(true)}>New Game</button>
+        <Modal name="isNewGame" open={isOpen2} onClose={() => setIsOpen2(false)}>
+        </Modal>
         <button className="settings-btn" onClick={() => setIsOpen(true)}>Settings</button>
-        <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-            <div className="side-modal">
-              <div className="side-modal-header">Settings</div>
-              <div className="side-modal-text">Error Limits</div>
-                <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-              <div className="side-modal-text">Auto - Detect Mistakes</div>
-              <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-              <div className="side-modal-text">Auto - Update Hints</div>
-              <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-              <div className="side-modal-text">Light / Dark Mode</div>
-              <label class="switch">
-                  <input type="checkbox"></input>
-                  <span class="slider"></span>
-                </label>
-            </div>
+        <Modal name="isSettings" open={isOpen} onClose={() => setIsOpen(false)}>
         </Modal>
       </div>
     </div>
