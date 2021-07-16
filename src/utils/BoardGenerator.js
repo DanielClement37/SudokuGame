@@ -36,10 +36,11 @@ export function CheckRow(board, row, value) {
     iterates through the row to check for any conflictions
     */
 
-  for (var i = 0; i < 8; i++) {
-    if (board[row][i] === value) return false;
-  }
-  return true;
+    for(var i = 0; i < 9; i++) {
+        if(board[row][i] === value)
+            return false
+    }
+    return true
 }
 
 export function CheckColumn(board, column, value) {
@@ -49,10 +50,11 @@ export function CheckColumn(board, column, value) {
     iterates through the column to check for any conflictions
     */
 
-  for (var i = 0; i < 8; i++) {
-    if (board[i][column] === value) return false;
-  }
-  return true;
+    for(var i = 0; i < 9; i++) {
+        if(board[i][column] === value)
+            return false
+    }
+    return true
 }
 
 export function CheckSquare(board, row, column, value) {

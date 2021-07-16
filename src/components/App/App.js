@@ -9,10 +9,16 @@ import { actionTypes } from "../../store/types";
 import { getRowNum } from "../../utils/Conveter";
 import { remainingValues } from "../../utils/GetRemainingNums";
 import { generatedCheck } from "../../utils/GeneratedCheck";
+import useKeyboardShortcut from "../../utils/useKeyboardShortcut";
 
 const App = () => {
   const [state, dispatch] = useStore();
-  const { boardState, solvedBoardState, selectedTile, undoState, initBoardState } = state;
+  const {
+    boardState,
+    solvedBoardState,
+    selectedTile,
+    initBoardState
+  } = state;
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
@@ -21,10 +27,6 @@ const App = () => {
       const rowNum = getRowNum(selectedTile.row);
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = numInput;
 
-      if (undoState.length > 15) {
-        undoState.splice(0, 1);
-      }
-      
       const isSolved = checkWin(newBoardState);
       const remainingNums = remainingValues(newBoardState);
       dispatch({
@@ -57,21 +59,38 @@ const App = () => {
     updateTile(btnValue);
   };
 
+  const keyUpdateHandler = (keyValue) => {
+    if (selectedTile.row !== null) {
+      updateTile(keyValue);
+    }
+  };
+
+  useKeyboardShortcut(['1'], () => keyUpdateHandler(1), { overrideSystem: false })
+  useKeyboardShortcut(['2'], () => keyUpdateHandler(2), { overrideSystem: false })
+  useKeyboardShortcut(['3'], () => keyUpdateHandler(3), { overrideSystem: false })
+  useKeyboardShortcut(['4'], () => keyUpdateHandler(4), { overrideSystem: false })
+  useKeyboardShortcut(['5'], () => keyUpdateHandler(5), { overrideSystem: false })
+  useKeyboardShortcut(['6'], () => keyUpdateHandler(6), { overrideSystem: false })
+  useKeyboardShortcut(['7'], () => keyUpdateHandler(7), { overrideSystem: false })
+  useKeyboardShortcut(['8'], () => keyUpdateHandler(8), { overrideSystem: false })
+  useKeyboardShortcut(['9'], () => keyUpdateHandler(9), { overrideSystem: false })
+
   return (
-    <div className="flex content-center justify-center App bg-primary ">
+    <div className="flex content-center justify-center App bg-primary">
       <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
         <header className="App-header">
           <div className="text-8xl tracking-header header-title text-bold text-primary">
             SUDOKU
           </div>
         </header>
+
         <div className="Game-container">
-          <SudokuBoard />
-          <NumPad btnHandler={btnUpdateTileHandler} />
-          <SideControls />
-          <div className="image-container">
-            <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" />
-          </div>
+            <SudokuBoard />
+            <NumPad btnHandler={btnUpdateTileHandler} />
+            <SideControls />
+            <div className="image-container">
+              <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" />
+            </div>
         </div>
       </div>
     </div>
