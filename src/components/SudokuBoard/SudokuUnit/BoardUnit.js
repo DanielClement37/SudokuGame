@@ -26,6 +26,7 @@ const BoardUnit = (props) => {
     const rowNum = getRowNum(row);
     return boardState[rowNum - 1][col - 1];
   };
+  
   const tiles = () => {
     const tileArray = [];
 
@@ -51,6 +52,7 @@ const BoardUnit = (props) => {
 
   return (
     <div
+      key={props.id}
       id={props.id}
       className={classNames(
         "board-unit",
