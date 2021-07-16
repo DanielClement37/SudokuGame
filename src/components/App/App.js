@@ -89,7 +89,7 @@ const App = () => {
             <NumPad btnHandler={btnUpdateTileHandler} />
             <SideControls />
             <div className="image-container">
-              <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" />
+              <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" draggable="false"/>
             </div>
         </div>
       </div>

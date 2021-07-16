@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { isPropertySignature } from "typescript";
 //import reactDom from "react-dom";
 import './Modal.css';
@@ -58,4 +58,5 @@ export default function Modal(props) {
             </>
         );
     }
+
 }
