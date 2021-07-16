@@ -52,6 +52,13 @@ export const gameBoardReducer = (state = initialState, action) => {
         ...state,
         isNotesMode: action.isNotesMode,
       };
+    case actionTypes.ERASE_TILE:
+      return {
+        ...state,
+        boardState: action.boardState,
+        remainingNums: action.remainingNums,
+        selectedTile: action.selectedTile,
+      };
     default:
       break;
   }

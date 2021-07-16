@@ -52,7 +52,7 @@ export default function SideControls(props) {
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = 0; //set the value at the selected tile = 0
       const remainingNums = remainingValues(newBoardState); //get remaining nums
       dispatch({
-        type: actionTypes.UPDATE_TILE_VALUE,
+        type: actionTypes.ERASE_TILE,
         boardState: newBoardState,
         remainingNums: remainingNums,
         selectedTile: {
