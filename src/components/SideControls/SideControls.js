@@ -30,12 +30,6 @@ export default function SideControls(props) {
     };
   }, [isSolved]);
 
-  const handleStart = () => {};
-
-  const handleReset = () => {
-    setTime(0);
-  };
-
   const eraseHandler = () => {
     //check to see if tile was an intial tile
     if (!generatedCheck(selectedTile, initBoardState)) {

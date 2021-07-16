@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 //import reactDom from "react-dom";
 import './Modal.css';
 import './SideControls.css';

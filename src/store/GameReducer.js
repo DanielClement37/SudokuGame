@@ -1,9 +1,6 @@
 import { actionTypes } from "./types";
 import {
-  BeginnerBoardGenerator,
-  IntermediateBoardGenerator,
-  AdvancedBoardGenerator,
-  ExpertBoardGenerator,
+  BeginnerBoardGenerator
 } from "../utils/BoardGenerator";
 import { remainingValues } from "../utils/GetRemainingNums";
 
