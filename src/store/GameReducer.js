@@ -1,9 +1,6 @@
 import { actionTypes } from "./types";
 import {
-  BeginnerBoardGenerator,
-  IntermediateBoardGenerator,
-  AdvancedBoardGenerator,
-  ExpertBoardGenerator,
+  BeginnerBoardGenerator
 } from "../utils/BoardGenerator";
 import { remainingValues } from "../utils/GetRemainingNums";
 
@@ -23,6 +20,7 @@ export const initialState = {
   remainingNums: remainingValues(startingBoard),
   isSolved: false,
   undoState: [startingBoard.map((copy) => copy.slice())],
+  difficulty: 'Beginner'
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
@@ -47,7 +45,8 @@ export const gameBoardReducer = (state = initialState, action) => {
       return {
         ...state,
         boardState: action.boardState,
-        undoState: action.undoState
+        undoState: action.undoState,
+        remainingNums: action.remainingNums,
       };
     default:
       break;
