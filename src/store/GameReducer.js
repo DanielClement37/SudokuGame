@@ -20,6 +20,7 @@ export const initialState = {
   remainingNums: remainingValues(startingBoard),
   isSolved: false,
   undoState: [startingBoard.map((copy) => copy.slice())],
+  difficulty: 'Beginner'
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
