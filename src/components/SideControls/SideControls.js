@@ -77,6 +77,7 @@ export default function SideControls(props) {
     }
   };
 
+
   return (
     <div className="side-controls">
       <div className="timer-container">
