@@ -5,8 +5,8 @@
     z-index: 1; /* Stays on top*/
     width: 100%;
     height: 100%;
-    background-color: #F3F3F3; 
-    border: 5px solid #527261;
+    background-color: var(--tertiary); 
+    border: 5px solid var(--primary);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     left: 0;
@@ -16,12 +16,12 @@
 .side-modal-header {
     display: flex;
     position: relative;
-    color: #ffffff;
+    color: #FFFFFF;
     width: 100%;
     height: 25%;
     text-align: center;
     top: -5px;
-    background-color: #527261;
+    background-color: var(--primary);
     font-family: "Roboto";
     font-style: normal;
     font-size: 33px;
@@ -31,7 +31,7 @@
 }
 
 .side-modal-text {
-    color: #527261;
+    color: var(--text-color);
     font-size: 1.3vw;
     line-height: 115%;
     width: 100%;
@@ -47,7 +47,7 @@
     z-index: 1; /* Stays on top*/
     width: 35vw;
     height: 45vh;
-    background-color: #527261; 
+    background-color: var(--primary); 
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     left: -28vw;
@@ -70,7 +70,7 @@
 }
 
 .page-modal-text {
-    color: white;
+    color: var(--tertiary);
     font-size: 2vw;
     line-height: 115%;
     text-align: center;
@@ -111,9 +111,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #A6A6A6;
-    -webkit-transition: .4s;
-    transition: .4s;
+    background-color: var(--slider-off);
     border-radius: 30px;
 } 
 
@@ -147,10 +145,10 @@ input:checked + .slider:before {
     position: relative;
     height: 12%;
     width: 60%;
-    border: 2px solid #527261;
+    border: 2px solid var(--primary);
     border-radius: 10px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-    color: #527261;
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
     left: 20%;
@@ -178,7 +176,7 @@ input:checked + .slider:before {
     top: 2px;
     z-index: 2;
     color: white;
-    background-color:#527261;
+    background-color:var(--primary);
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -191,7 +189,7 @@ input:checked + .slider:before {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: var(--select-fill);
     text-decoration: none;
     cursor: pointer;
 }

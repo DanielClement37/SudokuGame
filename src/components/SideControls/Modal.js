@@ -32,7 +32,10 @@ export default function Modal(props) {
                         </label>
                         <div className="side-modal-text">Light / Dark Mode</div>
                         <label class="switch">
-                            <input type="checkbox"></input>
+                            <input 
+                            type="checkbox" 
+                            onChange={(event) => props.onChange(event)}
+                            />
                             <span class="slider"></span>
                         </label>
                     </div>

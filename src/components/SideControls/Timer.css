@@ -7,7 +7,7 @@
 }
   
 .digits{
-    color: #527261;
+    color: var(--text-color);
     font-family: "Roboto";
     font-style: normal;
     font-weight: bold;

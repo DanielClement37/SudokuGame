@@ -144,6 +144,7 @@ export default function SideControls(props) {
         </button>
         <Modal
           name="isSettings"
+          onChange={(event) => props.onChange(event)}
           open={isOpen}
           onClose={() => setIsOpen(false)}
         />

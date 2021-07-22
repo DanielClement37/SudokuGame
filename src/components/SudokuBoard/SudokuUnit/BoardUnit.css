@@ -9,36 +9,36 @@
 }
 
 .Board-container .selected-unit-class{
-    background-color: #cde7da;
+    background-color: var(--select-fill);
 }
 
 .Board-container #unit1 {
-    border-bottom: 4px solid #527261;
-    border-right: 4px solid #527261;
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
    }
 
 .Board-container #unit2 {
-    border-bottom: 4px solid #527261;
-    border-right: 4px solid #527261;
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
    }
    
 .Board-container #unit3 {
-    border-bottom: 4px solid #527261;
+    border-bottom: 4px solid var(--primary);
 }
 .Board-container #unit4 {
-    border-bottom: 4px solid #527261;
-    border-right: 4px solid #527261;
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
 }
 .Board-container #unit5 {
-    border-bottom: 4px solid #527261;
-    border-right: 4px solid #527261;
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
 }
 .Board-container #unit6 {
-    border-bottom: 4px solid #527261;
+    border-bottom: 4px solid var(--primary);
 }
 .Board-container #unit7 {
-    border-right: 4px solid #527261;
+    border-right: 4px solid var(--primary);
 }
 .Board-container #unit8 {
-    border-right: 4px solid #527261;
+    border-right: 4px solid var(--primary);
 }

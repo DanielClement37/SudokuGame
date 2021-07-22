@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
 import SideControls from "../SideControls/SideControls";
@@ -12,6 +12,8 @@ import { generatedCheck } from "../../utils/GeneratedCheck";
 import useKeyboardShortcut from "../../utils/useKeyboardShortcut";
 
 const App = () => {
+  const [lightTheme, setLightTheme] = useState(true);
+
   const [state, dispatch] = useStore();
   const {
     boardState,
@@ -76,21 +78,23 @@ const App = () => {
   useKeyboardShortcut(['9'], () => keyUpdateHandler(9), { overrideSystem: false })
 
   return (
-    <div className="flex content-center justify-center App bg-primary">
-      <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
-        <header className="App-header">
-          <div className="text-8xl tracking-header header-title text-bold text-primary">
-            SUDOKU
-          </div>
-        </header>
+    <div className={lightTheme ? 'theme-light' : 'theme-dark'}>
+      <div className="flex content-center justify-center App bg-primary">
+        <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
+          <header className="App-header">
+            <div className="text-8xl tracking-header header-title text-bold text-primary">
+              SUDOKU
+            </div>
+          </header>
 
-        <div className="Game-container">
+          <div className="Game-container">
             <SudokuBoard />
             <NumPad btnHandler={btnUpdateTileHandler} />
-            <SideControls />
+            <SideControls onChange={(event) => setLightTheme(!lightTheme)}/>
             <div className="image-container">
-              <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" draggable="false"/>
+              <img src={PepeScrap} alt="pepe scrappy" className="pepe-scrap" draggable="false" />
             </div>
+          </div>
         </div>
       </div>
     </div>

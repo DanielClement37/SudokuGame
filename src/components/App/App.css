@@ -1,7 +1,7 @@
 .App {
   position: static;
-  background-color: #527261;
-  background-image: url(../../images/pepeScrap25.png);
+  background-color: var(--primary)!important;
+  background-image: url("../../images/pepeScrap25.png");
   background-size: 10vw;
 }
 
