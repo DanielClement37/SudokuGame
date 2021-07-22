@@ -10,6 +10,7 @@ import { getRowNum } from "../../utils/Conveter";
 import { remainingValues } from "../../utils/GetRemainingNums";
 import { generatedCheck } from "../../utils/GeneratedCheck";
 import useKeyboardShortcut from "../../utils/useKeyboardShortcut";
+import { classNames } from "../../utils/classNames";
 
 const App = () => {
   const [lightTheme, setLightTheme] = useState(true);
@@ -79,7 +80,8 @@ const App = () => {
 
   return (
     <div className={lightTheme ? 'theme-light' : 'theme-dark'}>
-      <div className="flex content-center justify-center App bg-primary">
+      <div className={classNames("flex content-center justify-center App bg-primary", lightTheme ? "App-bg-light" : "App-bg-dark")}>
+
         <div className="flex-auto w-2/3 justify-self-center max-w-2/3 App-container bg-secondary">
           <header className="App-header">
             <div className="text-8xl tracking-header header-title text-bold text-primary">
