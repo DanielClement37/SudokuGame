@@ -27,11 +27,11 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: var(--tertiary);
     width:3.5rem;
     height: 3.5rem;
     border-radius: 50%;
-    border: 3px solid #527261;
+    border: 3px solid var(--primary);
     position: relative;
     font-weight: 700;
     overflow: visible;
@@ -45,7 +45,7 @@
 .number-span{
     text-align: center;
     width: 100%;
-    color: #527261;
+    color: var(--text-color);
     font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
@@ -70,8 +70,8 @@
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
-    color: #fff;
-    background-color: #527261;
+    color: var(--tertiary);
+    background-color: var(--primary);
     font-family: "Roboto";
     font-style: normal;
     font-weight: 300;

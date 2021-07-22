@@ -349,25 +349,24 @@ export function BeginnerBoardGenerator() {
                 If error caught, return IntermediateBoardGenerator()
 */
 export function IntermediateBoardGenerator() {
-  let numTiles = GetRandomNumber(32, 35); //number of tiles to keep on a beginner level board
-  numTiles = 81 - numTiles; //total cells - tiles to keep = tiles to remove
 
-  try {
-    counter = 0;
-    let finalBoard = NewFilledBoard(); //final board equals the fully filled board
+    let numTiles = GetRandomNumber(32, 35)  //number of tiles to keep on a beginner level board
+    numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
 
-    //copy the new filled board and remove values from it
-    //store the removed values to save for clues later
-    let [removedVals, startingBoard] = ValueRemover(
-      JSON.parse(JSON.stringify(finalBoard)),
-      numTiles
-    );
+    try {
+        counter = 0
+        let finalBoard = NewFilledBoard()   //final board equals the fully filled board
 
-    return [removedVals, startingBoard, finalBoard];
-  } catch (error) {
-    //if error is caught, recall the function
-    return IntermediateBoardGenerator();
-  }
+        //copy the new filled board and remove values from it
+        //store the removed values to save for clues later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
+
+        return [removedVals, startingBoard, finalBoard]
+
+    }catch (error) {
+        //if error is caught, recall the function
+        return IntermediateBoardGenerator()
+    }
 }
 
 /* Function:    Generates Board of Advanced Diffuclty
@@ -377,25 +376,24 @@ export function IntermediateBoardGenerator() {
                 If error caught, return AdvancedBoardGenerator()
 */
 export function AdvancedBoardGenerator() {
-  let numTiles = GetRandomNumber(28, 31); //number of tiles to keep on a beginner level board
-  numTiles = 81 - numTiles; //total cells - tiles to keep = tiles to remove
 
-  try {
-    counter = 0;
-    let finalBoard = NewFilledBoard(); //final board equals the fully filled board
+    let numTiles = GetRandomNumber(28, 31)  //number of tiles to keep on a beginner level board
+    numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
 
-    //copy the new filled board and remove values from it
-    //store the removed values to save for clues later
-    let [removedVals, startingBoard] = ValueRemover(
-      JSON.parse(JSON.stringify(finalBoard)),
-      numTiles
-    );
+    try {
+        counter = 0
+        let finalBoard = NewFilledBoard()   //final board equals the fully filled board
 
-    return [removedVals, startingBoard, finalBoard];
-  } catch (error) {
-    //if error is caught, recall the function
-    return AdvancedBoardGenerator();
-  }
+        //copy the new filled board and remove values from it
+        //store the removed values to save for clues later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
+
+        return [removedVals, startingBoard, finalBoard]
+
+    }catch (error) {
+        //if error is caught, recall the function
+        return AdvancedBoardGenerator()
+    }
 }
 
 /* Function:    Generates Board of Expert Diffuclty
@@ -405,25 +403,24 @@ export function AdvancedBoardGenerator() {
                 If error caught, return ExpertBoardGenerator()
 */
 export function ExpertBoardGenerator() {
-  let numTiles = GetRandomNumber(17, 27); //number of tiles to keep on a beginner level board
-  numTiles = 81 - numTiles; //total cells - tiles to keep = tiles to remove
 
-  try {
-    counter = 0;
-    let finalBoard = NewFilledBoard(); //final board equals the fully filled board
+    let numTiles = GetRandomNumber(17, 27)  //number of tiles to keep on a beginner level board
+    numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
 
-    //copy the new filled board and remove values from it
-    //store the removed values to save for clues later
-    let [removedVals, startingBoard] = ValueRemover(
-      JSON.parse(JSON.stringify(finalBoard)),
-      numTiles
-    );
+    try {
+        counter = 0
+        let finalBoard = NewFilledBoard()   //final board equals the fully filled board
 
-    return [removedVals, startingBoard, finalBoard];
-  } catch (error) {
-    //if error is caught, recall the function
-    return ExpertBoardGenerator();
-  }
+        //copy the new filled board and remove values from it
+        //store the removed values to save for clues later
+        let [removedVals, startingBoard] = ValueRemover(JSON.parse(JSON.stringify(finalBoard)), numTiles)
+
+        return [removedVals, startingBoard, finalBoard]
+
+    }catch (error) {
+        //if error is caught, recall the function
+        return ExpertBoardGenerator()
+    }
 }
 
 //IMPORT STATEMENTS FOR DANIEL

@@ -1,7 +1,5 @@
 import { actionTypes } from "./types";
-import {
-  BeginnerBoardGenerator
-} from "../utils/BoardGenerator";
+import { BeginnerBoardGenerator } from "../utils/BoardGenerator";
 import { remainingValues } from "../utils/GetRemainingNums";
 
 let [removedVals, startingBoard, finalBoard] = BeginnerBoardGenerator();
@@ -20,7 +18,8 @@ export const initialState = {
   remainingNums: remainingValues(startingBoard),
   isSolved: false,
   undoState: [startingBoard.map((copy) => copy.slice())],
-  difficulty: 'Beginner'
+  difficulty: "Beginner",
+  isNotesMode: false,
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
@@ -47,6 +46,18 @@ export const gameBoardReducer = (state = initialState, action) => {
         boardState: action.boardState,
         undoState: action.undoState,
         remainingNums: action.remainingNums,
+      };
+    case actionTypes.NOTES_TOGGLE:
+      return {
+        ...state,
+        isNotesMode: action.isNotesMode,
+      };
+    case actionTypes.ERASE_TILE:
+      return {
+        ...state,
+        boardState: action.boardState,
+        remainingNums: action.remainingNums,
+        selectedTile: action.selectedTile,
       };
     default:
       break;
