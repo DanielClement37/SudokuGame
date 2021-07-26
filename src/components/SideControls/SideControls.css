@@ -9,8 +9,8 @@
 
 .timer-container{
     position: relative;
-    background: #FFFFFF;
-    border: 5px solid #527261;
+    background: var(--tertiary);
+    border: 5px solid var(--primary);
     box-sizing: border-box;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -20,7 +20,7 @@
 .timer-item{
     text-align: center;
     vertical-align: center;
-    color: #527261;
+    color: var(--primary);
     font-family: "Roboto";
     font-style: normal;
     font-weight: bold;
@@ -36,64 +36,79 @@
 
 
 .undo-btn{
+    background-color: var(--tertiary);
     display: grid;
     grid-area: 1/1/6/9;
-    border: 2px solid #527261;
+    border: 2px solid var(--primary);
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-    color: #527261;
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
 }
 
 .hint-btn{
+    background-color: var(--tertiary);
     display: grid;
     grid-area: 1/16/6/24;
-    border: 2px solid #527261;
+    border: 2px solid var(--primary);
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-    color: #527261;
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
 }
 .notes-btn{
+    background-color: var(--tertiary);
     display: grid;
     grid-area: 10/1/15/9;
-    border: 2px solid #527261;
+    border: 2px solid var(--primary);
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-    color: #527261;
     justify-content: center;
     align-items: center;
 }
+
+.notes-off{
+    color: var(--text-color);
+    background-color: var(--tertiary);
+}
+.notes-on{
+    color: var(--tertiary);
+    background-color: var(--text-color);
+}
+
 .eraser-btn{
+    background-color: var(--tertiary);
     display: grid;
     grid-area: 10/16/15/24;
-    border: 2px solid #527261;
+    border: 2px solid var(--primary);
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-    color: #527261;
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
 }
 .new-game-btn{
+    background-color: var(--tertiary);
     display: grid;
     grid-area: 19/1/24/9;
-    border: 2px solid #527261;
+    border: 2px solid var(--primary);
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-    color: #527261;
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 .settings-btn{
+    background-color: var(--tertiary);
     display: grid;
     grid-area: 19/16/24/24;
-    border: 2px solid #527261;
+    border: 2px solid var(--primary);
     border-radius: 15px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-    color: #527261;
+    color: var(--text-color);
     justify-content: center;
     align-items: center;
 }

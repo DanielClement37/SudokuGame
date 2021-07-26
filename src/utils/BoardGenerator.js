@@ -320,6 +320,7 @@ export const NewFilledBoard = _ => {
                 If error caught, return BeginnerBoardGenerator()
 */
 export function BeginnerBoardGenerator() {
+<<<<<<< HEAD
 
     let numTiles = GetRandomNumber(36, 46)  //number of tiles to keep on a beginner level board
     numTiles = 81 - numTiles                //total cells - tiles to keep = tiles to remove
@@ -338,6 +339,27 @@ export function BeginnerBoardGenerator() {
         //if error is caught, recall the function
         return BeginnerBoardGenerator()
     }
+=======
+  let numTiles = GetRandomNumber(36, 46); //number of tiles to keep on a beginner level board
+  numTiles = 81 - numTiles; //total cells - tiles to keep = tiles to remove
+
+  try {
+    counter = 0;
+    let finalBoard = NewFilledBoard(); //final board equals the fully filled board
+
+    //copy the new filled board and remove values from it
+    //store the removed values to save for clues later
+    let [removedVals, startingBoard] = ValueRemover(
+      JSON.parse(JSON.stringify(finalBoard)),
+      numTiles
+    );
+
+    return [removedVals, startingBoard, finalBoard];
+  } catch (error) {
+    //if error is caught, recall the function
+    return BeginnerBoardGenerator();
+  }
+>>>>>>> e56bf88cd496d286d108eed7396eee64ad7c31aa
 }
 
 /* Function:    Generates Board of Intermediate Diffuclty

@@ -9,9 +9,15 @@ module.exports = {
       xl: '1440px',
     },
     colors: {
-      primary:"#527261",
-      secondary:"#FFFFFF",
+      'primary': 'var(--primary)',
+      'secondary': 'var(--secondary)',
+      'tertiary': 'var(--tertiary)',
+      'selectfill': 'var(--select-fill)',
+      'textColor': 'var(--text-color)',
+      'userTileColor': 'var(--user-tile-color)',
+      'sliderOff': 'var(--slider-off)',
     },
+    
     textColor: {
       'primary': '#527261',
       'secondary':"#FFFFFF",
@@ -29,7 +35,8 @@ module.exports = {
     letterSpacing: {
       header: '0.43em'
     },
-    extend: {},
+    extend: {
+    },
   },
   variants: {
     extend: {},

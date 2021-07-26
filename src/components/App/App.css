@@ -1,8 +1,15 @@
 .App {
   position: static;
-  background-color: #527261;
-  background-image: url(../../images/pepeScrap25.png);
+  background-color: var(--primary)!important;
   background-size: 10vw;
+}
+
+.App-bg-light {
+  background-image: url("../../images/pepeScrap25.png");
+}
+
+.App-bg-dark {
+  background-image: url("../../images/PixelEagle70.png");
 }
 
 .App-container{
