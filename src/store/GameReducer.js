@@ -10,16 +10,34 @@ let iRemovedVals, iStartingBoard, iFinalBoard
 let aRemovedVals, aStartingBoard, aFinalBoard
 let eRemovedVals, eStartingBoard, eFinalBoard
 
-const parallelBoardGenerator = async () => {
-  await Promise.all([
-    ([bRemovedVals, bStartingBoard, bFinalBoard] = (await BeginnerBoardGenerator())),
-    ([iRemovedVals, iStartingBoard, iFinalBoard] = (await IntermediateBoardGenerator())),
-    ([aRemovedVals, aStartingBoard, aFinalBoard] = (await AdvancedBoardGenerator())),
-    ([eRemovedVals, eStartingBoard, eFinalBoard] = (await ExpertBoardGenerator()))
+const generateBeginnerBoard = async () => {
+  [bRemovedVals, bStartingBoard, bFinalBoard] = await Promise.all([
+    await BeginnerBoardGenerator()
   ]);
 }
 
-parallelBoardGenerator()
+const generateIntermediateBoard = async () => {
+  [iRemovedVals, iStartingBoard, iFinalBoard] = await Promise.all([
+    await IntermediateBoardGenerator()
+  ]);
+}
+
+const generateAdvancedBoard = async () => {
+  [aRemovedVals, aStartingBoard, aFinalBoard] = await Promise.all([
+    await AdvancedBoardGenerator()
+  ]);
+}
+
+const generateExpertBoard = async () => {
+  [eRemovedVals, eStartingBoard, eFinalBoard] = await Promise.all([
+    await ExpertBoardGenerator()
+  ]);
+}
+
+generateBeginnerBoard()
+generateIntermediateBoard()
+generateAdvancedBoard()
+generateExpertBoard()
 
 
 export const initialState = {
@@ -92,19 +110,19 @@ export const generateNewBoard = async (difficulty) => {
 
   switch(difficulty) {
     case 'Beginner':
-      [bRemovedVals, bStartingBoard, bFinalBoard] = BeginnerBoardGenerator()
+      generateBeginnerBoard()
       break
 
     case 'Intermediate':
-      [iRemovedVals, iStartingBoard, iFinalBoard] = IntermediateBoardGenerator()
+      generateIntermediateBoard()
       break
 
     case 'Advanced':
-      [aRemovedVals, aStartingBoard, aFinalBoard] = AdvancedBoardGenerator()
+      generateAdvancedBoard()
       break
 
     case 'Expert':
-      [eRemovedVals, eStartingBoard, eFinalBoard] = ExpertBoardGenerator()
+      generateExpertBoard()
       break
 
     default:
