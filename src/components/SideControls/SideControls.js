@@ -72,13 +72,15 @@ export default function SideControls(props) {
       newUndoState.pop();
       let newBoardState = newUndoState.slice(newUndoState.length - 1);
       const remainingNums = remainingValues(newBoardState[0]);
+      newUndoState[0] = initBoardState.map((inner) => inner.slice());
+      
       dispatch({
         type: actionTypes.UNDO_MOVE,
         boardState: newBoardState[0],
         undoState: newUndoState,
         remainingNums: remainingNums,
       });
-    }
+    } 
   };
 
   const notesHandler = () => {
