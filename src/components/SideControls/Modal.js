@@ -17,7 +17,7 @@ export default function Modal(props) {
       type: actionTypes.NEW_GAME,
       boardState: startingBoard,
       initBoardState: startingBoard.map((inner) => inner.slice()),
-      solvedBoardState: finalBoard,
+      solvedBoardState: finalBoard.map((inner) => inner.slice()),
       removedVals: removedVals,
       selectedTile: {
         row: null,
@@ -26,7 +26,6 @@ export default function Modal(props) {
         unit: null,
       },
       remainingNums: remainingValues(startingBoard),
-      isSolved: false,
       undoState: [startingBoard.map((copy) => copy.slice())],
       difficulty: difficulty,
     });

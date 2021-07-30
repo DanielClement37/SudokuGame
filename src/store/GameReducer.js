@@ -94,13 +94,13 @@ export const gameBoardReducer = (state = initialState, action) => {
       };
     case actionTypes.NEW_GAME:
       return {
-        boardState: action.boardState,
-        initBoardState: action.boardState,
-        solvedBoardState: action.boardState,
+        boardState: action.boardState.map((copy) => copy.slice()),
+        initBoardState: action.initBoardState.map((copy) => copy.slice()),
+        solvedBoardState: action.solvedBoardState.map((copy) => copy.slice()),
         removedVals: action.removedVals,
         selectedTile: action.selectedTile,
         remainingNums: action.remainingNums,
-        isSolved: action.isSolved,
+        isSolved: false,
         undoState: action.undoState,
         difficulty: action.difficulty,
       };
