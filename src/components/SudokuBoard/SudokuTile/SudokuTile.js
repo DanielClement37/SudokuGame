@@ -1,4 +1,5 @@
 import "./SudokuTile.css";
+import "./RepetiveTile.css";
 import React from "react";
 import { useStore } from "../../../store/Store";
 import { classNames } from "../../../utils/classNames.ts";
