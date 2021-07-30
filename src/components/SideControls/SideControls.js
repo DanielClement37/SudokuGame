@@ -81,15 +81,12 @@ export default function SideControls(props) {
     }
   };
 
-<<<<<<< HEAD
-=======
   const notesHandler = () => {
     dispatch({
       type: actionTypes.NOTES_TOGGLE,
       isNotesMode: isNotesMode ? false : true,
     })
   }
->>>>>>> e56bf88cd496d286d108eed7396eee64ad7c31aa
 
   return (
     <div className="side-controls">

@@ -6,7 +6,8 @@ import './SideControls.css';
 import { useStore } from "../../store/Store";
 import { chooseDifficulty, generateNewBoard } from "../../store/GameReducer";
 import { remainingValues } from "../../utils/GetRemainingNums";
-import {PepeScrapWin} from "../images/pepeScrapWin.png"
+import PepeScrapWin from "../../images/pepeScrapWin.png"
+import { actionTypes } from "../../store/types";
 
 export default function Modal(props) {
 
@@ -17,6 +18,7 @@ export default function Modal(props) {
         let [removedVals, startingBoard, finalBoard] = chooseDifficulty(difficulty)
 
         dispatch({
+          type: actionTypes.NEW_GAME,
           boardState: startingBoard,
           initBoardState: startingBoard.map((inner) => inner.slice()),
           solvedBoardState: finalBoard,
@@ -97,7 +99,7 @@ export default function Modal(props) {
                             difficultyHandler('Advanced')
                         }}
                         >
-                        Hard</button>
+                        Advanced</button>
                         <button className="new-game-modal-btn"onClick={(e) => {
                             difficultyHandler('Expert')
                         }}
