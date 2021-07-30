@@ -72,6 +72,8 @@ export default function SideControls(props) {
       newUndoState.pop();
       let newBoardState = newUndoState.slice(newUndoState.length - 1);
       const remainingNums = remainingValues(newBoardState[0]);
+      newUndoState[0] = initBoardState.map((inner) => inner.slice());
+
       dispatch({
         type: actionTypes.UNDO_MOVE,
         boardState: newBoardState[0],
@@ -85,8 +87,8 @@ export default function SideControls(props) {
     dispatch({
       type: actionTypes.NOTES_TOGGLE,
       isNotesMode: isNotesMode ? false : true,
-    })
-  }
+    });
+  };
 
   return (
     <div className="side-controls">
@@ -97,11 +99,11 @@ export default function SideControls(props) {
         </div>
       </div>
       <div className="controls-container">
-        <Modal 
-        name="isWin" 
-        open={isOpenWin} 
-        onClose={() => setIsOpenWin(false)} 
-        time={time}
+        <Modal
+          name="isWin"
+          open={isOpenWin}
+          onClose={() => setIsOpenWin(false)}
+          time={time}
         ></Modal>
         <button
           className="undo-btn"
@@ -138,6 +140,7 @@ export default function SideControls(props) {
           name="isNewGame"
           open={isOpen2}
           onClose={() => setIsOpen2(false)}
+          resetHandler={() => setTime(0)}
         />
         <button className="settings-btn" onClick={() => setIsOpen(true)}>
           Settings
