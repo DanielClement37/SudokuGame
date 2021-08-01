@@ -1,0 +1,44 @@
+
+.Board-container .tile,
+.Board-container .board-unit {
+    width:33.33333%;
+    height:33.33333%;
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex
+}
+
+.Board-container .selected-unit-class{
+    background-color: var(--select-fill);
+}
+
+.Board-container #unit1 {
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
+   }
+
+.Board-container #unit2 {
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
+   }
+   
+.Board-container #unit3 {
+    border-bottom: 4px solid var(--primary);
+}
+.Board-container #unit4 {
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
+}
+.Board-container #unit5 {
+    border-bottom: 4px solid var(--primary);
+    border-right: 4px solid var(--primary);
+}
+.Board-container #unit6 {
+    border-bottom: 4px solid var(--primary);
+}
+.Board-container #unit7 {
+    border-right: 4px solid var(--primary);
+}
+.Board-container #unit8 {
+    border-right: 4px solid var(--primary);
+}

@@ -1,0 +1,16 @@
+.timer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+  
+.digits{
+    color: var(--text-color);
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3.3vw;
+    line-height: 115%;
+}
