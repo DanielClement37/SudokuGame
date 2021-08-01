@@ -25,6 +25,11 @@ const App = () => {
     initBoardState
   } = state;
 
+  useEffect(() => {
+    backupAdvancedBoards(advancedBoards);
+    backupExpertBoards(expertBoards);
+  }, []); //<-- empty array means to run once
+
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
 
@@ -59,15 +64,6 @@ const App = () => {
     }
     return true;
   };
-
-  const GenerateBoards = () => {
-    useEffect(() => {
-      
-      backupAdvancedBoards(advancedBoards);
-      backupExpertBoards(expertBoards);
-
-    }, []); //<-- empty array means to run once
-  }
 
   const btnUpdateTileHandler = (btnValue) => {
     updateTile(btnValue);
