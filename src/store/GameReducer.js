@@ -25,19 +25,15 @@ const generateIntermediateBoard = () => {
   [iRemovedVals, iStartingBoard, iFinalBoard] = IntermediateBoardGenerator();
 };
 
-let advancedBoards = []; //used to store up to 5 back up advanced boards
-let expertBoards = []; //used to store up to 5 back up expert boards
+export const advancedBoards = [] //used to store up to 5 back up advanced boards
+export const expertBoards = [] //used to store up to 5 back up expert boards
 
 generateBeginnerBoard();
 generateIntermediateBoard();
 
 //takes our arrays that store the back-up boards and fills them asynchronously
-const boardGenerator = async () => {
-  await backupAdvancedBoards(advancedBoards);
-  await backupExpertBoards(expertBoards);
-};
 
-boardGenerator();
+
 
 export const initialState = {
   boardState: bStartingBoard,
@@ -56,6 +52,7 @@ export const initialState = {
   undoState: [bStartingBoard.map((copy) => copy.slice())],
   difficulty: "Beginner",
   boardNotes: INIT_NOTES,
+  remainingHints: 3
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
@@ -94,6 +91,13 @@ export const gameBoardReducer = (state = initialState, action) => {
         boardState: action.boardState,
         remainingNums: action.remainingNums,
         selectedTile: action.selectedTile,
+      };
+    case actionTypes.GIVE_HINT:
+      return {
+        ...state,
+        boardState: action.boardState,
+        remainingNums: action.remainingNums,
+        remainingHints: action.remainingHints
       };
     case actionTypes.NEW_GAME:
       return {

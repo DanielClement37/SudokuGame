@@ -19,11 +19,13 @@ export default function SideControls(props) {
   const {
     isSolved,
     boardState,
+    solvedBoardState,
     undoState,
     selectedTile,
     initBoardState,
     difficulty,
     isNotesMode,
+    remainingHints
   } = state;
 
   useEffect(() => {
@@ -83,12 +85,64 @@ export default function SideControls(props) {
     }
   };
 
-  const notesHandler = () => {
+/* Function:    Provide a hint by correcting the first mistake or filling the first unfilled spot on the game board
+   Criteria:    None Required
+   Parameters:  None?
+   Return:      None?
+*/
+  const hintHandler = () => {
+    if(remainingHints === 0) 
+      return;
+    let newBoardState = [...boardState]; // copy of the current board state
+    let count = 0;
+    let correctMistake = false;
+    // Priority 1 : Correct Mistakes on Board
+
+    // iterate through current board; if current cell does not match answer key, update and exit loop
+    for (var i = 0; i < 9; i++){
+      if(count === 1)
+          break;
+      for (var j = 0; j < 9; j++){
+        if(newBoardState[i][j] !== 0) {
+          if(newBoardState[i][j] !== solvedBoardState[i][j])
+          {
+            newBoardState[i][j] = solvedBoardState[i][j];
+            count = 1;
+            correctMistake = true;
+            break;
+          }
+        }
+      }
+    }
+    count = 0;
+    //if a mistake was not corrected then just fill in an empty tile
+    if(correctMistake === false) {
+      // Priority 2: (If there are No Mistakes to Correct) Fill a Blank Cell
+      // iterate through current board; if null cell found, update and dispatch
+      for (i = 0; i < 9; i++){
+        if(count === 1)
+          break;
+        for (j = 0; j < 9; j++){
+          if(newBoardState[i][j] === 0) {
+            newBoardState[i][j] = solvedBoardState[i][j];
+            count = 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    const remainingNums = remainingValues(newBoardState)
+    const newRemainingHints = remainingHints - 1;
+    
     dispatch({
-      type: actionTypes.NOTES_TOGGLE,
-      isNotesMode: isNotesMode ? false : true,
+      type: actionTypes.GIVE_HINT,
+      boardState: newBoardState,
+      remainingNums: remainingNums,
+      remainingHints: newRemainingHints
     });
-  };
+
+  }
 
   return (
     <div className="side-controls">
@@ -113,14 +167,21 @@ export default function SideControls(props) {
         >
           Undo
         </button>
-        <button className="hint-btn">Hint</button>
+        <button 
+          className="hint-btn"
+          onClick={(e) => {
+            hintHandler()
+          }}
+        >
+          Hint
+        </button>
         <button
           className={classNames(
             "notes-btn",
             isNotesMode ? "notes-on" : "notes-off"
           )}
           onClick={(e) => {
-            notesHandler();
+            //notesHandler();
           }}
         >
           Notes

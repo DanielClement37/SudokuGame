@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
 import SideControls from "../SideControls/SideControls";
@@ -11,6 +11,8 @@ import { remainingValues } from "../../utils/GetRemainingNums";
 import { generatedCheck } from "../../utils/GeneratedCheck";
 import useKeyboardShortcut from "../../utils/useKeyboardShortcut";
 import { classNames } from "../../utils/classNames";
+import { backupAdvancedBoards, backupExpertBoards } from "../../utils/BackroundBoardGenerators";
+import { advancedBoards, expertBoards } from "../../store/GameReducer";
 
 const App = () => {
   const [lightTheme, setLightTheme] = useState(true);
@@ -23,6 +25,11 @@ const App = () => {
     isNotesMode,
     boardNotes
   } = state;
+
+  useEffect(() => {
+    backupAdvancedBoards(advancedBoards);
+    backupExpertBoards(expertBoards);
+  }, []); //<-- empty array means to run once
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
