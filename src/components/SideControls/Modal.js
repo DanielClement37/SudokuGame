@@ -13,7 +13,7 @@ export default function Modal(props) {
 
     const [state, dispatch] = useStore();
    
-    const difficultyHandler = (difficulty) => {
+    const difficultyHandler = async (difficulty) => {
 
         let [removedVals, startingBoard, finalBoard] = chooseDifficulty(difficulty)
 
@@ -35,7 +35,7 @@ export default function Modal(props) {
           difficulty: difficulty
         });
         //generates a new board in the same difficulty for later use
-        generateNewBoard(difficulty)
+        //await generateNewBoard(difficulty)
     }
     
 
