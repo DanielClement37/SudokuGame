@@ -20,7 +20,8 @@ const App = () => {
     boardState,
     solvedBoardState,
     selectedTile,
-    initBoardState
+    initBoardState,
+    isNotesMode
   } = state;
 
   const updateTile = (numInput) => {
@@ -63,7 +64,7 @@ const App = () => {
   };
 
   const keyUpdateHandler = (keyValue) => {
-    if (selectedTile.row !== null) {
+    if (selectedTile.row !== null && !isNotesMode) {
       updateTile(keyValue);
     }
   };

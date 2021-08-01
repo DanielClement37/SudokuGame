@@ -51,6 +51,7 @@ export const initialState = {
   },
   remainingNums: remainingValues(bStartingBoard),
   isSolved: false,
+  isNotesMode : false,
   undoState: [bStartingBoard.map((copy) => copy.slice())],
   difficulty: "Beginner",
 };
