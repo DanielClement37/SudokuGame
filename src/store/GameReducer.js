@@ -1,33 +1,52 @@
 import { actionTypes } from "./types";
-import { BeginnerBoardGenerator, IntermediateBoardGenerator } from "../utils/BoardGenerator";
+import {
+  BeginnerBoardGenerator,
+  IntermediateBoardGenerator,
+} from "../utils/BoardGenerator";
 import { remainingValues } from "../utils/GetRemainingNums";
-import { generateAdvancedBoard, generateExpertBoard, 
-         backupAdvancedBoards, backupExpertBoards } from "../utils/BackroundBoardGenerators";
+import {
+  generateAdvancedBoard,
+  generateExpertBoard,
+  backupAdvancedBoards,
+  backupExpertBoards,
+} from "../utils/BackroundBoardGenerators";
 
-let bRemovedVals, bStartingBoard, bFinalBoard
-let iRemovedVals, iStartingBoard, iFinalBoard
-let aRemovedVals, aStartingBoard, aFinalBoard
-let eRemovedVals, eStartingBoard, eFinalBoard
-
+let bRemovedVals, bStartingBoard, bFinalBoard;
+let iRemovedVals, iStartingBoard, iFinalBoard;
+let aRemovedVals, aStartingBoard, aFinalBoard;
+let eRemovedVals, eStartingBoard, eFinalBoard;
 
 const generateBeginnerBoard = () => {
   [bRemovedVals, bStartingBoard, bFinalBoard] = BeginnerBoardGenerator();
-}
+};
 
 const generateIntermediateBoard = () => {
   [iRemovedVals, iStartingBoard, iFinalBoard] = IntermediateBoardGenerator();
-}
+};
 
+<<<<<<< HEAD
 export const advancedBoards = [] //used to store up to 5 back up advanced boards
 export const expertBoards = [] //used to store up to 5 back up expert boards
+=======
+let advancedBoards = []; //used to store up to 5 back up advanced boards
+let expertBoards = []; //used to store up to 5 back up expert boards
+>>>>>>> 6cb22bc33bd73a547554e6a5811d4391048a9d4f
 
 generateBeginnerBoard();
 generateIntermediateBoard();
 
 //takes our arrays that store the back-up boards and fills them asynchronously
+<<<<<<< HEAD
 
 
+=======
+const boardGenerator = async () => {
+  await backupAdvancedBoards(advancedBoards);
+  await backupExpertBoards(expertBoards);
+};
+>>>>>>> 6cb22bc33bd73a547554e6a5811d4391048a9d4f
 
+boardGenerator();
 
 export const initialState = {
   boardState: bStartingBoard,
@@ -43,9 +62,13 @@ export const initialState = {
   remainingNums: remainingValues(bStartingBoard),
   isSolved: false,
   undoState: [bStartingBoard.map((copy) => copy.slice())],
+<<<<<<< HEAD
   difficulty: 'Beginner',
   advancedBoards: advancedBoards,
   expertBoards: expertBoards
+=======
+  difficulty: "Beginner",
+>>>>>>> 6cb22bc33bd73a547554e6a5811d4391048a9d4f
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
@@ -87,15 +110,15 @@ export const gameBoardReducer = (state = initialState, action) => {
       };
     case actionTypes.NEW_GAME:
       return {
-        boardState: action.boardState,
-        initBoardState: action.boardState,
-        solvedBoardState: action.boardState,
+        boardState: action.boardState.map((copy) => copy.slice()),
+        initBoardState: action.initBoardState.map((copy) => copy.slice()),
+        solvedBoardState: action.solvedBoardState.map((copy) => copy.slice()),
         removedVals: action.removedVals,
         selectedTile: action.selectedTile,
         remainingNums: action.remainingNums,
-        isSolved: action.isSolved,
+        isSolved: false,
         undoState: action.undoState,
-        difficulty: action.difficulty
+        difficulty: action.difficulty,
       };
     default:
       break;
@@ -103,62 +126,62 @@ export const gameBoardReducer = (state = initialState, action) => {
 };
 
 export const chooseDifficulty = (difficulty) => {
-  switch(difficulty) {
-    case 'Beginner':
-      return [bRemovedVals, bStartingBoard, bFinalBoard]
+  switch (difficulty) {
+    case "Beginner":
+      return [bRemovedVals, bStartingBoard, bFinalBoard];
 
-    case 'Intermediate':
-      return [iRemovedVals, iStartingBoard, iFinalBoard]
+    case "Intermediate":
+      return [iRemovedVals, iStartingBoard, iFinalBoard];
 
-    case 'Advanced':
-      let aNewBoard = advancedBoards.shift()
-      aRemovedVals = aNewBoard.removedVals
-      aStartingBoard = aNewBoard.startingBoard
-      aFinalBoard = aNewBoard.finalBoard
-      return [aRemovedVals, aStartingBoard, aFinalBoard]
+    case "Advanced":
+      let aNewBoard = advancedBoards.shift();
+      aRemovedVals = aNewBoard.removedVals;
+      aStartingBoard = aNewBoard.startingBoard;
+      aFinalBoard = aNewBoard.finalBoard;
+      return [aRemovedVals, aStartingBoard, aFinalBoard];
 
-    case 'Expert':
-      let eNewBoard = expertBoards.shift()
-      eRemovedVals = eNewBoard.removedVals
-      eStartingBoard = eNewBoard.startingBoard
-      eFinalBoard = eNewBoard.finalBoard
-      return [eRemovedVals, eStartingBoard, eFinalBoard]
+    case "Expert":
+      let eNewBoard = expertBoards.shift();
+      eRemovedVals = eNewBoard.removedVals;
+      eStartingBoard = eNewBoard.startingBoard;
+      eFinalBoard = eNewBoard.finalBoard;
+      return [eRemovedVals, eStartingBoard, eFinalBoard];
 
     default:
-      break
+      break;
   }
-}
+};
 
 export const generateNewBoard = async (difficulty) => {
+  switch (difficulty) {
+    case "Beginner":
+      generateBeginnerBoard();
+      break;
 
-  switch(difficulty) {
-    case 'Beginner':
-      generateBeginnerBoard()
-      break
+    case "Intermediate":
+      generateIntermediateBoard();
+      break;
 
-    case 'Intermediate':
-      generateIntermediateBoard()
-      break
-
-    case 'Advanced':
-      [aRemovedVals, aStartingBoard, aFinalBoard] = await generateAdvancedBoard();
+    case "Advanced":
+      [aRemovedVals, aStartingBoard, aFinalBoard] =
+        await generateAdvancedBoard();
       advancedBoards.push({
         removedVals: aRemovedVals,
         startingBoard: aStartingBoard,
-        finalBoard: aFinalBoard
+        finalBoard: aFinalBoard,
       });
-      break
+      break;
 
-    case 'Expert':
+    case "Expert":
       [eRemovedVals, eStartingBoard, eFinalBoard] = await generateExpertBoard();
       expertBoards.push({
         removedVals: eRemovedVals,
         startingBoard: eStartingBoard,
-        finalBoard: eFinalBoard
+        finalBoard: eFinalBoard,
       });
-      break
+      break;
 
     default:
-      break
+      break;
   }
-}
+};
