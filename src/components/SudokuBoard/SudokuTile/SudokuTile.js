@@ -1,37 +1,23 @@
 import "./SudokuTile.css";
 import "./RepetiveTile.css";
-import React, { useState } from "react";
+import React from "react";
 import { useStore } from "../../../store/Store";
 import { classNames } from "../../../utils/classNames.ts";
 import { generatedCheck } from "../../../utils/GeneratedCheck";
-import useKeyboardShortcut from "../../../utils/useKeyboardShortcut";
+import { getRowNum } from "../../../utils/Conveter";
 
 const Tile = (props) => {
   const [state] = useStore();
-  const { selectedTile, initBoardState, isNotesMode } = state;
-
-  const [notes, setNotes] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]); //each index represents a digit for notes mode
+  const { selectedTile, initBoardState, boardNotes } = state;
 
   let tileValue = props.value === 0 ? " " : props.value;
   let tile = {
     row: props.row,
     col: props.col,
   };
-
-  const updateNotes =(noteIndex) =>{
-    setNotes[noteIndex] = notes ? false : true;
-  }
-
+  
+  const rowNum = getRowNum(props.row);
+  
   if (props.value === 0) {
     return (
       <div
@@ -60,7 +46,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[0] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][0] ? "selected-hint" : ""
                   )}
                 >
                   1
@@ -68,7 +54,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[1] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][1] ? "selected-hint" : ""
                   )}
                 >
                   2
@@ -76,7 +62,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[2] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][2] ? "selected-hint" : ""
                   )}
                 >
                   3
@@ -86,7 +72,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[3] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][3] ? "selected-hint" : ""
                   )}
                 >
                   4
@@ -94,7 +80,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[4] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][4] ? "selected-hint" : ""
                   )}
                 >
                   5
@@ -102,7 +88,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[5] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][5] ? "selected-hint" : ""
                   )}
                 >
                   6
@@ -112,7 +98,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[6] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][6] ? "selected-hint" : ""
                   )}
                 >
                   7
@@ -120,7 +106,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[7] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][7] ? "selected-hint" : ""
                   )}
                 >
                   8
@@ -128,7 +114,7 @@ const Tile = (props) => {
                 <td
                   className={classNames(
                     "hint-item",
-                    notes[8] ? "selected-hint" : ""
+                    boardNotes[rowNum-1][props.col-1][8] ? "selected-hint" : ""
                   )}
                 >
                   9

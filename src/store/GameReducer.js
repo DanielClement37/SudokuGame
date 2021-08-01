@@ -2,6 +2,7 @@ import { actionTypes } from "./types";
 import {
   BeginnerBoardGenerator,
   IntermediateBoardGenerator,
+  INIT_NOTES
 } from "../utils/BoardGenerator";
 import { remainingValues } from "../utils/GetRemainingNums";
 import {
@@ -51,9 +52,10 @@ export const initialState = {
   },
   remainingNums: remainingValues(bStartingBoard),
   isSolved: false,
-  isNotesMode : false,
+  isNotesMode: false,
   undoState: [bStartingBoard.map((copy) => copy.slice())],
   difficulty: "Beginner",
+  boardNotes: INIT_NOTES,
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
@@ -105,6 +107,11 @@ export const gameBoardReducer = (state = initialState, action) => {
         undoState: action.undoState,
         difficulty: action.difficulty,
       };
+      case actionTypes.UPDATE_NOTES:
+        return{
+          ...state,
+          boardNotes: action.boardNotes.map((copy) => copy.slice()),
+        };
     default:
       break;
   }

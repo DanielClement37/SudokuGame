@@ -8,6 +8,7 @@ import PepeScrapWin from "../../images/pepeScrapWin.png";
 import { actionTypes } from "../../store/types";
 
 export default function Modal(props) {
+  // eslint-disable-next-line
   const [state, dispatch] = useStore();
 
   const difficultyHandler = (difficulty) => {
