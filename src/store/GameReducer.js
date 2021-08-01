@@ -7,9 +7,7 @@ import {
 import { remainingValues } from "../utils/GetRemainingNums";
 import {
   generateAdvancedBoard,
-  generateExpertBoard,
-  backupAdvancedBoards,
-  backupExpertBoards,
+  generateExpertBoard
 } from "../utils/BackroundBoardGenerators";
 
 let bRemovedVals, bStartingBoard, bFinalBoard;
