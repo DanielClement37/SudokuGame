@@ -50,6 +50,7 @@ export const initialState = {
   isNotesMode : false,
   undoState: [bStartingBoard.map((copy) => copy.slice())],
   difficulty: "Beginner",
+  remainingHints: 3
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
@@ -88,6 +89,13 @@ export const gameBoardReducer = (state = initialState, action) => {
         boardState: action.boardState,
         remainingNums: action.remainingNums,
         selectedTile: action.selectedTile,
+      };
+    case actionTypes.GIVE_HINT:
+      return {
+        ...state,
+        boardState: action.boardState,
+        remainingNums: action.remainingNums,
+        remainingHints: action.remainingHints
       };
     case actionTypes.NEW_GAME:
       return {
