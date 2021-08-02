@@ -49,7 +49,7 @@ export const initialState = {
   isNotesMode: false,
   undoState: [bStartingBoard.map((copy) => copy.slice())],
   difficulty: "Beginner",
-  boardNotes: INIT_NOTES,
+  boardNotes: INIT_NOTES.map((copy) => copy.slice()),
   remainingHints: 3
 };
 
@@ -89,6 +89,7 @@ export const gameBoardReducer = (state = initialState, action) => {
         boardState: action.boardState,
         remainingNums: action.remainingNums,
         selectedTile: action.selectedTile,
+        boardNotes: action.boardNotes
       };
     case actionTypes.GIVE_HINT:
       return {
@@ -106,8 +107,11 @@ export const gameBoardReducer = (state = initialState, action) => {
         selectedTile: action.selectedTile,
         remainingNums: action.remainingNums,
         isSolved: false,
+        isNotesMode: false,
         undoState: action.undoState,
         difficulty: action.difficulty,
+        boardNotes: INIT_NOTES.map((copy) => copy.slice()),
+        remainingHints: 3
       };
       case actionTypes.UPDATE_NOTES:
         return{

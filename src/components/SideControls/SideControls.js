@@ -25,7 +25,8 @@ export default function SideControls(props) {
     initBoardState,
     difficulty,
     isNotesMode,
-    remainingHints
+    remainingHints,
+    boardNotes
   } = state;
 
   useEffect(() => {
@@ -50,8 +51,10 @@ export default function SideControls(props) {
     }
     if (!generatedCheck(selectedTile, initBoardState)) {
       let newBoardState = [...boardState]; //copy the current board state to newBoardState
+      let newBoardNotes = [...boardNotes];
       const rowNum = getRowNum(selectedTile.row); //get the row of the selected tile
       newBoardState[rowNum - 1][parseInt(selectedTile.col) - 1] = 0; //set the value at the selected tile = 0
+      newBoardNotes[rowNum - 1][parseInt(selectedTile.col) - 1] = [false, false, false, false, false, false, false, false, false];
       const remainingNums = remainingValues(newBoardState); //get remaining nums
       dispatch({
         type: actionTypes.ERASE_TILE,
@@ -63,6 +66,7 @@ export default function SideControls(props) {
           unit: selectedTile.unit,
           value: 0,
         },
+        boardNotes: newBoardNotes
       });
     }
   };
@@ -144,6 +148,14 @@ export default function SideControls(props) {
 
   }
 
+  const notesHandler = () =>{
+    dispatch({
+      type: actionTypes.NOTES_TOGGLE,
+      isNotesMode: isNotesMode ? false : true
+    })
+
+  }
+
   return (
     <div className="side-controls">
       <div className="timer-container">
@@ -181,7 +193,7 @@ export default function SideControls(props) {
             isNotesMode ? "notes-on" : "notes-off"
           )}
           onClick={(e) => {
-            //notesHandler();
+            notesHandler();
           }}
         >
           Notes
