@@ -2,13 +2,12 @@ import { actionTypes } from "./types";
 import {
   BeginnerBoardGenerator,
   IntermediateBoardGenerator,
+  INIT_NOTES
 } from "../utils/BoardGenerator";
 import { remainingValues } from "../utils/GetRemainingNums";
 import {
   generateAdvancedBoard,
-  generateExpertBoard,
-  backupAdvancedBoards,
-  backupExpertBoards,
+  generateExpertBoard
 } from "../utils/BackroundBoardGenerators";
 
 let bRemovedVals, bStartingBoard, bFinalBoard;
@@ -24,19 +23,15 @@ const generateIntermediateBoard = () => {
   [iRemovedVals, iStartingBoard, iFinalBoard] = IntermediateBoardGenerator();
 };
 
-let advancedBoards = []; //used to store up to 5 back up advanced boards
-let expertBoards = []; //used to store up to 5 back up expert boards
+export const advancedBoards = [] //used to store up to 5 back up advanced boards
+export const expertBoards = [] //used to store up to 5 back up expert boards
 
 generateBeginnerBoard();
 generateIntermediateBoard();
 
 //takes our arrays that store the back-up boards and fills them asynchronously
-const boardGenerator = async () => {
-  await backupAdvancedBoards(advancedBoards);
-  await backupExpertBoards(expertBoards);
-};
 
-boardGenerator();
+
 
 export const initialState = {
   boardState: bStartingBoard,
@@ -51,9 +46,11 @@ export const initialState = {
   },
   remainingNums: remainingValues(bStartingBoard),
   isSolved: false,
-  isNotesMode : false,
+  isNotesMode: false,
   undoState: [bStartingBoard.map((copy) => copy.slice())],
   difficulty: "Beginner",
+  boardNotes: INIT_NOTES.map((copy) => copy.slice()),
+  remainingHints: 3
 };
 
 export const gameBoardReducer = (state = initialState, action) => {
@@ -92,6 +89,14 @@ export const gameBoardReducer = (state = initialState, action) => {
         boardState: action.boardState,
         remainingNums: action.remainingNums,
         selectedTile: action.selectedTile,
+        boardNotes: action.boardNotes
+      };
+    case actionTypes.GIVE_HINT:
+      return {
+        ...state,
+        boardState: action.boardState,
+        remainingNums: action.remainingNums,
+        remainingHints: action.remainingHints
       };
     case actionTypes.NEW_GAME:
       return {
@@ -102,9 +107,17 @@ export const gameBoardReducer = (state = initialState, action) => {
         selectedTile: action.selectedTile,
         remainingNums: action.remainingNums,
         isSolved: false,
+        isNotesMode: false,
         undoState: action.undoState,
         difficulty: action.difficulty,
+        boardNotes: INIT_NOTES.map((copy) => copy.slice()),
+        remainingHints: 3
       };
+      case actionTypes.UPDATE_NOTES:
+        return{
+          ...state,
+          boardNotes: action.boardNotes.map((copy) => copy.slice()),
+        };
     default:
       break;
   }

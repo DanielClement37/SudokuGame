@@ -1,14 +1,14 @@
 import { useEffect, useCallback, useReducer } from "react";
 
-function disabledEventPropagation(e){
-    if(e){
-      if(e.stopPropagation){
-        e.stopPropagation();
-      } else if(window.event){
-        window.event.cancelBubble = true;
-      }
+function disabledEventPropagation(e) {
+  if (e) {
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    } else if (window.event) {
+      window.event.cancelBubble = true;
     }
   }
+}
 
 const blacklistedTargets = ["INPUT", "TEXTAREA"];
 
@@ -44,7 +44,7 @@ const useKeyboardShortcut = (shortcutKeys, callback, options) => {
       "The second parameter to `useKeyboardShortcut` must be a function that will be envoked when the keys are pressed."
     );
 
-  const { overrideSystem } = options || {}
+  const { overrideSystem } = options || {};
   const initalKeyMapping = shortcutKeys.reduce((currentKeys, key) => {
     currentKeys[key.toLowerCase()] = false;
     return currentKeys;
@@ -53,10 +53,10 @@ const useKeyboardShortcut = (shortcutKeys, callback, options) => {
   const [keys, setKeys] = useReducer(keysReducer, initalKeyMapping);
 
   const keydownListener = useCallback(
-    assignedKey => keydownEvent => {
+    (assignedKey) => (keydownEvent) => {
       const loweredKey = assignedKey.toLowerCase();
-      
-      if (keydownEvent.repeat) return
+
+      if (keydownEvent.repeat) return;
       if (blacklistedTargets.includes(keydownEvent.target.tagName)) return;
       if (loweredKey !== keydownEvent.key.toLowerCase()) return;
       if (keys[loweredKey] === undefined) return;
@@ -73,7 +73,7 @@ const useKeyboardShortcut = (shortcutKeys, callback, options) => {
   );
 
   const keyupListener = useCallback(
-    assignedKey => keyupEvent => {
+    (assignedKey) => (keyupEvent) => {
       const raisedKey = assignedKey.toLowerCase();
 
       if (blacklistedTargets.includes(keyupEvent.target.tagName)) return;
@@ -92,22 +92,35 @@ const useKeyboardShortcut = (shortcutKeys, callback, options) => {
   );
 
   useEffect(() => {
-    if (!Object.values(keys).filter(value => !value).length) {
+    if (!Object.values(keys).filter((value) => !value).length) {
       callback(keys);
       setKeys({ type: "reset-keys", data: initalKeyMapping });
     } else {
-      setKeys({ type: null })
+      setKeys({ type: null });
     }
+    // eslint-disable-next-line
   }, [callback, keys]);
 
   useEffect(() => {
-    shortcutKeys.forEach(k => window.addEventListener("keydown", keydownListener(k)));
-    return () => shortcutKeys.forEach(k => window.removeEventListener("keydown", keydownListener(k)));
+    shortcutKeys.forEach((k) =>
+      window.addEventListener("keydown", keydownListener(k))
+    );
+    return () =>
+      shortcutKeys.forEach((k) =>
+        window.removeEventListener("keydown", keydownListener(k))
+      );
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    shortcutKeys.forEach(k => window.addEventListener("keyup", keyupListener(k)));
-    return () => shortcutKeys.forEach(k => window.removeEventListener("keyup", keyupListener(k)));
+    shortcutKeys.forEach((k) =>
+      window.addEventListener("keyup", keyupListener(k))
+    );
+    return () =>
+      shortcutKeys.forEach((k) =>
+        window.removeEventListener("keyup", keyupListener(k))
+      );
+    // eslint-disable-next-line
   }, []);
 };
 

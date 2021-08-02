@@ -4,5 +4,6 @@ export const actionTypes = {
     UNDO_MOVE: 'UNDO_MOVE',
     NOTES_TOGGLE: 'NOTES_TOGGLE',
     ERASE_TILE: 'ERASE_TILE',
-    NEW_GAME: 'NEW_GAME'
+    NEW_GAME: 'NEW_GAME',
+    UPDATE_NOTES: 'UPDATE_NOTES'
 }

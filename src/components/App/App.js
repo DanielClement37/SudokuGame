@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SudokuBoard from "../SudokuBoard/SudokuBoard";
 import NumPad from "../NumPad/NumPad";
 import SideControls from "../SideControls/SideControls";
@@ -11,18 +11,25 @@ import { remainingValues } from "../../utils/GetRemainingNums";
 import { generatedCheck } from "../../utils/GeneratedCheck";
 import useKeyboardShortcut from "../../utils/useKeyboardShortcut";
 import { classNames } from "../../utils/classNames";
+import { backupAdvancedBoards, backupExpertBoards } from "../../utils/BackroundBoardGenerators";
+import { advancedBoards, expertBoards } from "../../store/GameReducer";
 
 const App = () => {
   const [lightTheme, setLightTheme] = useState(true);
-
   const [state, dispatch] = useStore();
   const {
     boardState,
     solvedBoardState,
     selectedTile,
     initBoardState,
-    isNotesMode
+    isNotesMode,
+    boardNotes
   } = state;
+
+  useEffect(() => {
+    backupAdvancedBoards(advancedBoards);
+    backupExpertBoards(expertBoards);
+  }, []); //<-- empty array means to run once
 
   const updateTile = (numInput) => {
     let newBoardState = [...boardState];
@@ -48,6 +55,18 @@ const App = () => {
     }
   };
 
+  const updateNotes=(noteIndex)=> {
+    const rowNum = getRowNum(selectedTile.row);
+    const newNotes = [...boardNotes];
+
+    newNotes[rowNum-1][selectedTile.col-1][noteIndex] = newNotes[rowNum-1][selectedTile.col-1][noteIndex] ? false : true;
+
+    dispatch({
+      type: actionTypes.UPDATE_NOTES,
+      boardNotes: newNotes,
+    });
+  }
+
   const checkWin = (boardState) => {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
@@ -60,12 +79,18 @@ const App = () => {
   };
 
   const btnUpdateTileHandler = (btnValue) => {
-    updateTile(btnValue);
+    if(isNotesMode){
+      updateNotes(btnValue -1);
+    }else{
+      updateTile(btnValue);
+    }
   };
 
   const keyUpdateHandler = (keyValue) => {
     if (selectedTile.row !== null && !isNotesMode) {
       updateTile(keyValue);
+    } else if(selectedTile.row !== null && isNotesMode) {
+      updateNotes(keyValue -1);
     }
   };
 
